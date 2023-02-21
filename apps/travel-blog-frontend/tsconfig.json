@@ -1,6 +1,15 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@common": ["src/common/index.tsx"],
+      "@components": ["src/components/index.tsx"],
+      "@graphql": ["src/graphql.ts"],
+      "@ui": ["../../libs/ui/src/index.ts"],
+      "@theme": ["../../libs/theme/src/index.ts"],
+      "@icons": ["../../libs/icons/src/index.ts"]
+    },
     "jsx": "preserve",
     "allowJs": true,
     "esModuleInterop": true,
@@ -11,9 +20,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "next-env.d.ts",
+    "../../apps/travel-blog-frontend/.next/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules",
     "jest.config.ts",

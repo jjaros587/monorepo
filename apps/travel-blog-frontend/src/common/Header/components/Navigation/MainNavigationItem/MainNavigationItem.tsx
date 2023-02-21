@@ -1,0 +1,61 @@
+'use client';
+
+import Link, { LinkProps } from 'next/link';
+import {
+  Wrapper,
+  MainNavigationLinkCaret,
+  MainNavigationLinkDropdown,
+} from './styled';
+import { usePathname } from 'next/navigation';
+import { Text, Inline } from '@ui';
+import { useState } from 'react';
+
+type NavigationItemProps = LinkProps & {
+  label: string;
+  subNavigation?: React.ReactNode;
+};
+
+export const MainNavigationItem = (props: NavigationItemProps) => {
+  const { href, label, subNavigation } = props;
+  const [over, setOver] = useState(false);
+  const pathname = usePathname();
+  const selected = pathname === href;
+
+  return (
+    <Link href={href}>
+      <Wrapper
+        selected={selected}
+        alignY="center"
+        align="center"
+        onMouseOver={() => setOver(true)}
+        onMouseOut={() => setOver(false)}
+      >
+        <Inline>
+          <Text
+            variant="bodyMedium"
+            color={over || selected ? 'light' : 'basic'}
+          >
+            {label}
+          </Text>
+          {subNavigation && (
+            <MainNavigationLinkCaret
+              height="6"
+              role="img"
+              viewBox="0 0 10 6"
+              width="10"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M1 1L5.07223 5.1517L9.23083 1"></path>
+            </MainNavigationLinkCaret>
+          )}
+        </Inline>
+
+        {subNavigation && (
+          <MainNavigationLinkDropdown>
+            {subNavigation}
+          </MainNavigationLinkDropdown>
+        )}
+      </Wrapper>
+    </Link>
+  );
+};

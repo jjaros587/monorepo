@@ -1,0 +1,75 @@
+{
+  "name": "cryptocurencies-frontend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/cryptocurencies-frontend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/cryptocurencies-frontend"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "cryptocurencies-frontend:build",
+        "proxyConfig": "apps/cryptocurencies-frontend/proxy.conf.json"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "cryptocurencies-frontend:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "cryptocurencies-frontend:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "cryptocurencies-frontend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "cryptocurencies-frontend:build:development"
+        },
+        "production": {
+          "buildTarget": "cryptocurencies-frontend:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/apps/cryptocurencies-frontend"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/cryptocurencies-frontend"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/cryptocurencies-frontend/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

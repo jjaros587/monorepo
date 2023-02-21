@@ -1,0 +1,38 @@
+{
+  "name": "travel-blog-backend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/travel-blog-backend/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx-extend/strapi:serve",
+      "options": {
+        "buildTarget": "travel-blog-backend:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "travel-blog-backend:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "travel-blog-backend:build:production",
+          "dev": false
+        }
+      }
+    },
+    "build": {
+      "executor": "@nx-extend/strapi:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/travel-blog-backend"
+      },
+      "configurations": {
+        "production": {
+          "production": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,10 @@
+mutation RefresthTokens($refreshToken: String!) {
+  refreshTokens(refreshToken: $refreshToken) {
+    user {
+      _id
+      email
+    }
+    accessToken
+    refreshToken
+  }
+}

@@ -1,0 +1,8 @@
+schema: 'http://localhost:1337/graphql'
+generates:
+  ./apps/travel-blog-frontend/src/graphql.ts:
+    plugins:
+      - '@graphql-codegen/typescript'
+    config:
+      withResultType: true
+      withHooks: true

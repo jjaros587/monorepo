@@ -1,0 +1,14 @@
+query Withdrawals($skip: Float, $limit: Float) {
+  withdrawals(skip: $skip, limit: $limit) {
+    items {
+      _id
+      date
+      amount
+    }
+
+    pageInfo {
+      totalCount
+      hasNextPage
+    }
+  }
+}

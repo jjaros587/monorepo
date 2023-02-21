@@ -63,6 +63,9 @@
       "options": {
         "lintFilePatterns": ["apps/travel-blog-frontend/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "gen:graphql": {
+      "command": "graphql-codegen --config apps/travel-blog-frontend/codegen.yml"
     }
   },
   "tags": []

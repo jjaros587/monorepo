@@ -1,0 +1,38 @@
+{
+  "name": "backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "author": {
+    "name": "Jakub Jaroš"
+  },
+  "scripts": {
+    "dev": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "strapi": {
+    "uuid": "698daa93-9aab-403d-8271-d145cb3cfe1f",
+    "template": "@strapi/template-blog@^1.0.0",
+    "starter": "@strapi/starter-next-blog"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@strapi/plugin-graphql": "^4.0.0",
+    "@strapi/plugin-i18n": "4.5.3",
+    "@strapi/plugin-users-permissions": "4.5.3",
+    "@strapi/strapi": "4.5.3",
+    "@vscode/sqlite3": "^5.1.2-vscode",
+    "better-sqlite3": "7.4.6",
+    "lodash.set": "^4.3.2",
+    "mime-types": "^2.1.27",
+    "strapi-plugin-country-select": "^1.0.0",
+    "strapi-plugin-meilisearch": "^0.9.1"
+  },
+  "devDependencies": {}
+}
