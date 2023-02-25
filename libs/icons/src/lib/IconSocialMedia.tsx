@@ -13,7 +13,7 @@ export function IconSocialMedia({
 
   return (
     <Suspense fallback={'loading'}>
-      <Component fill="green" size="60px" />
+      <Component />
     </Suspense>
   );
 }

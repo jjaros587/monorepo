@@ -1,46 +1,54 @@
 'use client';
 
 import { CountryEntity, ArticleEntity } from '@graphql';
-import { ArticleCard, CountryIcon, PageTitle } from '@components';
-import ReactMarkdown from 'react-markdown';
+import {
+  ArticleListing,
+  ArticleListingFetcher,
+  CountryIcon,
+  Markdown,
+  PageTitle,
+} from '@components';
 import { Box, Inline, Text } from '@ui';
 import { IconCountryMap } from '@icons';
 import Flag, { Flag2 } from 'national-flag-icons';
+// import { Container, Row, Col } from 'react-bootstrap';
+import Grid from '@mui/material/Grid';
 
 interface Props {
   country: CountryEntity;
-  articles: ArticleEntity[];
 }
 
-export default ({ country, articles }: Props) => {
+export default ({ country }: Props) => {
   return (
     <>
-      <Inline alignY="flex-start " gap="M" noWrap>
-        <Inline.Item flexGrow>
+      <Grid container>
+        <Grid item xs={12} sm={12} md={8}>
           <Box paddingBottom="M">
             <Inline alignY="center" gap="M">
-              {/* <Flag2 flagCode="us" height={25} /> */}
-
               <CountryIcon code={country.attributes?.code} size="40px" />
               <PageTitle>{country.attributes?.name}</PageTitle>
             </Inline>
           </Box>
-          <ReactMarkdown>{country.attributes?.content}</ReactMarkdown>
-        </Inline.Item>
+          <Markdown markdown={country.attributes?.content} />
+        </Grid>
 
-        <Inline.Item>
-          <Box padding="L">
+        <Grid item xs={12} sm={12} md={4}>
+          <Box padding="L" align="center">
             <IconCountryMap name={country.attributes.slug} />
           </Box>
-        </Inline.Item>
-      </Inline>
+        </Grid>
 
-      <Text variant="display">Articles</Text>
-      {articles.map(({ attributes }) => (
-        <div style={{ marginBottom: '5px' }}>
-          <ArticleCard article={attributes} />
-        </div>
-      ))}
+        <Grid item xs={12} sm={12} md={12}>
+          <Text variant="display">Articles</Text>
+          <ArticleListingFetcher
+            filters={{
+              country: {
+                slug: { $eq: country.attributes.slug },
+              },
+            }}
+          />
+        </Grid>
+      </Grid>
     </>
   );
 };

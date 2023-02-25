@@ -2,16 +2,17 @@
 
 import { CountryEntity } from '@graphql';
 import Link from 'next/link';
-import { CountryIcon } from '@components';
-import { Grid, Inline, Text } from '@ui';
+import { ArticleListingFetcher, CountryIcon } from '@components';
+import { Inline, Text } from '@ui';
 
 interface Props {
   countries: CountryEntity[];
 }
 
 export default ({ countries }: Props) => {
+  debugger;
   return (
-    <Grid gap="L">
+    <Inline gap="L">
       {countries.map(({ attributes }) => (
         <Link href={`/countries/${attributes?.slug}`}>
           <Inline gap="S" alignY="center">
@@ -20,6 +21,15 @@ export default ({ countries }: Props) => {
           </Inline>
         </Link>
       ))}
-    </Grid>
+      <ArticleListingFetcher
+        filters={{
+          country: {
+            id: {
+              $notNull: true,
+            },
+          },
+        }}
+      />
+    </Inline>
   );
 };

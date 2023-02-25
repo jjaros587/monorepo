@@ -1,14 +1,13 @@
 'use client';
 
-import { ArticleCard } from '@components';
-import { ArticleEntity, HomepageEntity } from '@graphql';
+import { ArticleListing, ArticleListingFetcher } from '@components';
+import { HomepageEntity } from '@graphql';
 import styled from '@theme';
 import { Text, Stack, Button, Box } from '@ui';
 import { HomePageWallpapers } from 'src/common/HomePageWallpapers/HopePageWallpapers';
 import './global.css';
 
 interface Props {
-  articles: ArticleEntity[];
   homepage: HomepageEntity;
 }
 
@@ -27,7 +26,7 @@ const Wrapper = styled(Stack)`
   padding-top: 30vh;
 `;
 
-export default ({ articles, homepage }: Props) => {
+export default ({ homepage }: Props) => {
   return (
     <Container>
       <Box fullScreen>
@@ -43,11 +42,7 @@ export default ({ articles, homepage }: Props) => {
         <Button primary>Start exploring</Button>
       </Wrapper>
       <div className="contentWrapper">
-        <Stack gap="S">
-          {articles.map(({ attributes }) => (
-            <ArticleCard article={attributes} />
-          ))}
-        </Stack>
+        <ArticleListingFetcher />
       </div>
     </Container>
   );

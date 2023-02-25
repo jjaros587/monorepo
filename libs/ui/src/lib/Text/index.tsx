@@ -1,9 +1,11 @@
 import styled, { TextColors, TextVariants } from '@theme';
 import { ReactFCWithChildren } from '@ui';
+import { getTextTag } from './getTextTag';
 
 interface Props {
   color?: TextColors;
   variant?: TextVariants;
+  style?: React.CSSProperties;
 }
 
 const TextBase = styled.span<Props>`
@@ -16,7 +18,7 @@ export const Text: ReactFCWithChildren<Props> = ({
   ...props
 }) => {
   return (
-    <TextBase variant={variant} {...props}>
+    <TextBase variant={variant} {...props} as={getTextTag(variant)}>
       {children}
     </TextBase>
   );

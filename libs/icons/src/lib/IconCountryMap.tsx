@@ -1,15 +1,13 @@
 import React, { Suspense } from 'react';
-import { Colors, PositiveSpaceUnit } from '@theme';
 
 interface IconProps {
   name: string;
-  color?: Colors;
-  size?: PositiveSpaceUnit;
+  color?: string;
 }
 
 export function IconCountryMap({
   name,
-  ...rest
+  color = 'green',
 }: IconProps): JSX.Element | null {
   const Component = React.lazy(
     () => import(`!svg-react-loader?name=Icon!./assets/countryMaps/${name}.svg`)
@@ -17,7 +15,7 @@ export function IconCountryMap({
 
   return (
     <Suspense fallback={'loading'}>
-      <Component height="200px" fill="green" />
+      <Component height="auto" width="100%" fill={color} />
     </Suspense>
   );
 }

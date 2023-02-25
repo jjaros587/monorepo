@@ -8,7 +8,8 @@
       "@graphql": ["src/graphql.ts"],
       "@ui": ["../../libs/ui/src/index.ts"],
       "@theme": ["../../libs/theme/src/index.ts"],
-      "@icons": ["../../libs/icons/src/index.ts"]
+      "@icons": ["../../libs/icons/src/index.ts"],
+      "@hooks": ["../../libs/hooks/src/index.ts"]
     },
     "jsx": "preserve",
     "allowJs": true,

@@ -11,25 +11,37 @@ export const MainNavigationLinkCaret = styled.svg`
   }
 `;
 
-export const MainNavigationLinkDropdown = styled.div`
-  background-color: #333333;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+export const SubNavigationPoppup = styled.div`
   display: none;
   position: absolute;
-  left: 0;
-  top: 100%;
-  min-width: 1000px;
+
+  left: 0px;
+  right: 0px;
+  top 75px;
+
+  // float: left;
+  // overflow: hidden;
+`;
+
+export const SubNavigation = styled.div`
+  // float: left;
+  // overflow: hidden;
+  :hover {
+    ${SubNavigationPoppup} {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+`;
+
+export const SubNavigationContent = styled.div`
+  background-color: #333333;
 `;
 
 export const Wrapper = styled(Box)<{ selected: boolean }>`
   padding: 0 20px;
-
   height: 75px;
-  position: relative;
-  :hover ${MainNavigationLinkDropdown} {
-    display: block;
-  }
 
   ${({ selected }) =>
     selected &&

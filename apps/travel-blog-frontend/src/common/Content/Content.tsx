@@ -1,14 +1,14 @@
 'use client';
 
-import { Inline } from '@ui';
 import styled from 'styled-components';
 import { SidePanel } from '../SidePanel/SidePanel';
+import Grid from '@mui/material/Grid';
 
-const Container = styled.main`
+const Main = styled.main`
   position: relative;
   min-height: 100vh;
   top: 75px;
-  padding: 4rem 0;
+  padding: 3rem 1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -17,15 +17,19 @@ const Container = styled.main`
 
 export const Content = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Container>
+    <Main>
       <div className="contentWrapper">
-        <Inline gap="M" noWrap>
-          <Inline.Item flexGrow>{children}</Inline.Item>
-          <Inline.Item>
-            <SidePanel />
-          </Inline.Item>
-        </Inline>
+        <div style={{ width: '100%' }}>
+          <Grid container rowSpacing={{ xs: 2 }} columnSpacing={{ xs: 2 }}>
+            <Grid item xs={12} sm={12} md={9}>
+              {children}
+            </Grid>
+            <Grid item xs={12} sm={12} md={3}>
+              <SidePanel />
+            </Grid>
+          </Grid>
+        </div>
       </div>
-    </Container>
+    </Main>
   );
 };

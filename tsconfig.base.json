@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@hooks": ["libs/hooks/src/index.ts"],
       "@monorepo/icons": ["libs/icons/src/index.ts"],
       "@theme": ["libs/theme/src/index.ts"],
       "@ui": ["libs/ui/src/index.ts"],

@@ -36,5 +36,5 @@ export default async function Page({
   const country: CountryEntity = await getCountry(slug);
   const articles: ArticleEntity[] = await getArticles(slug);
 
-  return <CountryPage country={country} articles={articles} />;
+  return <CountryPage country={country} />;
 }

@@ -1,5 +1,3 @@
-'use client';
-
 import styled, { PositiveSpaceUnit } from '@theme';
 
 interface Props {

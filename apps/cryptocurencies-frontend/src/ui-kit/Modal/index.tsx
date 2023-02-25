@@ -1,11 +1,17 @@
-import { Card } from '@ui'
-import { Portal } from 'react-portal'
-import { ConfirmModal } from './modals/ConfirmModal'
-import { ModalOverlay, ModalWrapper, ModalHeader, ModalBody, ModalFooter } from './styled'
+import { Card } from '@ui';
+import { Portal } from 'react-portal';
+import { ConfirmModal } from './modals/ConfirmModal';
+import {
+  ModalOverlay,
+  ModalWrapper,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from './styled';
 
 interface Props {
-  onOverlayClick: () => void
-  onEscape: () => void
+  onOverlayClick: () => void;
+  onEscape: () => void;
 }
 
 const ModalBase: React.FC<Props> = ({ children, onOverlayClick, onEscape }) => {
@@ -16,13 +22,13 @@ const ModalBase: React.FC<Props> = ({ children, onOverlayClick, onEscape }) => {
         <Card size="L">{children}</Card>
       </ModalWrapper>
     </Portal>
-  )
-}
+  );
+};
 
 export const Modal = Object.assign(ModalBase, {
   Header: ModalHeader,
   Body: ModalBody,
-  Footer: ModalFooter
-})
+  Footer: ModalFooter,
+});
 
-export { ConfirmModal }
+export { ConfirmModal };
