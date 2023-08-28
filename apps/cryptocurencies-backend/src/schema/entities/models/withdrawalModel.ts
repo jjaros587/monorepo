@@ -1,32 +1,43 @@
-import { getModelForClass, mongoose, plugin, prop, Ref } from '@typegoose/typegoose'
-import { Field, ObjectType } from 'type-graphql'
-import { v4 as uuidv4 } from 'uuid'
-import { User } from './userModel'
-import mongooseAutoPopulate from 'mongoose-autopopulate'
+import {
+  getModelForClass,
+  mongoose,
+  plugin,
+  prop,
+  Ref,
+} from '@typegoose/typegoose';
+import { Field, ObjectType } from 'type-graphql';
+import { v4 as uuidv4 } from 'uuid';
+import { User } from './userModel';
+import mongooseAutoPopulate from 'mongoose-autopopulate';
 
 @ObjectType()
-@plugin(mongooseAutoPopulate as any)
+@plugin(mongooseAutoPopulate)
 export class Withdrawal {
   // ID
-  @Field((_type) => String)
-  @prop({ required: true, default: () => uuidv4() })
-  public _id: string
+  @Field(() => String)
+  @prop({ type: () => String, required: true, default: () => uuidv4() })
+  public _id: string;
   // Refs
-  @Field((_type) => User)
-  @prop({ ref: () => User, type: () => String, required: true, autopopulate: true })
-  public user: Ref<User, string>
+  @Field(() => User)
+  @prop({
+    ref: () => User,
+    type: () => String,
+    required: true,
+    autopopulate: true,
+  })
+  public user: Ref<User, string>;
 
   // Scalars
-  @Field((_type) => Number)
-  @prop({ required: true })
-  public date: number
+  @Field(() => Number)
+  @prop({ type: () => Number, required: true })
+  public date: number;
 
-  @Field((_type) => Number)
-  @prop({ required: true })
-  public amount: number
+  @Field(() => Number)
+  @prop({ type: () => Number, required: true })
+  public amount: number;
 }
 
 export const WithdrawalModel = getModelForClass(Withdrawal, {
   existingMongoose: mongoose,
-  schemaOptions: { collection: 'withdrawal', _id: false }
-})
+  schemaOptions: { collection: 'withdrawal', _id: false },
+});

@@ -1,9 +1,4 @@
-export type AlignY =
-  | 'flex-start '
-  | 'flex-end'
-  | 'center'
-  | 'baseline'
-  | 'stretch';
+export type AlignY = 'flex-start ' | 'flex-end' | 'center' | 'baseline' | 'stretch'
 
 export type Align =
   | 'flex-start'
@@ -12,4 +7,4 @@ export type Align =
   | 'space-between'
   | 'space-around'
   | 'space-evenly'
-  | 'stretch';
+  | 'stretch'

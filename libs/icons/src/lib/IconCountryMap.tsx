@@ -1,21 +1,18 @@
-import React, { Suspense } from 'react';
+import { Suspense, lazy } from 'react'
 
 interface IconProps {
-  name: string;
-  color?: string;
+  name: string
+  color?: string
 }
 
-export function IconCountryMap({
-  name,
-  color = 'green',
-}: IconProps): JSX.Element | null {
-  const Component = React.lazy(
-    () => import(`!svg-react-loader?name=Icon!./assets/countryMaps/${name}.svg`)
-  );
+export function IconCountryMap({ name, color = 'green' }: IconProps): JSX.Element | null {
+  const Component = lazy(() =>
+    import(`./assets/socicountryMapsal/${name}.svg`).then((module) => ({ default: module })),
+  )
 
   return (
     <Suspense fallback={'loading'}>
       <Component height="auto" width="100%" fill={color} />
     </Suspense>
-  );
+  )
 }

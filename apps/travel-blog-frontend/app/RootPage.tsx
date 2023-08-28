@@ -2,9 +2,12 @@
 
 import { ArticleListing, ArticleListingFetcher } from '@components';
 import { HomepageEntity } from '@graphql';
+import usePagination from '@mui/material/usePagination/usePagination';
 import styled from '@theme';
 import { Text, Stack, Button, Box } from '@ui';
+import { useEffect } from 'react';
 import { HomePageWallpapers } from 'src/common/HomePageWallpapers/HopePageWallpapers';
+import { ListingModel } from 'src/models/ListingModel';
 import './global.css';
 
 interface Props {
@@ -27,6 +30,19 @@ const Wrapper = styled(Stack)`
 `;
 
 export default ({ homepage }: Props) => {
+  const model = new ListingModel('article');
+
+  useEffect(() => {
+    const fetch = async () => {
+      model.fetchItems();
+    };
+    fetch();
+  }, []);
+
+  useEffect(() => {
+    console.log('items', model.items);
+  }, [model.items]);
+
   return (
     <Container>
       <Box fullScreen>

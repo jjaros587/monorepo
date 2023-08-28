@@ -1,10 +1,14 @@
-import { PageInfo } from '@types'
+import { PageInfo } from '../schema/types';
 
-export function getPageInfo(skip: number, limit: number, totalCount: number): PageInfo {
-  const nextItems = totalCount - (skip + limit)
+export function getPageInfo(
+  skip: number,
+  limit: number,
+  totalCount: number
+): PageInfo {
+  const nextItems = totalCount - (skip + limit);
   return {
     hasNextPage: nextItems > 0,
     totalCount,
-    nextItems: nextItems < limit ? nextItems : limit
-  }
+    nextItems: nextItems < limit ? nextItems : limit,
+  };
 }

@@ -1,8 +1,8 @@
-import { Resolver } from 'type-graphql'
-import { Asset, AssetModel } from '../models/assetModel'
-import { createBaseResolver } from 'src/schema/factories/createBaseResolver'
+import { Resolver } from 'type-graphql';
+import { createBaseResolver } from '../../factories/createBaseResolver';
+import { Asset, AssetModel } from '../models/assetModel';
 
-const AssetBaseResolver = createBaseResolver(Asset, AssetModel)
+const AssetBaseResolver = createBaseResolver(Asset, AssetModel);
 
-@Resolver((_of) => Asset)
+@Resolver(() => Asset)
 export class AssetResolver extends AssetBaseResolver {}

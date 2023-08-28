@@ -18,6 +18,10 @@ export const Gallery: React.FC<Props> = ({ images }) => {
 
   const handleClose = useCallback(() => setOpen(false), []);
 
+  if (!images || images.length === 0) {
+    return null;
+  }
+
   return (
     <Box align="center">
       <Box paddingY="L">

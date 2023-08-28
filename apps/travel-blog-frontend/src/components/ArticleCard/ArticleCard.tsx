@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { Article } from '@graphql';
 import Link from 'next/link';
 import { getStrapiMedia } from '../../../lib/media';
@@ -26,6 +26,7 @@ const Img = styled.img`
 export const ArticleCard: FC<{ article: Article }> = ({ article }) => {
   const { slug, title, image, description } = article;
   const [hover, setHover] = useState(false);
+  const imageURL = useMemo(() => getStrapiMedia(image), [image]);
 
   return (
     <Link
@@ -36,7 +37,7 @@ export const ArticleCard: FC<{ article: Article }> = ({ article }) => {
       <StyledArticleCard hover={hover}>
         <Grid container>
           <Grid item xs={12} sm={4} md={4}>
-            <Img src={getStrapiMedia(image)} />
+            <Img src={imageURL} />
           </Grid>
           <Grid item xs={12} sm={8} md={8}>
             <Box paddingX="M" paddingY="L">

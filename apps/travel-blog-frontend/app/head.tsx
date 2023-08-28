@@ -5,11 +5,11 @@ export default function Head() {
       {/* <meta name="viewport" content="width=device-width, initial-scale=1.0" /> */}
       <link rel="icon" href="/favicon.ico" />
 
-      <link
+      {/* <link
         rel="stylesheet"
         precedence="default"
         href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
-      />
+      /> */}
 
       <title>My Page</title>
     </>

@@ -1,4 +1,4 @@
-import { TransactionTypes } from '@types'
+import { TransactionTypes } from '../../schema/types';
 
 export const transactions = [
   //// BTC
@@ -10,7 +10,7 @@ export const transactions = [
     date: 1503072360,
     price: 45,
     fee: 5,
-    type: TransactionTypes.BOUGHT
+    type: TransactionTypes.BOUGHT,
   },
   // out
   {
@@ -21,7 +21,7 @@ export const transactions = [
     date: 1606751640,
     price: 10,
     fee: 5,
-    type: TransactionTypes.SOLD
+    type: TransactionTypes.SOLD,
   },
   {
     _id: 'bed94978-a264-43b1-879d-30309a4a3a52',
@@ -31,8 +31,8 @@ export const transactions = [
     date: 1621443660,
     price: 20,
     fee: 4,
-    type: TransactionTypes.BOUGHT
-  }
+    type: TransactionTypes.BOUGHT,
+  },
   // //// LTC
   // {
   //   _id: '63519738-b8b7-4d7b-83ae-d923660e5122',
@@ -247,4 +247,4 @@ export const transactions = [
   //   date: 1621400460,
   //   price: 45
   // }
-]
+];

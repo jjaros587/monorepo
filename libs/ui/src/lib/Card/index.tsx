@@ -1,9 +1,11 @@
 import styled, { PositiveLayoutSpaceUnit } from '@theme'
 import { Box, Text } from '@ui'
+import { ReactNode } from 'react'
 
 interface Props {
   size?: PositiveLayoutSpaceUnit
   title?: string
+  children?: ReactNode
 }
 
 const CardBase = styled(Box)<Props>`

@@ -1,8 +1,6 @@
-import { AssetModel } from '@models'
+import { AssetModel, TransactionModel, UserModel } from '../schema/entities/models'
 import { assets } from './data/assets'
 import { users } from './data/users'
-import { UserModel } from '@models'
-import { TransactionModel } from '@models'
 import { mongoose } from '@typegoose/typegoose'
 import { transactions } from './data/transactions'
 
@@ -18,7 +16,7 @@ export function importData(run: boolean) {
   console.log('Import of data finished succesfully\n')
 }
 
-function insertData<T extends { _id: String }>(model: typeof mongoose.Model, data: Array<T>) {
+function insertData<T extends { _id: string }>(model: typeof mongoose.Model, data: Array<T>) {
   console.log(`   Importing data for ${model.modelName}`)
   data.forEach(async (item) => {
     const foundItem = await model.findById(item._id)

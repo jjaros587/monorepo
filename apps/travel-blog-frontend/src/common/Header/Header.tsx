@@ -1,8 +1,11 @@
 'use client';
 
 import styled from '@theme';
-import { Box } from '@ui';
+import { Box, Inline } from '@ui';
+import { LanguageSwitcher } from './components/LanguageSwitcher/LanguageSwitcher';
 import { Navigation } from './components/Navigation/Navigation';
+import { SearchBar } from './components/SearchBar/SearchBar';
+import { useLayoutEffect, useState } from 'react';
 
 const StyledHeader = styled.header`
   position: fixed;
@@ -21,14 +24,13 @@ const GlassmorphicHeader = styled(Box)`
   width: 100%;
   height: 100%;
 
-  background-color: #0e0e0f;
+  background-color: rgb(14, 14, 15, 0.75);
   // background-color: #121212;
   // background-color: #34344a;
   backdrop-filter: blur(14px);
-  opacity: 0.75;
 `;
 
-const NavigationWrapper = styled(Box)`
+const NavigationWrapper = styled(Inline)`
   position: absolute;
   top: 0;
   left: 0;
@@ -37,11 +39,31 @@ const NavigationWrapper = styled(Box)`
 `;
 
 export const Header = () => {
+  const getSize = () => {
+    return window.innerWidth <= 768 ? 'small' : 'big';
+  };
+
+  const [state, setState] = useState<'big' | 'small'>(getSize);
+
+  useLayoutEffect(() => {
+    const handleResize = () => setState(getSize());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <StyledHeader>
       <GlassmorphicHeader />
-      <NavigationWrapper align="center" alignY="center">
-        <Navigation />
+      <NavigationWrapper align="space-between" alignY="center">
+        <Box paddingX="M">Logo</Box>
+        {state === 'big' && <Navigation />}
+
+        <Box paddingX="M">
+          <Inline alignY="center" gap="M">
+            <SearchBar />
+            <LanguageSwitcher />
+          </Inline>
+        </Box>
       </NavigationWrapper>
     </StyledHeader>
   );

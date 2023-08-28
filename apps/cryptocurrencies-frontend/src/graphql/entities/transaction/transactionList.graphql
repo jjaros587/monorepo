@@ -1,0 +1,23 @@
+query Transactions($skip: Float, $limit: Float, $order: OrderArgs) {
+  transactions(skip: $skip, limit: $limit, order: $order) {
+    items {
+      _id
+      date
+      amount
+      price
+      fee
+      total
+      date
+      type
+      # asset {
+      #   abbr
+      # }
+    }
+
+    pageInfo {
+      totalCount
+      hasNextPage
+      nextItems
+    }
+  }
+}

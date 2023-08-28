@@ -8,3 +8,5 @@ export { PageTitle } from './PageTitle/PageTitle';
 export { ArticleMetadata } from './ArticleMetadata/ArticleMetadata';
 export { Markdown } from './Markdown/Markdown';
 export { Gallery } from './Gallery/Gallery';
+export { CountryLabel } from './CountryLabel/CountryLabel';
+export { Section } from './Section/Section';

@@ -8,7 +8,6 @@ import {
 import Image from 'next/image';
 
 import { CloseButton, PrevButton, NextButton, Container } from './styled';
-import { useCallback } from 'react';
 
 interface Props {
   imagesCount: number;

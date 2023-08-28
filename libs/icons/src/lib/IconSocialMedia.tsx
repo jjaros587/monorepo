@@ -1,19 +1,17 @@
-import React, { Suspense } from 'react';
+import { Suspense, lazy } from 'react'
 
 interface IconSocialMediaProps {
-  name: 'instagram' | 'facebook' | 'youtube';
+  name: 'instagram' | 'facebook' | 'youtube'
 }
 
-export function IconSocialMedia({
-  name,
-}: IconSocialMediaProps): JSX.Element | null {
-  const Component = React.lazy(
-    () => import(`!svg-react-loader?name=Icon!./assets/social/${name}.svg`)
-  );
+export function IconSocialMedia({ name }: IconSocialMediaProps): JSX.Element | null {
+  const Component = lazy(() =>
+    import(`./assets/social/${name}.svg`).then((module) => ({ default: module })),
+  )
 
   return (
     <Suspense fallback={'loading'}>
       <Component />
     </Suspense>
-  );
+  )
 }

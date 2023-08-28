@@ -1,0 +1,50 @@
+version: "3.7"
+
+x-service-definition:
+  postgres: &postgres-definition
+    image: "postgres:13.1"
+    container_name: db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./server/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - type: bind
+        source: ./server/database/data
+        target: /data
+    command: "sh -c '/data/import.sh'"
+
+  # mongo: &mongo-definition
+  #   image: mongo:latest
+  #   container_name: mongodb
+  #   restart: always
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: admin
+  #     MONGO_INITDB_ROOT_PASSWORD: admin
+  #     MONGO_INITDB_DATABASE: crypto
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  mongodb: &mongodb-definition
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    # volumes:
+    #   - mongodb_volume:/data/db
+
+services:
+  # postgres: *postgres-definition
+  mongodb: *mongodb-definition
+#  be: *be-definition
+#  fe: *fe-definition
+
+# volumes:
+#   mongodb_volume:

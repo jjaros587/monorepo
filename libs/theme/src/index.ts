@@ -10,6 +10,7 @@ import {
   Spacing,
   PositiveSpaceUnit,
   PositiveLayoutSpaceUnit,
+  IconSizes,
 } from './lib/tokens/spacing';
 import { font, TextVariants } from './lib/mixins/fonts';
 import { padding, margin } from './lib/mixins/spacing';
@@ -42,6 +43,7 @@ export { css, keyframes, ThemeProvider, theme, ThemeContext };
 export type {
   PositiveSpaceUnit,
   PositiveLayoutSpaceUnit,
+  IconSizes,
   Colors,
   TextVariants,
   TextColors,

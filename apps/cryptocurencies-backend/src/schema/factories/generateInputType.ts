@@ -1,12 +1,15 @@
-import { GraphQLScalarType } from 'graphql'
-import { Field, InputType, ClassType, ObjectType } from 'type-graphql'
-import { getMetadataStorage } from 'type-graphql/dist/metadata/getMetadataStorage'
+import { GraphQLScalarType } from 'graphql';
+import { Field, InputType, ClassType, ObjectType } from 'type-graphql';
+import { getMetadataStorage } from 'type-graphql/dist/metadata/getMetadataStorage';
 
-export function generateInputType<T>(InputTypeClass: ClassType<T>) {
+export function generateInputType<T>(
+  InputTypeClass: ClassType<T>,
+  another: string
+) {
   @InputType(`New${InputTypeClass.name}`, { isAbstract: true })
   class CreateInputType {}
 
-  const fields = getMetadataStorage().fields
+  const fields = getMetadataStorage().fields;
   //   console.log('all fields', fields)
   //   console.log(
   //     'filtered fields',
@@ -16,12 +19,12 @@ export function generateInputType<T>(InputTypeClass: ClassType<T>) {
   fields
     .filter((item: any) => item.target === InputTypeClass)
     .forEach((field) => {
-      console.log(field.name, field.getType(), field.target, field.params)
+      console.log(field.name, field.getType(), field.target, field.params);
 
       //   if (field.getType() === GraphQLScalarType) {
       //     console.log(field.name, field.getType(), field.target)
       //   }
-    })
+    });
 
   fields.push(
     ...fields
@@ -29,9 +32,9 @@ export function generateInputType<T>(InputTypeClass: ClassType<T>) {
       .map((item: any) => ({
         ...item,
         target: CreateInputType,
-        typeOptions: { ...item.typeOptions, nullable: true }
+        typeOptions: { ...item.typeOptions, nullable: true },
       }))
-  )
+  );
 
-  return CreateInputType
+  return CreateInputType;
 }

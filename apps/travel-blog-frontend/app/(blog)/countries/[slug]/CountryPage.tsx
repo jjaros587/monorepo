@@ -1,17 +1,10 @@
 'use client';
 
-import { CountryEntity, ArticleEntity } from '@graphql';
-import {
-  ArticleListing,
-  ArticleListingFetcher,
-  CountryIcon,
-  Markdown,
-  PageTitle,
-} from '@components';
-import { Box, Inline, Text } from '@ui';
+import { CountryEntity } from '@graphql';
+import { ArticleListingFetcher, CountryLabel, Markdown } from '@components';
+import { Box, Text } from '@ui';
 import { IconCountryMap } from '@icons';
 import Flag, { Flag2 } from 'national-flag-icons';
-// import { Container, Row, Col } from 'react-bootstrap';
 import Grid from '@mui/material/Grid';
 
 interface Props {
@@ -19,15 +12,13 @@ interface Props {
 }
 
 export default ({ country }: Props) => {
+  debugger;
   return (
     <>
       <Grid container>
         <Grid item xs={12} sm={12} md={8}>
           <Box paddingBottom="M">
-            <Inline alignY="center" gap="M">
-              <CountryIcon code={country.attributes?.code} size="40px" />
-              <PageTitle>{country.attributes?.name}</PageTitle>
-            </Inline>
+            <CountryLabel country={country.attributes} size="big" />
           </Box>
           <Markdown markdown={country.attributes?.content} />
         </Grid>

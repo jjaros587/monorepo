@@ -1,5 +1,3 @@
-import * as path from 'path';
-
 import express from 'express';
 import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
@@ -37,7 +35,7 @@ async function bootstrap() {
     schema: await buildSchema({
       resolvers: [
         TransactionResolver,
-        AssetResolver,
+        // AssetResolver,
         UserResolver,
         WithdrawalResolver,
         WalletResolver,
@@ -52,10 +50,10 @@ async function bootstrap() {
         // coinbaseService: new CoinbaseDatasource()
       };
     },
-    context: ({ req }: { req: express.Request }) => ({
-      accessToken: req.headers.authorization,
-      user: AuthService.getUser(req.headers.authorization),
-    }),
+    // context: ({ req }: { req: express.Request }) => ({
+    //   accessToken: req.headers.authorization,
+    //   user: AuthService.getUser(req.headers.authorization),
+    // }),
   });
 
   server.applyMiddleware({ app, path: '/graphql' });
@@ -65,15 +63,3 @@ async function bootstrap() {
 }
 
 bootstrap();
-
-// app.use('/assets', express.static(path.join(__dirname, 'assets')));
-
-// app.get('/api', (req, res) => {
-//   res.send({ message: 'Welcome to cryptocurencies-backend!' });
-// });
-
-// const port = process.env.PORT || 3333;
-// const server = app.listen(port, () => {
-//   console.log(`Listening at http://localhost:${port}/api`);
-// });
-// server.on('error', console.error);

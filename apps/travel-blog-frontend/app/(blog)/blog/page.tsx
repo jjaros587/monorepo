@@ -1,3 +1,5 @@
-export default async function BlogPage() {
-  return <></>;
+import { BlogPage } from './BlogPage';
+
+export default async function Page() {
+  return <BlogPage />;
 }

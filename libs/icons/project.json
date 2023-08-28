@@ -25,6 +25,11 @@
           "codeCoverage": true
         }
       }
+    },
+        "options": {
+      "stylePreprocessorOptions": {
+        "includePaths": ["node_modules/@vonage/vivid"]
+      }
     }
   }
 }

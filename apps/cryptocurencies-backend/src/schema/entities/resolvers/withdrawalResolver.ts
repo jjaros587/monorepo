@@ -1,25 +1,36 @@
-import { Arg, InputType, Field, Authorized, Resolver, Mutation } from 'type-graphql'
-import { Withdrawal, WithdrawalModel, User } from '@models'
-import { createBaseResolver } from 'src/schema/factories/createBaseResolver'
+import {
+  Arg,
+  InputType,
+  Field,
+  Authorized,
+  Resolver,
+  Mutation,
+} from 'type-graphql';
+import { createBaseResolver } from '../../factories/createBaseResolver';
+import { Withdrawal, WithdrawalModel } from '../models/withdrawalModel';
 
 @InputType({ description: 'New withdrawal data' })
 class AddWithdrawalInput implements Partial<Withdrawal> {
-  @Field()
-  user: string
-  @Field()
-  date: number
-  @Field()
-  amount: number
+  @Field(() => String)
+  user: string;
+
+  @Field(() => Number)
+  date: number;
+
+  @Field(() => Number)
+  amount: number;
 }
 
-const WithdrawalBaseResolver = createBaseResolver(Withdrawal, WithdrawalModel)
+const WithdrawalBaseResolver = createBaseResolver(Withdrawal, WithdrawalModel);
 
-@Resolver((_of) => Withdrawal)
+@Resolver(() => Withdrawal)
 export class WithdrawalResolver extends WithdrawalBaseResolver {
   @Authorized()
   @Mutation(() => Withdrawal)
-  async withdrawalCreate(@Arg('new') newWithdrawal: AddWithdrawalInput): Promise<Withdrawal> {
-    const transaction = await WithdrawalModel.create(newWithdrawal)
-    return transaction
+  async withdrawalCreate(
+    @Arg('new', () => AddWithdrawalInput) newWithdrawal: AddWithdrawalInput
+  ): Promise<Withdrawal> {
+    const transaction = await WithdrawalModel.create(newWithdrawal);
+    return transaction;
   }
 }

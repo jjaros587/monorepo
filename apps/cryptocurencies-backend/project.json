@@ -5,23 +5,26 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/webpack:webpack",
+      "executor": "@nrwl/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "target": "node",
-        "compiler": "tsc",
         "outputPath": "dist/apps/cryptocurencies-backend",
+        "format": ["cjs"],
         "main": "apps/cryptocurencies-backend/src/main.ts",
         "tsConfig": "apps/cryptocurencies-backend/tsconfig.app.json",
         "assets": ["apps/cryptocurencies-backend/src/assets"],
-        "isolatedConfig": true,
-        "webpackConfig": "apps/cryptocurencies-backend/webpack.config.js"
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
       },
       "configurations": {
         "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false
+          "esbuildOptions": {
+            "sourcemap": false
+          }
         }
       }
     },
