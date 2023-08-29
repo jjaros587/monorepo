@@ -8,6 +8,7 @@ import { Session } from '../graphql'
 export function genNewToken() {
   const localStorage = ServiceContainer.get(LocalStorageService)
   const authState = localStorage.get<AuthState>(STORAGE_KEYS.AUTH)
+
   return apiClient
     .mutate<{ refreshTokens: Session }>({
       mutation: REFRESH,

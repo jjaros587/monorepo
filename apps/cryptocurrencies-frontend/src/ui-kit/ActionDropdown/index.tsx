@@ -1,7 +1,8 @@
 import styled from '@theme'
 import { ActionDescriptor } from '../../app/actions/ActionDescriptor'
-import { Board, IconButton, Popup } from '..'
+import { Board, IconButton } from '..'
 import { ReactNode } from 'react'
+import { Popup } from '@ui'
 
 const ActionItem = styled.button`
   display: flex;

@@ -1,4 +1,4 @@
-import styled from '../ui-theme'
+import styled from '@theme'
 import { MEDIA_MAX_WIDTH } from './constants'
 
 export const Container = styled.div.attrs({ id: 'shell-container' })`
@@ -9,6 +9,8 @@ export const Container = styled.div.attrs({ id: 'shell-container' })`
 
   width: 100vw;
   height: 100vh;
+
+  background-color: ${(p) => p.theme.colors.background};
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -30,7 +32,6 @@ export const Content = styled.div.attrs({ id: 'shell-content' })`
 
 export const PageWrapper = styled.div.attrs({ id: 'shell-pageWrapper' })`
   flex: 1;
-  align: center;
   overflow: auto;
   ${(p) => p.theme.padding('XXL')};
 `
@@ -42,11 +43,9 @@ export const BulkPanel = styled.div.attrs({ id: 'shell-bulkPanel' })`
 
 export const Sidebar = styled.div.attrs({ id: 'shell-sidebar' })<{ opened: boolean }>`
   transition: 300ms ease all;
-  // background-color: rgba(255, 255, 255, 0.15);
   background-color: ${(p) => p.theme.colors.background};
-  border-left: 1px solid ${(p) => p.theme.colors.primary};
+  border-left: 0.5px solid ${(p) => p.theme.colors.primary};
 
-  // backdrop-filter: blur(1px);
   right: 0px;
   z-index: 998;
 

@@ -1,5 +1,5 @@
 import styled from '@theme'
-import { Icon, IconNames } from '../../ui-kit'
+import { Icon, IconNames } from '@icons'
 import { Box, Text } from '@ui'
 
 interface ErrorPageProps {

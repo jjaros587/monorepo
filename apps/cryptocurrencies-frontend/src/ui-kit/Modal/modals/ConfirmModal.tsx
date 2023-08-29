@@ -1,5 +1,6 @@
+import { Modal } from '../Modal'
+import { Button } from '../../Button'
 import { Inline } from '@ui'
-import { Modal, Button } from '../..'
 
 interface Props {
   onAccept: any
@@ -12,8 +13,9 @@ interface Props {
 
 export const ConfirmModal = (props: Props) => {
   const { title, description, onAccept, onDecline, confirmButtonLabel, cancelButtonLabel } = props
+
   return (
-    <Modal onOverlayClick={onDecline} onEscape={onDecline}>
+    <Modal onClose={onDecline}>
       <Modal.Header>{title}</Modal.Header>
       <Modal.Body>{description}</Modal.Body>
       <Modal.Footer>

@@ -1,33 +1,10 @@
-import { Suspense, lazy } from 'react'
 import styled, { Colors, PositiveSpaceUnit } from '@theme'
+import { Suspense, lazy } from 'react'
 
-export type IconNames =
-  | 'user'
-  | 'userSettings'
-  | 'logout'
-  | 'login'
-  | 'arrowDoubleLeft'
-  | 'arrowDoubleRight'
-  | 'kebab'
-  | 'dollar'
-  | 'chartPie'
-  | 'chartLine'
-  | 'pageNotFound'
-  | 'close'
-  | 'caretDown'
-  | 'caretUp'
-  | 'add'
-  | 'fileEmpty'
-  | 'arrowLeft'
-  | 'arrowRight'
-  | 'handHoldingUsd'
-  | 'menuHamburger'
-  | 'spinner'
-  | 'sortUp'
-  | 'sortDown'
+type IconCryptoNames = 'bitcoin' | 'ethereum' | 'litecoin'
 
 interface IconProps {
-  name: IconNames
+  name: IconCryptoNames
   color?: Colors
   size?: PositiveSpaceUnit
   onClick?: () => void
@@ -45,12 +22,12 @@ const IconWrapper = styled.span<{ color?: Colors; size?: PositiveSpaceUnit }>`
   }
 `
 
-export function Icon({ name, ...rest }: IconProps): JSX.Element | null {
-  const Component = lazy(() => import(`./assets/general/${name}.svg`))
+export function IconCrypto({ name, color, size, onClick }: IconProps): JSX.Element | null {
+  const Component = lazy(() => import(`./assets/crypto/${name}.svg`))
 
   return (
     <Suspense fallback={<>Loading...</>}>
-      <IconWrapper {...rest}>
+      <IconWrapper color={color} size={size} onClick={onClick}>
         <Component />
       </IconWrapper>
     </Suspense>

@@ -1,30 +1,9 @@
+import { Card, Overlay } from '@ui'
+import { ReactNode } from 'react'
 import styled from '@theme'
 
-export const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  z-index: 1040;
-  background-color: #000;
-  opacity: 0.7;
-`
-
 export const ModalWrapper = styled.div`
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   margin-top: -15%;
-
-  z-index: 1050;
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -45,3 +24,24 @@ export const ModalFooter = styled.div`
   ${(p) => p.theme.padding.top('M')};
   border-top: 1px solid ${(p) => p.theme.colors.primary};
 `
+
+interface Props {
+  onClose: () => void
+  children: ReactNode
+}
+
+const ModalBase: React.FC<Props> = ({ children, onClose }) => {
+  return (
+    <Overlay onClose={onClose} open={true}>
+      <ModalWrapper>
+        <Card size="L">{children}</Card>
+      </ModalWrapper>
+    </Overlay>
+  )
+}
+
+export const Modal = Object.assign(ModalBase, {
+  Header: ModalHeader,
+  Body: ModalBody,
+  Footer: ModalFooter,
+})

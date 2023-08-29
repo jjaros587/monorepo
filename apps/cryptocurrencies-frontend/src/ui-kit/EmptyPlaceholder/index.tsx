@@ -1,9 +1,10 @@
 import { Box, Text } from '@ui'
-import { Icon, IconNames } from '..'
+import { Icon, IconNames } from '@icons'
 import styled from '@theme'
 
 const Container = styled(Box)`
-  border: 1px solid ${(p) => p.theme.colors.primary};
+  border-top: 1px solid ${(p) => p.theme.colors.primary};
+  border-bottom: 1px solid ${(p) => p.theme.colors.primary};
   text-align: center;
 `
 

@@ -1,9 +1,9 @@
-import { ReactFCWithChildren } from '../types';
-import { Portal } from 'react-portal';
-import styled from '@theme';
-import { Box } from '../layout';
-import { useCallback, useEffect } from 'react';
-import { useEventListener } from '@hooks';
+import { ReactFCWithChildren } from '../types'
+import { Portal } from 'react-portal'
+import styled from '@theme'
+import { Box } from '../layout'
+import { useCallback, useEffect } from 'react'
+import { useEventListener } from '@hooks'
 
 const Container = styled(Box)`
   position: fixed;
@@ -16,61 +16,50 @@ const Container = styled(Box)`
   z-index: 1040;
   background-color: rgba(0, 0, 0, 0.7);
   overflow: hidden;
-`;
+`
 
 interface Props {
-  open: boolean;
-  onClose: () => void;
-  closeOnEsc?: boolean;
-  closeOnOverlayClick?: boolean;
+  open: boolean
+  onClose: () => void
+  closeOnEsc?: boolean
+  closeOnOverlayClick?: boolean
 }
 
 export const Overlay: ReactFCWithChildren<Props> = (props) => {
-  const {
-    children,
-    open,
-    onClose,
-    closeOnEsc = true,
-    closeOnOverlayClick = true,
-  } = props;
+  const { children, open, onClose, closeOnEsc = true, closeOnOverlayClick = true } = props
 
   const onEscClick = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        closeOnEsc && onClose();
+      if (e.key === 'Escape' && closeOnEsc) {
+        onClose()
       }
     },
-    [closeOnEsc]
-  );
+    [closeOnEsc, onClose],
+  )
 
   const onOverlayClick = useCallback(() => {
-    closeOnOverlayClick && onClose();
-  }, []);
+    closeOnOverlayClick && onClose()
+  }, [closeOnOverlayClick, onClose])
 
   useEffect(() => {
-    lockScroll(open);
-  }, [open]);
+    lockScroll(open)
+  }, [open])
 
-  useEventListener('keydown', onEscClick);
+  useEventListener('keydown', onEscClick)
 
   if (!open) {
-    return null;
+    return null
   }
 
   return (
     <Portal>
-      <Container
-        align="center"
-        alignY="center"
-        padding="XL"
-        onClick={onOverlayClick}
-      >
+      <Container align="center" alignY="center" padding="XL" onClick={onOverlayClick}>
         {children}
       </Container>
     </Portal>
-  );
-};
+  )
+}
 
 function lockScroll(state: boolean) {
-  document.documentElement.style.overflow = state ? 'hidden' : '';
+  document.documentElement.style.overflow = state ? 'hidden' : ''
 }

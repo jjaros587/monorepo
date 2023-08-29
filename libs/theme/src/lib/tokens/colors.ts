@@ -2,7 +2,7 @@ export const ColorsTokens = {
   // Backgrounds
   navigation: '#121212',
   background: '#121212',
-  surface: '#1E1E1E',
+  surface: '#202123',
   primary: '#009879',
   // Secondary = '#0075A2',
   // Secondary = '#006a98',
@@ -29,7 +29,7 @@ export const ColorsTokens = {
 
   // Transparent
   transparent: 'transparent',
-};
+}
 
 export const FontColorsTokens = {
   basic: ColorsTokens.display,
@@ -40,7 +40,7 @@ export const FontColorsTokens = {
   info: ColorsTokens.info,
   info2: ColorsTokens.info2,
   disabled: ColorsTokens.disabled,
-};
+}
 
-export type Colors = keyof typeof ColorsTokens;
-export type TextColors = keyof typeof FontColorsTokens;
+export type Colors = keyof typeof ColorsTokens
+export type TextColors = keyof typeof FontColorsTokens

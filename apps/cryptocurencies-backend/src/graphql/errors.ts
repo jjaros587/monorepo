@@ -3,16 +3,12 @@ import { ApolloError } from 'apollo-server-errors'
 export class UnknownUserError extends ApolloError {
   constructor() {
     super("Account with this email doesn't exist", 'UNKNOWN_USER')
-
-    // Object.defineProperty(this, "name", { value: "MyError" });
   }
 }
 
 export class InvalidCredentialsError extends ApolloError {
   constructor() {
     super('The password is incorrect', 'INCORRECT_PASSWORD')
-
-    // Object.defineProperty(this, "name", { value: "MyError" });
   }
 }
 
@@ -30,6 +26,9 @@ export class ExpiredRefreshTokenError extends ApolloError {
 
 export class UnauthenticatedError extends ApolloError {
   constructor() {
-    super(`Access denied! You need to be authenticated to perform this action!`, 'UNAUTHICATED_USER')
+    super(
+      `Access denied! You need to be authenticated to perform this action!`,
+      'UNAUTHICATED_USER',
+    )
   }
 }

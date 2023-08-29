@@ -1,6 +1,6 @@
-import { TableRow } from './TableRow'
-import { TableHeader } from './TableHeader'
-import * as S from './styled'
+import { TableRow } from './components/Row'
+import { TableHeader } from './components/Header'
+import * as S from './Table.styled'
 import { TableProps } from './types'
 
 export const Table = <T extends { _id: string }>({ data, ...rest }: TableProps<T>) => {
@@ -11,8 +11,8 @@ export const Table = <T extends { _id: string }>({ data, ...rest }: TableProps<T
       </thead>
 
       <tbody>
-        {data.map((rowData, index) => (
-          <TableRow<T> key={index} rowData={rowData} {...rest} />
+        {data.map((rowData) => (
+          <TableRow<T> key={rowData._id} rowData={rowData} {...rest} />
         ))}
       </tbody>
     </S.Table>

@@ -1,5 +1,5 @@
 import { Button, Inline } from '@ui'
-import { PageInfo } from 'src/graphql'
+import { PageInfo } from '../../graphql'
 import styled from '@theme'
 import { PageSwitcher } from './PageSwitcher'
 
@@ -24,7 +24,8 @@ export interface Pagination {
 export type PaginationWithPageInfo = Pagination & PageInfo
 
 export const Paginator = ({ pagination }: { pagination: PaginationWithPageInfo }) => {
-  const { pageSize, pageNumber, additionalPages, hasNextPage, nextItems, totalCount, loadMore } = pagination
+  const { pageSize, pageNumber, additionalPages, hasNextPage, nextItems, totalCount, loadMore } =
+    pagination
 
   const from = (pageNumber - 1) * pageSize + 1
   const to = (pageNumber + additionalPages) * pageSize

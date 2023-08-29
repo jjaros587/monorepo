@@ -1,8 +1,9 @@
 import * as S from './styled'
-import { AppLink, Icon } from '../../ui-kit'
+import { AppLink } from '../../ui-kit'
 import { useFlashMessage, useAuth } from '../../hooks'
 import SCREEN_DESCRIPTORS from '../../config/ScreenConfig'
 import { Card, Inline, Stack } from '@ui'
+import { Icon } from '@icons'
 
 export const CurrentUserPopup = () => {
   const { pushMessage } = useFlashMessage()

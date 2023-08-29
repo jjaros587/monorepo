@@ -12,7 +12,7 @@ const CardBase = styled(Box)<Props>`
   position: relative;
   border-radius: 12px;
   width: ${(p) => p.theme.layoutSpacing[p.size || 'auto']};
-  box-shadow: 0 0 0.75rem 0 rgba(255, 255, 255, 0.15);
+  /* box-shadow: 0 0 0.75rem 0 rgba(255, 255, 255, 0.15); */
   height: auto;
 `
 

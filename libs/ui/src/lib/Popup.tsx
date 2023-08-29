@@ -1,6 +1,6 @@
-import React, { ReactNode, useRef, useState } from 'react';
-import { Manager, Popper, Reference } from 'react-popper';
-import { ClickOutsideHandler } from '../../hooks';
+import React, { ReactNode, useRef, useState } from 'react'
+import { Manager, Popper, Reference } from 'react-popper'
+import { ClickOutsideHandler } from '@hooks'
 
 type PopupPlacement =
   | 'auto'
@@ -15,16 +15,16 @@ type PopupPlacement =
   | 'right-start'
   | 'right-end'
   | 'left-start'
-  | 'left-end';
+  | 'left-end'
 
-type Offset = number | null | undefined;
+type Offset = number | null | undefined
 
 interface PopupProps {
-  popup: ReactNode;
-  placement: PopupPlacement;
-  children: ReactNode;
-  offset?: [Offset, Offset];
-  closeOnChildClick?: boolean;
+  popup: ReactNode
+  placement: PopupPlacement
+  children: ReactNode
+  offset?: [Offset, Offset]
+  closeOnChildClick?: boolean
 }
 
 export const Popup: React.FC<PopupProps> = ({
@@ -34,8 +34,8 @@ export const Popup: React.FC<PopupProps> = ({
   closeOnChildClick = false,
   offset = [0, 10],
 }) => {
-  const [visible, toggle] = useState(false);
-  const containerRef = useRef(null);
+  const [visible, toggle] = useState(false)
+  const containerRef = useRef(null)
 
   return (
     <Manager>
@@ -74,5 +74,5 @@ export const Popup: React.FC<PopupProps> = ({
         </Popper>
       )}
     </Manager>
-  );
-};
+  )
+}

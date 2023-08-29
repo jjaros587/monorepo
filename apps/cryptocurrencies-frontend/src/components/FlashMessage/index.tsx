@@ -7,7 +7,11 @@ export type FlashMessageType = 'warning' | 'danger' | 'success' | 'info' | 'info
 export const FlashMessage = () => {
   const { items } = useFlashMessage()
 
-  return items.length > 0 ? (
+  if (items.length === 0) {
+    return null
+  }
+
+  return (
     <S.FlashMessageContainer>
       {takeRight(items, 5).map((message) => {
         const { type, title, content, id } = message
@@ -19,5 +23,5 @@ export const FlashMessage = () => {
         )
       })}
     </S.FlashMessageContainer>
-  ) : null
+  )
 }

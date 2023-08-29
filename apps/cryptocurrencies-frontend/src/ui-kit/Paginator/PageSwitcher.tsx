@@ -18,8 +18,8 @@ export const PageSwitcher = ({ pagination }: { pagination: PaginationWithPageInf
   const totalPages = Math.ceil(totalCount / pageSize)
 
   const [value, setValue] = useDependentState<number>(pageNumber, [pageNumber])
-
   const validateRange = (value: number): number => Math.min(Math.max(1, value), totalPages)
+
   return (
     <Inline gap="XS">
       <IconButton icon="arrowLeft" onClick={setPreviousPage} disabled={!hasPreviousPage} />

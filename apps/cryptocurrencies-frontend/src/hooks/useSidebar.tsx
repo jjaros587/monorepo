@@ -1,4 +1,4 @@
-import { IconNames } from '@monorepo/icons'
+import { IconNames } from '@icons'
 import { createContext, ReactNode, useContext, useState } from 'react'
 
 interface SidebarContextProps {

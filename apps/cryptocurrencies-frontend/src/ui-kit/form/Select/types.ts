@@ -1,4 +1,4 @@
-import { IconNames } from '@ui'
+import { IconNames } from '@icons'
 
 export interface SelectItemProps {
   label: string

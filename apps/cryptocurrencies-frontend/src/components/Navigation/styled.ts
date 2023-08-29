@@ -1,4 +1,4 @@
-import styled, { css } from '../../ui-theme'
+import styled, { css } from '@theme'
 import { Link } from 'react-router-dom'
 
 export const Navigation = styled.nav<{ opened: boolean }>`
@@ -64,12 +64,10 @@ const navItemBaseStyles = css`
   ${(p) => p.theme.font.bodyMedium()};
   position: relative;
   height: 50px;
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  background-color: ${(p) => p.theme.colors.surface};
 
   :hover {
-    background-color: ${(p) => p.theme.colors.primary};
+    color: ${(p) => p.theme.colors.primary};
     ${(p) => p.theme.font.bodyMedium('light')};
   }
 `

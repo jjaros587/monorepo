@@ -1,5 +1,5 @@
-import { Card, Text, Flexbox } from '@ui'
-import { IconCrypto } from '../../../ui-kit'
+import { Card, Text, Flexbox, Inline } from '@ui'
+import { IconCrypto } from '@icons'
 
 interface ItemProps {
   asset: {
@@ -181,10 +181,12 @@ const MOCK: Array<ItemProps> = [
 const Item = ({ item }: { item: ItemProps }) => {
   return (
     <Card>
-      <IconCrypto name={item.asset.name} />
-      <Text color={'white'}>{item.asset.abbr}</Text>
-      <Text color={'secondary'}>{item.price}</Text>
-      <Text color={item.change >= 0 ? 'success' : 'danger'}>{item.change}</Text>
+      <Inline gap="S">
+        <IconCrypto name={item.asset.name} />
+        <Text color={'light'}>{item.asset.abbr}</Text>
+        <Text color={'basic'}>{item.price}</Text>
+        <Text color={item.change >= 0 ? 'success' : 'danger'}>{item.change}</Text>
+      </Inline>
     </Card>
   )
 }

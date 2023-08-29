@@ -1,11 +1,13 @@
-import styled, { css } from '../../ui-theme'
+import styled, { css } from '@theme'
 
 export const Table = styled.table`
+  position: relative;
   border-collapse: collapse;
   border-radius: 5px 5px 0 0;
   // box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   color: white;
+  width: '100%';
 `
 
 export const HeaderRow = styled.tr`

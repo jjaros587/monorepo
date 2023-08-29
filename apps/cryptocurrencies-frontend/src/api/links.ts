@@ -47,6 +47,7 @@ export const errorLink = onError(({ graphQLErrors, networkError, operation, forw
       }
     }
   }
+
   if (networkError) {
     // pushMessage({ type: FlashMessageType.Danger, title: 'Network Error', content: networkError.message })
     console.log(`[Network error]: ${networkError}`)

@@ -1,4 +1,4 @@
-import { Icon, IconNames } from '..'
+import { Icon, IconNames } from '@icons'
 import styled, { PositiveSpaceUnit } from '@theme'
 
 export const StyledIconButton = styled.button<{ size: PositiveSpaceUnit }>`

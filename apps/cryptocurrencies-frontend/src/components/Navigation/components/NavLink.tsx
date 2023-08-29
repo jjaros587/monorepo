@@ -1,4 +1,4 @@
-import { Icon, IconNames } from '../../../ui-kit'
+import { Icon, IconNames } from '@icons'
 import { useLocation } from 'react-router-dom'
 import * as S from '../styled'
 

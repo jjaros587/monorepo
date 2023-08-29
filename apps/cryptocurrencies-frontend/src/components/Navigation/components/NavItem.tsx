@@ -1,4 +1,4 @@
-import { Icon, IconNames } from '../../../ui-kit'
+import { Icon, IconNames } from '@icons'
 import * as S from '../styled'
 
 interface NavItemProps {

@@ -1,7 +1,7 @@
-import { ColumnDescriptor, TableHeaderProps } from './types'
-import * as S from './styled'
-import { Icon } from '..'
-import { OrderArgs, OrderDirection } from '../../graphql'
+import { ColumnDescriptor, TableHeaderProps } from '../types'
+import * as S from '../Table.styled'
+import { Icon } from '@icons'
+import { OrderArgs, OrderDirection } from '../../../graphql'
 import { capitalize } from 'lodash'
 import { Inline } from '@ui'
 

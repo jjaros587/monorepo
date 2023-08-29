@@ -8,7 +8,7 @@ export const Sidebar = () => {
   return (
     sidebarItem && (
       <>
-        <Box paddingX="S" paddingY="M">
+        <Box padding="M">
           <Inline>
             <Inline.Item flexGrow>
               <Text variant="headline2">{sidebarItem.title}</Text>

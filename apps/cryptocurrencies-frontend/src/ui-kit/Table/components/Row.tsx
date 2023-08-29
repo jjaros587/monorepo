@@ -1,11 +1,11 @@
 import get from 'lodash/get'
-import { TableRowProps } from './types'
-import * as S from './styled'
-import { ColumnDescriptor } from '.'
-import { formatTimestamp } from '../../utils'
+import { TableRowProps } from '../types'
+import * as S from '../Table.styled'
+import { ColumnDescriptor } from '..'
+import { formatTimestamp } from '../../../utils'
 
 const DEFAULT_RENDERERS: { [key: string]: (value: any) => React.ReactNode } = {
-  ['date']: (value: number) => <>{formatTimestamp(value)}</>,
+  date: (value: number) => <>{formatTimestamp(value)}</>,
 }
 
 export const TableRow = <T extends { _id: string }>(props: TableRowProps<T>) => {

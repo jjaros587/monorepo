@@ -6,7 +6,7 @@ import CurrentUserPopup from '../CurrentUserPopup'
 import SCREEN_DESCRIPTORS from '../../config/ScreenConfig'
 import { useAuth } from '../../hooks'
 import { NavigationNode, RouteType } from '../../app/router/ScreenDescriptor'
-import { Popup } from '../../ui-kit'
+import { Popup } from '@ui'
 
 interface NavigationItem extends NavigationNode {
   route: string

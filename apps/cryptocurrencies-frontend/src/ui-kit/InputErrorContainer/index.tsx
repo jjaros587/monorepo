@@ -1,11 +1,13 @@
-import styled from '@theme'
-
-export const Container = styled.div`
-  ${(p) => p.theme.font.body('danger')};
-  ${(p) => p.theme.padding.top('XS')};
-  ${(p) => p.theme.padding.left('M')};
-`
+import { Text, Box } from '@ui'
 
 export const InputErrorContainer = ({ error }: { error?: string }) => {
-  return <>{error && <Container>{error}</Container>}</>
+  if (error) {
+    return (
+      <Box paddingTop="XS" paddingLeft="M">
+        <Text color="danger">{error}</Text>
+      </Box>
+    )
+  }
+
+  return null
 }

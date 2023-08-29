@@ -3,7 +3,9 @@ import { SelectItem } from './components/SelectItem'
 import { SelectItemProps } from './types'
 import * as S from './styled'
 import Downshift from 'downshift'
-import { Icon, Popup, TextInput } from '../..'
+import { TextInput } from '../..'
+import { Icon } from '@icons'
+import { Popup } from '@ui'
 
 export interface SelectProps {
   items: SelectItemProps[]

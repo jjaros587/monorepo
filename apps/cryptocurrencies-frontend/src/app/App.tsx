@@ -3,13 +3,16 @@ import { useEffect } from 'react'
 
 import { Routes } from './router'
 import { useLocation } from 'react-router-dom'
-import { BulkPanel, Navigation, Sidebar, FlashMessage, ModalContainer } from '../components'
-import { useSidebar, useBulkPanel } from '../hooks'
+import { BulkPanel, Navigation, Sidebar, FlashMessage } from '../components'
+import { useSidebar, useBulkPanel, useService } from '../hooks'
+import { ModalManager } from '../services'
+import { observer } from 'mobx-react'
 
-export function App() {
+export const App = observer(() => {
   const location = useLocation()
   const sidebar = useSidebar()
   const bulkPanel = useBulkPanel()
+  const { modal } = useService(ModalManager)
 
   useEffect(() => {
     sidebar.pop()
@@ -35,7 +38,7 @@ export function App() {
         </AppShell.Sidebar>
       </AppShell.Main>
       <FlashMessage />
-      <ModalContainer />
+      {modal ? modal : null}
     </AppShell.Container>
   )
-}
+})
