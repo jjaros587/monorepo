@@ -1,11 +1,12 @@
 import styled, { css } from '@theme'
+import { Box, Text } from '@ui'
 import { Link } from 'react-router-dom'
 
-export const Navigation = styled.nav<{ opened: boolean }>`
+export const Navigation = styled.nav<{ isExpanded: boolean }>`
   position: relative;
   height: 100%;
   width: 250px;
-  margin-left: ${(props) => (props.opened ? '0px' : '-200px')};
+  margin-left: ${(props) => (props.isExpanded ? '0px' : '-200px')};
 
   transition: 300ms ease all;
   // box-shadow: 0 0 1rem 0 rgba(255, 255, 255, 0.2);
@@ -23,20 +24,25 @@ export const Navigation = styled.nav<{ opened: boolean }>`
 
 export const Top = styled.div`
   height: 50px;
+
   @media (max-width: 768px) {
     width: 50px;
   }
 `
 
-export const Middle = styled.div<{ opened: boolean }>`
+export const Middle = styled.div<{ isOpened: boolean }>`
   border-top: 1px solid #2c3e50;
   transition: 300ms ease all;
   z-index: 999;
+
   @media (max-width: 768px) {
-    transition: none;
+    transition: max-height 300ms ease all;
+    position: absolute;
     top: 50px;
     width: 100vw;
-    display: ${(props) => (props.opened ? 'block' : 'none')};
+    height: calc(100vh - 60px);
+    display: ${(props) => (props.isOpened ? 'block' : 'none')};
+    background-color: ${(props) => props.theme.colors.surface};
   }
 `
 
@@ -54,10 +60,17 @@ export const Bottom = styled.div`
   }
 `
 
-export const IconContainer = styled.div`
-  position: absolute;
-  right: 0;
-  padding: 10px;
+export const IconContainer = styled(Box).attrs({ align: 'center' })`
+  width: 50px;
+`
+
+export const LinkText = styled(Text)`
+  ${(p) => p.theme.font.bodyMedium()};
+
+  :hover {
+    color: ${(p) => p.theme.colors.primary};
+    ${(p) => p.theme.font.bodyMedium('light')};
+  }
 `
 
 const navItemBaseStyles = css`
@@ -67,12 +80,15 @@ const navItemBaseStyles = css`
   cursor: pointer;
 
   :hover {
-    color: ${(p) => p.theme.colors.primary};
     ${(p) => p.theme.font.bodyMedium('light')};
+    ${LinkText} {
+      ${(p) => p.theme.font.bodyMedium('light')};
+    }
   }
 `
 
 export const NavLink = styled(Link)<{ active?: boolean }>`
+  text-decoration: none;
   ${navItemBaseStyles}
   padding-left: 30px;
   display: flex;
@@ -82,18 +98,15 @@ export const NavLink = styled(Link)<{ active?: boolean }>`
     css`
       background-color: ${(p) => p.theme.colors.primary};
       ${(p) => p.theme.font.bodyMedium('light')};
+      ${LinkText} {
+        ${(p) => p.theme.font.bodyMedium('light')};
+      }
     `}
 `
 
-export const NavItem = styled.div`
+export const NavItem = styled(Box)`
   ${navItemBaseStyles}
   @media (max-width: 768px) {
     width: 50px;
   }
-`
-
-export const LinkText = styled.p`
-  position: absolute;
-  line-height: 50px;
-  ${(p) => p.theme.margin('auto')}
 `

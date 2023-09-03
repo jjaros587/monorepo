@@ -4,14 +4,15 @@ import { document, variableAsArgument, field, selectionSet, mutation, variableDe
 export function buildUpdateMutation(entityName: string) {
   const capitalizedEntityName = capitalize(entityName)
   const rootField = [
-    field(`${entityName}Edit`, selectionSet([field('success')]), [
+    field(`${entityName}Update`, selectionSet([field('success')]), [
       variableAsArgument('_id'),
-      variableAsArgument('patch')
-    ])
+      variableAsArgument('patch'),
+    ]),
   ]
+
   return document(
-    mutation(`Edit${capitalizedEntityName}`, rootField, [
-      variableDefinition('patch', `${capitalizedEntityName}InputTypeEdit!`)
-    ])
+    mutation(`Update${capitalizedEntityName}`, rootField, [
+      variableDefinition('patch', `${capitalizedEntityName}New!`),
+    ]),
   )
 }

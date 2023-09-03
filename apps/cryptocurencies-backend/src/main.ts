@@ -8,12 +8,12 @@ import config from './config'
 // import permissions from "./graphql/permissions";
 import { importData } from './import/importData'
 import { buildSchema } from 'type-graphql'
-import { AssetResolver } from './schema/entities/resolvers/assetResolver'
-import { TransactionResolver } from './schema/entities/resolvers/transactionResolver'
-import { WithdrawalResolver } from './schema/entities/resolvers/withdrawalResolver'
-import { UserResolver } from './schema/entities/resolvers/userResolver'
+import { AssetResolver } from './graphql/entities/resolvers/assetResolver'
+import { TransactionResolver } from './graphql/entities/resolvers/transactionResolver'
+import { WithdrawalResolver } from './graphql/entities/resolvers/withdrawalResolver'
+import { UserResolver } from './graphql/entities/resolvers/userResolver'
 import { mongoose } from '@typegoose/typegoose'
-import { WalletResolver } from './schema/entities/resolvers/walletResolver'
+import { WalletResolver } from './graphql/entities/resolvers/walletResolver'
 import { AuthService } from './services/AuthService'
 
 async function bootstrap() {
@@ -27,11 +27,6 @@ async function bootstrap() {
   })
 
   const server = new ApolloServer({
-    // typeDefs: importSchema("./graphql/schema.graphql"),
-    // schema: applyMiddleware(
-    //   buildFederatedSchema({ typeDefs, resolvers: mockResolver }),
-    //   permissions
-    // ),
     schema: await buildSchema({
       resolvers: [
         TransactionResolver,
@@ -50,10 +45,12 @@ async function bootstrap() {
         // coinbaseService: new CoinbaseDatasource()
       }
     },
-    // context: ({ req }: { req: express.Request }) => ({
-    //   accessToken: req.headers.authorization,
-    //   user: AuthService.getUser(req.headers.authorization),
-    // }),
+    context: ({ req }: { req: express.Request }) => {
+      return {
+        accessToken: req.headers.authorization,
+        user: AuthService.getUser(req.headers.authorization),
+      }
+    },
   })
 
   server.applyMiddleware({ app, path: '/graphql' })
@@ -62,4 +59,4 @@ async function bootstrap() {
   )
 }
 
-bootstrap()
+bootstrap().catch(console.error)

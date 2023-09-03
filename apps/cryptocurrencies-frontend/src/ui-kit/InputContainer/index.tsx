@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
-import { Label, InputErrorContainer } from '..'
+import { InputErrorContainer } from '..'
+import { Label } from '@ui'
 
 interface Props {
   label: string

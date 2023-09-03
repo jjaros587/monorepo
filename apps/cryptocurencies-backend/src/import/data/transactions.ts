@@ -1,4 +1,4 @@
-import { TransactionTypes } from '../../schema/types';
+import { TransactionTypes } from '../../graphql/types'
 
 export const transactions = [
   //// BTC
@@ -247,4 +247,4 @@ export const transactions = [
   //   date: 1621400460,
   //   price: 45
   // }
-];
+]

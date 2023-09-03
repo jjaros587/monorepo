@@ -1,8 +1,8 @@
-import { AssetModel, TransactionModel, UserModel } from '../schema/entities/models'
+import { AssetModel, TransactionModel, UserModel } from '../graphql/entities/models'
 import { assets } from './data/assets'
 import { users } from './data/users'
 import { mongoose } from '@typegoose/typegoose'
-import { transactions } from './data/transactions'
+// import { transactions } from './data/transactions'
 
 export function importData(run: boolean) {
   if (!run) {
@@ -11,8 +11,8 @@ export function importData(run: boolean) {
   console.log('Import of data started...')
   insertData(AssetModel, assets)
   insertData(UserModel, users)
-  insertData(TransactionModel, transactions)
-  printData(true)
+  // insertData(TransactionModel, transactions)
+  printData(false)
   console.log('Import of data finished succesfully\n')
 }
 

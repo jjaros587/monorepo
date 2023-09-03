@@ -1,5 +1,6 @@
-import styled from '@theme'
-import { MEDIA_MAX_WIDTH } from './constants'
+import styled, { css } from '@theme'
+import { MEDIA_MAX_WIDTH } from '../constants'
+import { Box } from '@ui'
 
 export const Container = styled.div.attrs({ id: 'shell-container' })`
   display: flex;
@@ -36,9 +37,11 @@ export const PageWrapper = styled.div.attrs({ id: 'shell-pageWrapper' })`
   ${(p) => p.theme.padding('XXL')};
 `
 
-export const BulkPanel = styled.div.attrs({ id: 'shell-bulkPanel' })`
+export const BulkPanel = styled(Box).attrs({ id: 'shell-bulkPanel' })`
+  position: relative;
   width: 100%;
   height: 50px;
+  background-color: ${(p) => p.theme.colors.surfaceContrast};
 `
 
 export const Sidebar = styled.div.attrs({ id: 'shell-sidebar' })<{ opened: boolean }>`
@@ -52,7 +55,22 @@ export const Sidebar = styled.div.attrs({ id: 'shell-sidebar' })<{ opened: boole
   margin-right: ${(props) => (props.opened ? '0px' : '-401px')};
   width: 400px;
 
+  @media (max-width: 1600px) {
+    ${({ opened }) =>
+      opened &&
+      css`
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+      `}
+  }
+
   @media (max-width: ${MEDIA_MAX_WIDTH}) {
-    left: 0px;
+    ${({ opened }) =>
+      opened &&
+      css`
+        width: 100%;
+      `}
   }
 `

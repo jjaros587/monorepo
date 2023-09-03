@@ -1,12 +1,11 @@
 import { useMutation } from '@apollo/client'
-import SCREEN_DESCRIPTORS from '../../../config/ScreenConfig'
 import { useHistory } from 'react-router'
 import { FieldDescriptors, ManagedForm, AppLink } from '../../../ui-kit'
 import { FormFieldTypes } from '../../../ui-kit/form/ManagedForm/FormFieldTypes'
 import { useFlashMessage, useAuth } from '../../../hooks'
 import { Session } from '../../../graphql'
 import LOGIN from '../../../graphql/mutations/login.graphql'
-import { Card } from '@ui'
+import { Card, Button, Box } from '@ui'
 
 export const LoginPage = () => {
   const { pushMessage } = useFlashMessage()
@@ -16,7 +15,7 @@ export const LoginPage = () => {
     onCompleted: ({ login: session }) => {
       auth.login(session)
       pushMessage('success', 'Login', 'Logged in!')
-      history.replace(SCREEN_DESCRIPTORS.dashboard.route)
+      history.replace('/dashboard')
     },
     onError: (error) => {
       pushMessage('danger', 'Login', error.message)
@@ -45,14 +44,23 @@ export const LoginPage = () => {
   }
 
   return (
-    <Card size={'L'}>
+    <Card size={'L'} glassmorphic>
       <ManagedForm
         descriptors={fields}
         primaryAction={{ displayName: 'Login', onSubmit: handleLogin }}
       />
-      {/* <AppLink to={SCREEN_DESCRIPTORS.forgotPassword.route}>Forgot password</AppLink> */}
-      <AppLink to={SCREEN_DESCRIPTORS.signup.route}>Don't you have an account yet? Signup!</AppLink>
       {error && <div>{error.message}</div>}
+
+      <Box align="flex-end">
+        {error && (
+          <AppLink to={'/forgotPassword'}>
+            <Button variant="link">Forgot password</Button>
+          </AppLink>
+        )}
+        <AppLink to={'/signup'}>
+          <Button variant="link">Don't you have an account yet? Signup!</Button>
+        </AppLink>
+      </Box>
     </Card>
   )
 }

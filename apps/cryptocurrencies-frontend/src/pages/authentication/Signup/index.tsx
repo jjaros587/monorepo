@@ -53,7 +53,7 @@ export const SignupPage = () => {
   }
 
   return (
-    <Card size="L">
+    <Card size="L" glassmorphic>
       <ManagedForm
         descriptors={fields}
         primaryAction={{ displayName: 'Signup', onSubmit: handleSignup }}

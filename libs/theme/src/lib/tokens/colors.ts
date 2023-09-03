@@ -3,6 +3,7 @@ export const ColorsTokens = {
   navigation: '#121212',
   background: '#121212',
   surface: '#202123',
+  surfaceContrast: '#303134',
   primary: '#009879',
   // Secondary = '#0075A2',
   // Secondary = '#006a98',
@@ -34,6 +35,7 @@ export const ColorsTokens = {
 export const FontColorsTokens = {
   basic: ColorsTokens.display,
   light: ColorsTokens.displayLight,
+  primary: ColorsTokens.primary,
   success: ColorsTokens.success,
   danger: ColorsTokens.danger,
   warning: ColorsTokens.warning,

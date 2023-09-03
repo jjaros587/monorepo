@@ -4,6 +4,6 @@ export function isEmail(value: any) {
   }
 }
 
-export const DEFAULT_RULES: { [key: string]: Array<(value: string) => string | undefined> } = {
-  email: [isEmail]
+export const DEFAULT_RULES: { [key: string]: Array<(value: unknown) => string | undefined> } = {
+  email: [isEmail],
 }

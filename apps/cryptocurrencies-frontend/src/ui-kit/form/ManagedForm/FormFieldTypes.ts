@@ -1,4 +1,4 @@
-import { SelectItemProps } from '../Select/types'
+import { SelectItem } from '../Select/types'
 
 export enum FormFieldTypes {
   Text = 'text',
@@ -47,12 +47,12 @@ interface SelectFieldBaseDescriptor extends BaseFieldDescriptor {
 interface EntitySelectFieldDescriptor extends SelectFieldBaseDescriptor {
   type: FormFieldTypes.EntitySelect
   entityName: string
-  itemToPair: (item: unknown) => { value: unknown; label: unknown }
+  itemToPair: (item: unknown) => { value: string; label: string }
 }
 
 interface SelectFieldDescriptor extends SelectFieldBaseDescriptor {
   type: FormFieldTypes.Select
-  items: SelectItemProps[]
+  items: SelectItem[]
 }
 
 type SimpleFormField =

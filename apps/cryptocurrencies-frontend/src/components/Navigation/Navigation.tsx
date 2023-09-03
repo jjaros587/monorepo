@@ -5,36 +5,40 @@ import * as S from './styled'
 import CurrentUserPopup from '../CurrentUserPopup'
 import SCREEN_DESCRIPTORS from '../../config/ScreenConfig'
 import { useAuth } from '../../hooks'
-import { NavigationNode, RouteType } from '../../app/router/ScreenDescriptor'
+import { NavigationNode, RouteType } from '../../app/router/types'
 import { Popup } from '@ui'
+import { useLocation } from 'react-router-dom'
 
 interface NavigationItem extends NavigationNode {
   route: string
 }
 
 export const Navigation = (): JSX.Element => {
-  const [opened, setOpened] = useState(true)
-  const user = useAuth().user
+  const user = useAuth()
+  const location = useLocation()
+  const [navigationType, setNavigationType] = useState<'small' | 'big'>('big')
+  // Expanded state for 'big' navigation
+  const [isExpanded, setIsExpanded] = useState(true)
+  // Opened state for 'small' navigation
+  const [isOpened, setIsOpened] = useState(false)
 
-  const handleResize = () => window.innerWidth <= 1000 && setOpened(false)
+  const handleResize = () => {
+    const width = window.innerWidth
 
-  const navigationItems: NavigationItem[] = useMemo(() => {
-    const navigationItems: NavigationItem[] = []
-    Object.values(SCREEN_DESCRIPTORS).forEach((descriptor) => {
-      if (descriptor.navigationNode) {
-        if (
-          !(descriptor.routeType === RouteType.Private && user === null) &&
-          !(descriptor.routeType === RouteType.Protected && user)
-        ) {
-          navigationItems.push({
-            ...descriptor.navigationNode,
-            route: descriptor.route,
-          })
-        }
-      }
-    })
-    return navigationItems
-  }, [user])
+    if (width <= 768) {
+      setNavigationType('small')
+    } else {
+      setNavigationType('big')
+    }
+
+    if (width <= 1000) {
+      setIsExpanded(false)
+    }
+  }
+
+  useEffect(() => {
+    setIsOpened(false)
+  }, [location])
 
   useEffect(() => {
     window.addEventListener('resize', handleResize)
@@ -43,12 +47,25 @@ export const Navigation = (): JSX.Element => {
     }
   }, [])
 
+  const navigationItems: NavigationItem[] = useMemo(() => {
+    const navigationItems: NavigationItem[] = []
+    Object.values(SCREEN_DESCRIPTORS.app.descriptors).forEach((descriptor) => {
+      if (descriptor.navigationNode) {
+        navigationItems.push({
+          ...descriptor.navigationNode,
+          route: descriptor.route,
+        })
+      }
+    })
+    return navigationItems
+  }, [user])
+
   return (
-    <S.Navigation opened={opened}>
+    <S.Navigation isExpanded={isExpanded}>
       <S.Top>
         <NavLink to="/" label={'Logo'} />
       </S.Top>
-      <S.Middle opened={opened}>
+      <S.Middle isOpened={isOpened}>
         {navigationItems.map((item, index) => {
           return <NavLink key={index} to={item.route} label={item.label} icon={item.icon} />
         })}
@@ -60,16 +77,27 @@ export const Navigation = (): JSX.Element => {
           </Popup>
         ) : (
           <NavLink
-            key={SCREEN_DESCRIPTORS['login'].route}
-            to={SCREEN_DESCRIPTORS.login.route}
+            key={SCREEN_DESCRIPTORS.protected.descriptors['login'].route}
+            to={SCREEN_DESCRIPTORS.protected.descriptors['login'].route}
             icon={'login'}
           />
         )}
 
-        <NavItem
-          icon={opened ? 'arrowDoubleLeft' : 'arrowDoubleRight'}
-          onClick={() => setOpened(!opened)}
-        />
+        {navigationType === 'big' ? (
+          <NavItem
+            icon={isExpanded ? 'arrowDoubleLeft' : 'arrowDoubleRight'}
+            onClick={() => {
+              setIsExpanded((isExpanded) => !isExpanded)
+            }}
+          />
+        ) : (
+          <NavItem
+            icon={isOpened ? 'arrowDoubleLeft' : 'arrowDoubleRight'}
+            onClick={() => {
+              setIsOpened(!isOpened)
+            }}
+          />
+        )}
       </S.Bottom>
     </S.Navigation>
   )

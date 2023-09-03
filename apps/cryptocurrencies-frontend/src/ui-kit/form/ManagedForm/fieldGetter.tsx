@@ -1,9 +1,9 @@
 import React from 'react'
 import { FormFieldDescriptor, FormFieldTypes, isSimpleField } from './FormFieldTypes'
-import { AbstractSelect, Input, DatePicker } from '..'
+import { DatePicker, SingleSelect } from '..'
 // TODO: Fix import to custom path
-import { InputType } from '..'
 import { EntitySelect } from '../EntitySelect'
+import { Input, InputType } from '@ui'
 
 export function fieldGetter(
   key: string,
@@ -38,16 +38,13 @@ export function fieldGetter(
     )
   }
   if (field.type === FormFieldTypes.Select) {
-    const { items, required, placeholder, searchable, clearable } = field
+    const { items, required, placeholder } = field
     return (
-      <AbstractSelect
+      <SingleSelect
         key={key}
         items={items}
         required={required}
         placeholder={placeholder}
-        searchable={searchable}
-        clearable={clearable}
-        multiselect={false}
         error={errors[key]}
         onChange={(selectItem: unknown) => handleChange(key, selectItem)}
       />

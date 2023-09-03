@@ -1,6 +1,5 @@
 import { Modal } from '../Modal'
-import { Button } from '../../Button'
-import { Inline } from '@ui'
+import { Inline, Button } from '@ui'
 
 interface Props {
   onAccept: any

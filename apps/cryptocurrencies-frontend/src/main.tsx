@@ -3,7 +3,6 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { StrictMode } from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import { App } from './app/App'
 import { APIProvider } from './api'
 import {
   AuthProvider,
@@ -13,6 +12,7 @@ import {
   SidebarProvider,
 } from './hooks'
 import { ThemeProvider, theme } from '@theme'
+import { Routes } from './app/router/Routes'
 
 export const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -39,7 +39,7 @@ root.render(
   <StrictMode>
     <BrowserRouter>
       <Providers>
-        <App />
+        <Routes />
       </Providers>
     </BrowserRouter>
   </StrictMode>,

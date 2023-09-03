@@ -4,26 +4,25 @@ import { useFlashMessage, useAuth } from '../../hooks'
 import SCREEN_DESCRIPTORS from '../../config/ScreenConfig'
 import { Card, Inline, Stack } from '@ui'
 import { Icon } from '@icons'
+import { useNavigate } from 'react-router-dom'
 
 export const CurrentUserPopup = () => {
   const { pushMessage } = useFlashMessage()
-  const auth = useAuth()
+  const navigate = useNavigate()
+  const { user, logout } = useAuth()
 
   const handleLogout = () => {
-    auth.logout()
-    if (auth.user === null) {
-      pushMessage('success', 'Logout', 'Successful!')
-    } else {
-      pushMessage('danger', 'Logout', 'Failed!')
-    }
+    logout()
+    pushMessage('success', 'Logout', 'Successful!')
+    navigate('/')
   }
 
   return (
     <Card>
-      <S.CurrentUserEmail>{auth.user!.email}</S.CurrentUserEmail>
+      <S.CurrentUserEmail>{user!.email}</S.CurrentUserEmail>
       <Stack gap="S">
         <S.CurrentUserItem>
-          <AppLink to={SCREEN_DESCRIPTORS.settings.route}>
+          <AppLink to={SCREEN_DESCRIPTORS.app.descriptors['settings'].route}>
             <Inline gap="M" alignY="center">
               <Icon name={'userSettings'} />
               <span>Settings</span>

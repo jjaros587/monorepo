@@ -1,8 +1,9 @@
-mutation CreateTransaction($new: TransactionInputTypeCreate!) {
+mutation CreateTransaction($new: TransactionNew!) {
   transactionCreate(new: $new) {
-    _id
+    type
     amount
     price
+    fee
     date
   }
 }

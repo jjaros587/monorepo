@@ -3,10 +3,12 @@ import { document, variableAsArgument, field, selectionSet, mutation, variableDe
 
 export function buildCreateMutation(entityName: string) {
   const capitalizedEntityName = capitalize(entityName)
-  const rootField = [field(`${entityName}Create`, selectionSet([field('success')]), [variableAsArgument('new')])]
+  const rootField = [
+    field(`${entityName}Create`, selectionSet([field('success')]), [variableAsArgument('new')]),
+  ]
   return document(
     mutation(`Create${capitalizedEntityName}`, rootField, [
-      variableDefinition('new', `${capitalizedEntityName}InputTypeCreate!`)
-    ])
+      variableDefinition('new', `${capitalizedEntityName}New!`),
+    ]),
   )
 }

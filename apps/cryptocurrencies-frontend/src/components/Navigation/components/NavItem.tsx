@@ -1,5 +1,6 @@
 import { Icon, IconNames } from '@icons'
 import * as S from '../styled'
+import { Inline } from '@ui'
 
 interface NavItemProps {
   icon: IconNames
@@ -9,11 +10,13 @@ interface NavItemProps {
 export const NavItem = ({ icon, onClick }: NavItemProps): JSX.Element => {
   return (
     <S.NavItem onClick={onClick}>
-      {icon && (
-        <S.IconContainer>
-          <Icon name={icon} />
-        </S.IconContainer>
-      )}
+      <Inline alignY="center" align="flex-end" fullHeight>
+        {icon && (
+          <S.IconContainer>
+            <Icon name={icon} />
+          </S.IconContainer>
+        )}
+      </Inline>
     </S.NavItem>
   )
 }

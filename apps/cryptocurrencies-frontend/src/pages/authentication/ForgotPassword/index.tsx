@@ -1,5 +1,4 @@
 import { FieldDescriptors, AppLink, ManagedForm } from '../../../ui-kit'
-import SCREEN_DESCRIPTORS from '../../../config/ScreenConfig'
 import { FormFieldTypes } from '../../../ui-kit/form/ManagedForm/FormFieldTypes'
 import { Card } from '@ui'
 
@@ -26,7 +25,7 @@ export const ForgotPasswordPage = () => {
           onSubmit: handleResetPassword,
         }}
       />
-      <AppLink to={SCREEN_DESCRIPTORS.login.route}>Go back to login</AppLink>
+      <AppLink to={'/login'}>Go back to login</AppLink>
     </Card>
   )
 }

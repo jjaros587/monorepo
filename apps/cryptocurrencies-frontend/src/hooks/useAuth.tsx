@@ -11,12 +11,12 @@ import { LocalStorageService, STORAGE_KEYS } from '../services/LocalStorageServi
 import { ServiceContainer } from '../utils'
 
 export interface AuthState {
-  accessToken?: string | null
-  refreshToken?: string | null
+  accessToken?: string
+  refreshToken?: string
   user?: {
     _id: string
     email: string
-  } | null
+  }
 }
 
 interface AuthContextProps extends AuthState {
@@ -25,8 +25,8 @@ interface AuthContextProps extends AuthState {
 }
 
 const AuthContext = createContext<AuthContextProps>({
-  login: () => console.log('You are using AUthContext out of AuthProvider'),
-  logout: () => console.log('You are using AUthContext out of AuthProvider'),
+  login: () => console.log('You are using AuthContext out of AuthProvider'),
+  logout: () => console.log('You are using AuthContext out of AuthProvider'),
 })
 
 export function useAuth() {
@@ -38,15 +38,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const contextValue = useMemo(() => {
     return {
-      accessToken: state?.accessToken || null,
-      refreshToken: state?.refreshToken || null,
-      user: state?.user || null,
+      accessToken: state?.accessToken,
+      refreshToken: state?.refreshToken,
+      user: state?.user,
       login: (state: AuthState) => setState(state),
       logout: () => setState(null),
     }
   }, [state, setState])
-
-  useEffect(() => console.log('state value', state), [state])
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
 }
@@ -55,14 +53,18 @@ function usePersistedAuth(): [AuthState | null, (newState: AuthState | null) => 
   const localStorage = ServiceContainer.get(LocalStorageService)
   const authStorage = localStorage.get<AuthState>(STORAGE_KEYS.AUTH)
   const [state, setStateRaw] = useState<AuthState | null>(authStorage)
-  const setState = useCallback((newState: AuthState | null) => {
-    setStateRaw(newState)
-    if (newState) {
-      localStorage.set(STORAGE_KEYS.AUTH, newState)
-    } else {
-      localStorage.remove(STORAGE_KEYS.AUTH)
-    }
-  }, [])
+
+  const setState = useCallback(
+    (newState: AuthState | null) => {
+      setStateRaw(newState)
+      if (newState) {
+        localStorage.set(STORAGE_KEYS.AUTH, newState)
+      } else {
+        localStorage.remove(STORAGE_KEYS.AUTH)
+      }
+    },
+    [localStorage],
+  )
 
   useEffect(() => {
     const handler = () => {
@@ -71,6 +73,7 @@ function usePersistedAuth(): [AuthState | null, (newState: AuthState | null) => 
         setStateRaw(currentValue)
       }
     }
+
     document.addEventListener('authStorage', handler)
     return () => {
       document.removeEventListener('authStorage', handler)

@@ -7,11 +7,13 @@ import { InputContainer } from '../../InputContainer'
 import { fieldGetter } from './fieldGetter'
 import { capitalize } from 'lodash'
 
+type FieldRules = Array<(value: unknown) => string | undefined>
+
 export interface FieldDescriptor {
   required?: boolean
   label?: string
   type: FormFieldTypes
-  rules?: Array<(value: unknown) => string | undefined>
+  rules?: FieldRules
 }
 
 export interface FieldDescriptors {
@@ -38,6 +40,7 @@ export const ManagedForm = ({ initialValues, descriptors, primaryAction }: Props
   const { displayName, onSubmit } = primaryAction
 
   const handleSubmit = (e: React.FormEvent) => {
+    debugger
     e.preventDefault()
     if (validate()) {
       onSubmit(patch)
@@ -69,11 +72,12 @@ export const ManagedForm = ({ initialValues, descriptors, primaryAction }: Props
 }
 
 function applyDefaultRules(descriptors: FieldDescriptors) {
-  return Object.keys(descriptors).reduce((acc, key) => {
+  const fields = Object.keys(descriptors)
+
+  return fields.reduce((acc, key) => {
     if (key in DEFAULT_RULES) {
-      const updatedRules = descriptors[key].rules
-        ? [...descriptors[key].rules!, ...DEFAULT_RULES[key]]
-        : [...DEFAULT_RULES[key]]
+      const rules: FieldRules = descriptors[key].rules ?? []
+      const updatedRules = [...rules, ...DEFAULT_RULES[key]]
       acc[key] = { ...descriptors[key], rules: updatedRules }
     } else {
       acc[key] = descriptors[key]

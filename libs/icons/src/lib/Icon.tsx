@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useState, useEffect } from 'react'
 import styled, { Colors, PositiveSpaceUnit } from '@theme'
 
 export type IconNames =
@@ -25,6 +25,7 @@ export type IconNames =
   | 'spinner'
   | 'sortUp'
   | 'sortDown'
+  | 'transaction'
 
 interface IconProps {
   name: IconNames
@@ -46,10 +47,22 @@ const IconWrapper = styled.span<{ color?: Colors; size?: PositiveSpaceUnit }>`
 `
 
 export function Icon({ name, ...rest }: IconProps): JSX.Element | null {
+  const [showFallback, setShowFallback] = useState(true)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowFallback(false)
+    }, 500)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [])
+
   const Component = lazy(() => import(`./assets/general/${name}.svg`))
 
   return (
-    <Suspense fallback={<>Loading...</>}>
+    <Suspense fallback={showFallback ? <>Loading...</> : null}>
       <IconWrapper {...rest}>
         <Component />
       </IconWrapper>

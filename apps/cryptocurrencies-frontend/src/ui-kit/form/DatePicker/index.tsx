@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextInput } from '..'
+import { TextInput } from '@ui'
 import { DateTimePicker } from '@material-ui/pickers'
 import { TextFieldProps } from '@material-ui/core'
 import moment from 'moment'

@@ -9,12 +9,11 @@ import { DeleteAction } from '../../app/actions/DeleteAction'
 import {
   ColumnDescriptor,
   EmptyPlaceholder,
-  IconButton,
   Listing,
   ActionDropdown,
   FieldDescriptors,
 } from '../../ui-kit'
-import { Box } from '@ui'
+import { Box, IconButton } from '@ui'
 
 interface Props<T extends { _id: string }> {
   entityName: EntityNames

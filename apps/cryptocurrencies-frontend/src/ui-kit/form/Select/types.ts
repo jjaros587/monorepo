@@ -1,6 +1,6 @@
 import { IconNames } from '@icons'
 
-export interface SelectItemProps {
+export interface SelectItem {
   label: string
   value: unknown
   icon?: IconNames

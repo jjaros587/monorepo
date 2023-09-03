@@ -1,7 +1,7 @@
 import { useDependentState } from '@hooks'
 import styled from '@theme'
-import { IconButton, PaginationWithPageInfo, TextInput } from '..'
-import { Text, Inline } from '@ui'
+import { PaginationWithPageInfo } from '..'
+import { Text, Inline, TextInput, IconButton } from '@ui'
 
 const PageInput = styled(TextInput)`
   width: 20px;
@@ -23,7 +23,7 @@ export const PageSwitcher = ({ pagination }: { pagination: PaginationWithPageInf
   return (
     <Inline gap="XS">
       <IconButton icon="arrowLeft" onClick={setPreviousPage} disabled={!hasPreviousPage} />
-      <div>
+      <Inline>
         <PageInput
           value={value}
           onChange={(e) => {
@@ -52,7 +52,7 @@ export const PageSwitcher = ({ pagination }: { pagination: PaginationWithPageInf
           {'\u00A0'}of{'\u00A0'}
           {totalPages}
         </Text>
-      </div>
+      </Inline>
       <IconButton icon="arrowRight" onClick={setNextPage} disabled={!hasNextPage} />
     </Inline>
   )

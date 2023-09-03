@@ -1,12 +1,17 @@
-import { Box, Button, Inline, Text } from '@ui';
-import { useBulkPanel } from '../../hooks';
+import { Box, Button, Inline, Text } from '@ui'
+import { useBulkPanel } from '../../hooks'
+import * as AppShell from '../../app/AppShell'
 
 export const BulkPanel = () => {
-  const { items, clear } = useBulkPanel();
+  const { items, clear } = useBulkPanel()
 
-  if (items.length > 0) {
-    return (
-      <Box backgroundColor="secondary">
+  if (items.length === 0) {
+    return null
+  }
+
+  return (
+    <AppShell.BulkPanel>
+      <Inline>
         <Text color="light">Items: {items.length}</Text>
         <Inline gap="M">
           <Button onClick={clear}>Clear selection</Button>
@@ -14,8 +19,7 @@ export const BulkPanel = () => {
             Action
           </Button>
         </Inline>
-      </Box>
-    );
-  }
-  return null;
-};
+      </Inline>
+    </AppShell.BulkPanel>
+  )
+}

@@ -1,21 +1,20 @@
 import { useEntityListing } from '../../../hooks/useEntityListing'
-import { AbstractSelect } from '../Select'
+import { SingleSelect } from '../Select/SingleSelect'
 
 interface Props {
   entityName: string
-  itemToPair: (item: unknown) => { value: any; label: any }
+  itemToPair: (item: unknown) => { value: string; label: string }
   onChange: (selectedItem: unknown | null) => void
   multiselect?: boolean
   searchable?: boolean
   clearable?: boolean
-  placeholder?: String
+  placeholder?: string
   required?: boolean
-
   error?: string
 }
 
 export const EntitySelect = ({ entityName, itemToPair, ...rest }: Props) => {
   const { state } = useEntityListing(entityName)
 
-  return <AbstractSelect items={state.items.map((item) => itemToPair(item))} {...rest} />
+  return <SingleSelect items={state.items.map((item) => itemToPair(item))} {...rest} />
 }

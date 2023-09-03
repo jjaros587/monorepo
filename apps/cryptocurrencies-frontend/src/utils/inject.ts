@@ -8,15 +8,14 @@ export function injectSafe<T>(classGetter: () => Class<T>) {
 
     Object.defineProperty(target, propertyKey, {
       get: function (this: any) {
-        debugger
         if (!instanceMap.has(this)) {
           const classConstructor = classGetter()
 
           if (!classConstructor) {
             throw new Error(
               `Unable to inject service into property ${target.constructor.name}#${String(
-                propertyKey
-              )}. Service class is undefined. Cyclic dependency?.`
+                propertyKey,
+              )}. Service class is undefined. Cyclic dependency?.`,
             )
           } else {
             instanceMap.set(this, ServiceContainer.get(classConstructor))
@@ -28,7 +27,7 @@ export function injectSafe<T>(classGetter: () => Class<T>) {
       set: function (this: any, value: any) {
         instanceMap.set(this, value)
       },
-      enumerable: false
+      enumerable: false,
     })
   }
 }

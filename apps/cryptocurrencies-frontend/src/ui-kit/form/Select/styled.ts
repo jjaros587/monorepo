@@ -1,40 +1,32 @@
-import { errorBorder, inputBaseCSS } from '../Input/styled'
 import styled, { css } from '@theme'
 
 export const DropdownContainer = styled.div`
   position: relative;
+  width: 100%;
+`
 
+export const DropdownList = styled.ul`
+  position: absolute;
   width: 100%;
   z-index: 999;
+
+  list-style: none;
+  background-color: ${(p) => p.theme.colors.background};
 `
-export const DropdownHeader = styled.div<{ isOpen: boolean; hasError?: boolean }>`
-  ${inputBaseCSS}
-  display: flex;
-  flex-direction: row;
+
+const highlightedCss = css`
+  background-color: ${(p) => p.theme.colors.primary};
+  color: ${(p) => p.theme.font.body('light')};
+`
+
+export const DropdownItem = styled.li<{ isSelected: boolean }>`
+  list-style: none;
   cursor: pointer;
-  ${(p) =>
-    p.isOpen &&
-    css`
-      box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary} !important;
-    `}
-  ${(p) => p.hasError && errorBorder}
-`
 
-export const DropdownTitle = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  padding: 1px 2px;
-`
+  :hover {
+    ${highlightedCss}
+  }
 
-export const DropdownIconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-export const DropdownList = styled.div`
-  position: relative;
-  background-color: white;
-  width: 100%;
+  ${(p) => p.theme.padding('XS', 'S')}
+  ${(p) => p.isSelected && highlightedCss}
 `

@@ -7,7 +7,7 @@ export const Table = styled.table`
   // box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   color: white;
-  width: '100%';
+  width: 100%;
 `
 
 export const HeaderRow = styled.tr`
