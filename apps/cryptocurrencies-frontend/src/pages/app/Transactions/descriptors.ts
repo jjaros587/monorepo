@@ -5,10 +5,6 @@ import { FormFieldTypes } from '../../../ui-kit/form/ManagedForm/FormFieldTypes'
 
 export const columns: ColumnDescriptor<Transaction>[] = [
   {
-    key: '_id',
-    header: 'ID',
-  },
-  {
     key: 'date',
     sortable: true,
   },
@@ -25,10 +21,6 @@ export const columns: ColumnDescriptor<Transaction>[] = [
     key: 'amount',
   },
   {
-    key: 'fee',
-    unit: 'Kč',
-  },
-  {
     key: 'price',
     unit: 'Kč',
   },
@@ -36,6 +28,7 @@ export const columns: ColumnDescriptor<Transaction>[] = [
     key: 'fee',
     unit: 'Kč',
   },
+
   {
     key: 'total',
     unit: 'Kč',
@@ -56,6 +49,7 @@ export const fields: FieldDescriptors = {
     placeholder: 'Select asset...',
     entityName: 'asset',
     itemToPair: (item: Asset) => ({ value: item._id, label: item.name }),
+    properties: ['name'],
   },
   price: {
     required: true,

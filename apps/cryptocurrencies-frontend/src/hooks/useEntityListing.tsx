@@ -1,6 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useListingResolver, useService } from '../hooks'
-import { PaginationWithPageInfo } from '../ui-kit'
+import { ColumnDescriptor, PaginationWithPageInfo } from '../ui-kit'
 import { useEffect, useState, useCallback } from 'react'
 import { OrderArgs, PageInfo } from '../graphql'
 import { DocumentNodeService } from '../services/DocumentNodeService'
@@ -18,7 +18,11 @@ interface PagenatedResponse<T> {
   pageInfo: PageInfo
 }
 
-export const useEntityListing = <T,>(entityName: string) => {
+export const useEntityListing = <T,>(
+  entityName: string,
+  properties: string[],
+  pageSize?: number,
+) => {
   const dnService = useService(DocumentNodeService)
   const [state, setState] = useState<ListingState<T>>({
     loading: true,
@@ -26,14 +30,14 @@ export const useEntityListing = <T,>(entityName: string) => {
     items: [],
   })
   const client = useApolloClient()
-  const { args, pagination, resolver } = useListingResolver(2)
+  const { args, pagination, resolver } = useListingResolver(pageSize)
   const { skip, limit, order } = args
 
   const fetchListing = useCallback(async () => {
     const { data, error } = await client.query<{
       [key: string]: PagenatedResponse<T>
     }>({
-      query: await dnService.list(entityName),
+      query: await dnService.list(entityName, properties),
       variables: { skip, limit, order },
     })
     const response = data[`${entityName}s`]

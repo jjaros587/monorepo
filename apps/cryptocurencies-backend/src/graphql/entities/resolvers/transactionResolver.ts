@@ -1,4 +1,14 @@
-import { Arg, Resolver, Mutation, Authorized, Ctx, InputType, Field } from 'type-graphql'
+import {
+  Arg,
+  Resolver,
+  Mutation,
+  Authorized,
+  Ctx,
+  InputType,
+  Field,
+  FieldResolver,
+  Root,
+} from 'type-graphql'
 import { createBaseResolver } from '../../factories/createBaseResolver'
 import { TransactionTypes } from '../../types/enums'
 import { Transaction, TransactionModel } from '../models/transactionModel'
@@ -28,26 +38,25 @@ class TransactionNew {
 }
 
 const CRUDResponse = createCRUDResponse(Transaction)
+type CRUDResponseType = InstanceType<typeof CRUDResponse>
 
 @Resolver(() => Transaction)
 export class TransactionResolver extends createBaseResolver(Transaction, TransactionModel) {
   @Authorized()
-  @Mutation(() => Transaction)
+  @Mutation(() => CRUDResponse)
   async transactionCreate(
     // @Arg('new', generateInputType(Transaction, 'create'))
     @Arg('new', () => TransactionNew) newTransaction: Transaction,
     @Ctx() { user }: Context,
-  ): Promise<Transaction> {
-    console.log('context', user)
+  ): Promise<CRUDResponseType> {
     const transaction = await TransactionModel.create({
       user: user._id,
       ...newTransaction,
     })
-    console.log('here')
 
     await InventoryService.calculateIn(transaction)
 
-    return transaction
+    return { success: true, item: transaction }
   }
 
   @Authorized()
@@ -56,7 +65,7 @@ export class TransactionResolver extends createBaseResolver(Transaction, Transac
     @Arg('_id', () => String) _id: string,
     @Arg('patch', () => TransactionNew) patch: Partial<Transaction>,
     // @Arg('patch', generateInputType(Transaction, 'edit')) patch: Transaction
-  ): Promise<InstanceType<typeof CRUDResponse>> {
+  ): Promise<CRUDResponseType> {
     const transaction = await TransactionModel.findOne({ _id })
     await InventoryService.calculateOut(transaction)
     transaction.update(patch)
@@ -67,19 +76,16 @@ export class TransactionResolver extends createBaseResolver(Transaction, Transac
 
   @Authorized()
   @Mutation(() => CRUDResponse)
-  async transactionDelete(
-    @Arg('_id', () => String) _id: string,
-  ): Promise<InstanceType<typeof CRUDResponse>> {
+  async transactionDelete(@Arg('_id', () => String) _id: string): Promise<CRUDResponseType> {
     const transaction = await TransactionModel.findOneAndDelete({ _id })
     await InventoryService.calculateOut(transaction)
 
     return { success: true, item: null }
   }
 
-  // @FieldResolver()
-  // total(@Root() transaction: Transaction): number {
-  //   console.log('transaction', transaction)
-  //   const { amount, price, fee } = transaction
-  //   return amount * price + fee
-  // }
+  @FieldResolver()
+  total(@Root() transaction: Transaction): number {
+    const { amount, price, fee } = transaction
+    return amount * price + fee
+  }
 }

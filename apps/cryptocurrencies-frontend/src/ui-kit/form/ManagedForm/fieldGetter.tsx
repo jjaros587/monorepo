@@ -1,7 +1,6 @@
 import React from 'react'
 import { FormFieldDescriptor, FormFieldTypes, isSimpleField } from './FormFieldTypes'
 import { DatePicker, SingleSelect } from '..'
-// TODO: Fix import to custom path
 import { EntitySelect } from '../EntitySelect'
 import { Input, InputType } from '@ui'
 
@@ -64,6 +63,7 @@ export function fieldGetter(
         multiselect={false}
         error={errors[key]}
         onChange={(selectItem: unknown) => handleChange(key, selectItem)}
+        properties={field.properties}
       />
     )
   }

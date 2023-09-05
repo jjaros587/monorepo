@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   static getUser(token?: string) {
-    return token ? this.decode(token)._id : null
+    return token ? this.decode(token) : null
   }
 
   static validateAndDecode(token?: string) {

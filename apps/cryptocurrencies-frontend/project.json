@@ -68,6 +68,12 @@
           "apps/cryptocurrencies-frontend/**/*.{ts,tsx,js,jsx}"
         ]
       }
+    },
+    "gen:graphql": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "graphql-codegen --config apps/cryptocurrencies-frontend/codegen.yml --overwrite"
+      }
     }
   },
   "tags": []

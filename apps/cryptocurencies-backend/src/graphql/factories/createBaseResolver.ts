@@ -45,6 +45,7 @@ export function createBaseResolver<TItem>(
         .sort()
         .skip(skip)
         .limit(limit)
+        .exec()
 
       return {
         items: items.map((item) => item.toObject<TItem>()),

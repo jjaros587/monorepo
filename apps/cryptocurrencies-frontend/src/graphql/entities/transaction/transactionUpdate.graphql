@@ -1,5 +1,0 @@
-mutation TransactionUpdate($_id: String!, $patch: TransactionInputTypeEdit!) {
-  transactionUpdate(_id: $_id, patch: $patch) {
-    _id
-  }
-}

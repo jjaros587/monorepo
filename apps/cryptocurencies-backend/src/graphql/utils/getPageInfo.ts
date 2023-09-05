@@ -1,11 +1,11 @@
 import { PageInfo } from '../types'
 
 export function getPageInfo(skip: number, limit: number, totalCount: number): PageInfo {
-  const nextItems = totalCount - (skip + limit)
+  const restItems = totalCount - (skip + limit)
 
   return {
-    hasNextPage: nextItems > 0,
+    hasNextPage: restItems > 0,
     totalCount,
-    nextItems: nextItems < limit ? nextItems : limit,
+    nextItems: limit ? (restItems < limit ? restItems : limit) : 0,
   }
 }

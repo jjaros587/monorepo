@@ -7,7 +7,7 @@ import { Field, ObjectType } from 'type-graphql'
 import { TransactionTypes } from '../../types'
 // import { InputField } from '../../../decorators/InputField'
 
-@plugin(autopopulate as any)
+@plugin(autopopulate)
 @ObjectType()
 export class Transaction {
   // ID

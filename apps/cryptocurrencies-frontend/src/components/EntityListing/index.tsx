@@ -19,12 +19,13 @@ interface Props<T extends { _id: string }> {
   entityName: EntityNames
   columns: ColumnDescriptor<T>[]
   enableSelection?: boolean
-  fields: FieldDescriptors
+  fields?: FieldDescriptors
 }
 export const EntityListing = <T extends { _id: string }>(props: Props<T>) => {
   const { entityName, enableSelection = true, fields } = props
   const sidebar = useSidebar()
-  const { state, resolver } = useEntityListing<T>(entityName)
+  const properties = props.columns.map((column) => column.key)
+  const { state, resolver } = useEntityListing<T>(entityName, properties, 2)
   const entityNamePlural = `${entityName}s`
 
   const columns = useMemo(() => {
@@ -72,29 +73,31 @@ export const EntityListing = <T extends { _id: string }>(props: Props<T>) => {
 
   return (
     <>
-      <Box paddingBottom="S" style={{ textAlign: 'right' }}>
-        <IconButton
-          icon={'add'}
-          onClick={() => {
-            sidebar.push({
-              isDestructive: true,
-              title: `Add new ${capitalize(entityName)}`,
-              Renderer: () => (
-                <EntityForm
-                  key={`create`}
-                  entityName={entityName}
-                  type={'create'}
-                  onSuccess={() => {
-                    resolver.reload()
-                    sidebar.pop()
-                  }}
-                  fields={fields}
-                />
-              ),
-            })
-          }}
-        />
-      </Box>
+      {fields && (
+        <Box paddingBottom="S" style={{ textAlign: 'right' }}>
+          <IconButton
+            icon={'add'}
+            onClick={() => {
+              sidebar.push({
+                isDestructive: true,
+                title: `Add new ${capitalize(entityName)}`,
+                Renderer: () => (
+                  <EntityForm
+                    key={`create`}
+                    entityName={entityName}
+                    type={'create'}
+                    onSuccess={() => {
+                      resolver.reload()
+                      sidebar.pop()
+                    }}
+                    fields={fields}
+                  />
+                ),
+              })
+            }}
+          />
+        </Box>
+      )}
 
       <Listing<T>
         columns={columns}

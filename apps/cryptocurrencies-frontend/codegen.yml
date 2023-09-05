@@ -1,0 +1,10 @@
+schema: 'http://127.0.0.1:3001/graphql'
+generates:
+  ./apps/cryptocurrencies-frontend/src/graphql.ts:
+    plugins:
+      - '@graphql-codegen/typescript'
+      - '@graphql-codegen/typescript-operations'
+      - '@graphql-codegen/typescript-react-apollo'
+    config:
+      withResultType: true
+      withHooks: true

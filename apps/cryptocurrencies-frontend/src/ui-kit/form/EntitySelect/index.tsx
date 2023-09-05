@@ -11,10 +11,11 @@ interface Props {
   placeholder?: string
   required?: boolean
   error?: string
+  properties: string[]
 }
 
-export const EntitySelect = ({ entityName, itemToPair, ...rest }: Props) => {
-  const { state } = useEntityListing(entityName)
+export const EntitySelect = ({ entityName, itemToPair, properties, ...rest }: Props) => {
+  const { state } = useEntityListing(entityName, properties)
 
   return <SingleSelect items={state.items.map((item) => itemToPair(item))} {...rest} />
 }

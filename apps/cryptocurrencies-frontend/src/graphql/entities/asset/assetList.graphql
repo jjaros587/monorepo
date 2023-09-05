@@ -1,9 +1,0 @@
-query GetAssets {
-  assets {
-    items {
-      _id
-      abbr
-      name
-    }
-  }
-}

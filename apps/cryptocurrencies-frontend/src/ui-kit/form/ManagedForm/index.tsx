@@ -40,7 +40,6 @@ export const ManagedForm = ({ initialValues, descriptors, primaryAction }: Props
   const { displayName, onSubmit } = primaryAction
 
   const handleSubmit = (e: React.FormEvent) => {
-    debugger
     e.preventDefault()
     if (validate()) {
       onSubmit(patch)

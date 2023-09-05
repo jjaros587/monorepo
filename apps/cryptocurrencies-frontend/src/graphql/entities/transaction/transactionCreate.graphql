@@ -1,9 +1,0 @@
-mutation CreateTransaction($new: TransactionNew!) {
-  transactionCreate(new: $new) {
-    type
-    amount
-    price
-    fee
-    date
-  }
-}

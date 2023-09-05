@@ -5,6 +5,7 @@ import { Box, Inline, Button } from '@ui'
 import SCREEN_DESCRIPTORS from '../../config/ScreenConfig'
 import styled from '@theme'
 import imgUrl from './background2.jpg'
+import { useAuth } from '../../hooks'
 
 const Container = styled(Box)`
   z-index: 1;
@@ -25,22 +26,34 @@ const BackgroundImage = styled.div`
 
 export const PublicLayout = observer(({ children }: { children: ReactNode }) => {
   const navigate = useNavigate()
+  const { user } = useAuth()
 
   return (
     <Container fullScreen>
       <BackgroundImage />
       <Box padding="M" align="flex-end">
-        <Inline gap="M">
-          <Button onClick={() => navigate(SCREEN_DESCRIPTORS.protected.descriptors['login'].route)}>
-            Log in
-          </Button>
+        {user ? (
           <Button
             primary
-            onClick={() => navigate(SCREEN_DESCRIPTORS.protected.descriptors['signup'].route)}
+            onClick={() => navigate(SCREEN_DESCRIPTORS.app.descriptors['dashboard'].route)}
           >
-            Sign up
+            Open App
           </Button>
-        </Inline>
+        ) : (
+          <Inline gap="M">
+            <Button
+              onClick={() => navigate(SCREEN_DESCRIPTORS.protected.descriptors['login'].route)}
+            >
+              Log in
+            </Button>
+            <Button
+              primary
+              onClick={() => navigate(SCREEN_DESCRIPTORS.protected.descriptors['signup'].route)}
+            >
+              Sign up
+            </Button>
+          </Inline>
+        )}
       </Box>
       <Box align="center" alignY="center">
         {children}

@@ -21,7 +21,8 @@ export class InventoryService {
 
     const wallet = await WalletModel.findOne({ asset, user })
     if (!wallet) {
-      throw new Error(`Couldn't find wallet for asset ${asset}`)
+      return
+      //   throw new Error(`Couldn't find wallet for asset ${asset}`)
     }
 
     const newAmount = wallet.amount - amount

@@ -1,7 +1,0 @@
-mutation CreateTransaction($new: AddWithdrawalInput!) {
-  withdrawalCreate(new: $new) {
-    _id
-    amount
-    date
-  }
-}

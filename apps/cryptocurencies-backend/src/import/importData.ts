@@ -2,7 +2,7 @@ import { AssetModel, TransactionModel, UserModel } from '../graphql/entities/mod
 import { assets } from './data/assets'
 import { users } from './data/users'
 import { mongoose } from '@typegoose/typegoose'
-// import { transactions } from './data/transactions'
+import { transactions } from './data/transactions'
 
 export function importData(run: boolean) {
   if (!run) {
@@ -11,7 +11,7 @@ export function importData(run: boolean) {
   console.log('Import of data started...')
   insertData(AssetModel, assets)
   insertData(UserModel, users)
-  // insertData(TransactionModel, transactions)
+  insertData(TransactionModel, transactions)
   printData(false)
   console.log('Import of data finished succesfully\n')
 }
@@ -26,7 +26,7 @@ function insertData<T extends { _id: string }>(model: typeof mongoose.Model, dat
   })
 }
 
-async function printData(run: boolean) {
+async function printData() {
   console.log('Printing data...')
   console.log('assets', await AssetModel.find())
   console.log('users', await UserModel.find())

@@ -47,7 +47,8 @@ interface SelectFieldBaseDescriptor extends BaseFieldDescriptor {
 interface EntitySelectFieldDescriptor extends SelectFieldBaseDescriptor {
   type: FormFieldTypes.EntitySelect
   entityName: string
-  itemToPair: (item: unknown) => { value: string; label: string }
+  itemToPair: (item: never) => { value: string; label: string }
+  properties: string[]
 }
 
 interface SelectFieldDescriptor extends SelectFieldBaseDescriptor {
