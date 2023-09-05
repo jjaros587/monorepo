@@ -1,5 +1,5 @@
 import { FieldDescriptors, AppLink, ManagedForm } from '../../../ui-kit'
-import { FormFieldTypes } from '../../../ui-kit/form/ManagedForm/FormFieldTypes'
+import { FormFieldTypes } from '../../../ui-kit/ManagedForm/ManagedForm.types'
 import { Card } from '@ui'
 
 export const ForgotPasswordPage = () => {

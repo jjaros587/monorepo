@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextInput } from '@ui'
+import { TextInput } from './Input/Input'
 import { DateTimePicker } from '@material-ui/pickers'
 import { TextFieldProps } from '@material-ui/core'
 import moment from 'moment'
@@ -18,19 +18,22 @@ export const DatePicker = (props: Props) => {
     initialValue ? new Date(initialValue * 1000) : null,
   )
 
-  const RenderInput = (inputProps: TextFieldProps): unknown => (
-    <TextInput
-      required={required}
-      key={`${name}_label`}
-      ref={inputProps.inputRef}
-      value={inputProps.value as string}
-      onClick={inputProps.onClick}
-      onChange={inputProps.onChange}
-      readOnly={true}
-      name={name}
-      error={error}
-    />
-  )
+  const RenderInput = (inputProps: TextFieldProps): unknown => {
+    return (
+      <TextInput
+        required={required}
+        key={`${name}_label`}
+        ref={inputProps.inputRef}
+        value={inputProps.value as string}
+        onClick={inputProps.onClick}
+        onChange={inputProps.onChange}
+        readOnly={true}
+        name={name}
+        error={error}
+      />
+    )
+  }
+
   return (
     <DateTimePicker
       value={value}

@@ -1,6 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useListingResolver, useService } from '../hooks'
-import { ColumnDescriptor, PaginationWithPageInfo } from '../ui-kit'
+import { PaginationWithPageInfo } from '../ui-kit'
 import { useEffect, useState, useCallback } from 'react'
 import { OrderArgs, PageInfo } from '../graphql'
 import { DocumentNodeService } from '../services/DocumentNodeService'

@@ -1,20 +1,19 @@
 import { useCombobox } from 'downshift'
 import { SelectItem } from './types'
-import { TextInput } from '@ui'
+import { TextInput } from '../Input/Input'
 import { Icon } from '@icons'
 import { DropdownContainer, DropdownItem, DropdownList } from './styled'
 import { useDependentState } from '@hooks'
 
 interface SingleSelectProps {
   items: SelectItem[]
-  placeholder?: string
   required?: boolean
   error?: string
   onChange: (selectedValue: unknown | null) => void
 }
 
 export const SingleSelect = (props: SingleSelectProps) => {
-  const { items: initialItems, onChange, placeholder, error, required } = props
+  const { items: initialItems, onChange, error, required } = props
   const [items, setItems] = useDependentState(initialItems, [initialItems])
 
   const filter = (searchValue?: string) => {

@@ -1,10 +1,9 @@
 import { Table } from '../Table'
 import { ColumnDescriptor } from '../Table/types'
 import { PaginationWithPageInfo, Paginator } from '..'
-import { EmptyPlaceholder } from '../EmptyPlaceholder'
 import { ListingState } from './types'
 import { OrderArgs } from '../../graphql'
-import { LoadingPlaceholder } from '@ui'
+import { LoadingPlaceholder, EmptyPlaceholder } from '@ui'
 
 interface Props<T extends { _id: string }> {
   columns: ColumnDescriptor<T>[]

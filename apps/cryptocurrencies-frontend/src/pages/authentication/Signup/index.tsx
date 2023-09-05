@@ -4,7 +4,7 @@ import { useAuth, useFlashMessage } from '../../../hooks'
 // import { useHistory } from 'react-router-dom'
 import SCREEN_DESCRIPTORS from '../../../config/ScreenConfig'
 import { Session } from '../../../graphql'
-import { FormFieldTypes } from '../../../ui-kit/form/ManagedForm/FormFieldTypes'
+import { FormFieldTypes } from '../../../ui-kit/ManagedForm/ManagedForm.types'
 import REGISTER from '../../../graphql/mutations/register.graphql'
 import { Card } from '@ui'
 

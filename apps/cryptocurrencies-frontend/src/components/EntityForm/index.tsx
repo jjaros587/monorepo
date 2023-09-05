@@ -1,9 +1,10 @@
 import { useApolloClient } from '@apollo/client'
 import { useService, useFlashMessage } from '../../hooks'
 import { DocumentNodeService } from '../../services'
-import { FieldDescriptors, ManagedForm } from '../../ui-kit'
 import { EntityNames } from '../../config/EntityConfig'
 import { Card } from '@ui'
+import { ManagedForm } from '../../ui-kit/ManagedForm/ManagedForm'
+import { FieldDescriptors } from '../../ui-kit/ManagedForm/ManagedForm.types'
 
 interface BaseProps<T> {
   entityName: EntityNames
@@ -39,7 +40,10 @@ export const EntityForm = <T extends { _id: string }>({
     if (createMutation) {
       client
         .mutate({ mutation: createMutation, variables: { new: data } })
-        .then(() => onSuccess?.())
+        .then(() => {
+          debugger
+          onSuccess?.()
+        })
         .catch((error) => {
           pushMessage('danger', 'Create failed!', error)
         })

@@ -6,14 +6,8 @@ import { SelectionCell } from './SelectionCell'
 import { EntityForm } from '../EntityForm'
 import { useEntityListing } from '../../hooks/useEntityListing'
 import { DeleteAction } from '../../app/actions/DeleteAction'
-import {
-  ColumnDescriptor,
-  EmptyPlaceholder,
-  Listing,
-  ActionDropdown,
-  FieldDescriptors,
-} from '../../ui-kit'
-import { Box, IconButton } from '@ui'
+import { ColumnDescriptor, Listing, ActionDropdown, FieldDescriptors } from '../../ui-kit'
+import { Box, IconButton, EmptyPlaceholder } from '@ui'
 
 interface Props<T extends { _id: string }> {
   entityName: EntityNames
@@ -56,6 +50,7 @@ export const EntityListing = <T extends { _id: string }>(props: Props<T>) => {
                       type={'edit'}
                       fields={fields}
                       onSuccess={() => {
+                        debugger
                         resolver.reload()
                         sidebar.pop()
                       }}

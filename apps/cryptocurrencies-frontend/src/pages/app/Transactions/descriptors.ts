@@ -1,7 +1,7 @@
 import { ColumnDescriptor, FieldDescriptors } from '../../../ui-kit'
 import { values } from 'lodash'
 import { Asset, Transaction, TransactionTypes } from '../../../graphql'
-import { FormFieldTypes } from '../../../ui-kit/form/ManagedForm/FormFieldTypes'
+import { FormFieldTypes } from '../../../ui-kit/ManagedForm/ManagedForm.types'
 
 export const columns: ColumnDescriptor<Transaction>[] = [
   {

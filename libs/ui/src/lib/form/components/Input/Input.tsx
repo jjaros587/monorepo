@@ -2,7 +2,6 @@ import { useDependentState } from '@hooks'
 import React, { ReactNode, Ref } from 'react'
 import * as S from './Input.styles'
 
-// TODO: Not exported property
 export const enum InputType {
   Text = 'text',
   Number = 'number',

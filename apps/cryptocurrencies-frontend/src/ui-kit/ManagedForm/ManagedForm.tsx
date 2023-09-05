@@ -1,24 +1,10 @@
-import useDataController from './useDataController'
-import * as S from './styled'
-import { DEFAULT_RULES } from './rules'
-import { FormFieldDescriptor, FormFieldTypes } from './FormFieldTypes'
-import { Button } from '@ui'
-import { InputContainer } from '../../InputContainer'
-import { fieldGetter } from './fieldGetter'
+import useDataController from './utils/useDataController'
+import * as S from './ManagedForm.styles'
+import { FieldDescriptors } from './ManagedForm.types'
+import { Button, InputContainer } from '@ui'
+import { fieldGetter } from './utils/fieldGetter'
 import { capitalize } from 'lodash'
-
-type FieldRules = Array<(value: unknown) => string | undefined>
-
-export interface FieldDescriptor {
-  required?: boolean
-  label?: string
-  type: FormFieldTypes
-  rules?: FieldRules
-}
-
-export interface FieldDescriptors {
-  [key: string]: FormFieldDescriptor
-}
+import { applyDefaultRules } from './utils/applyDefaultRules'
 
 interface PrimaryActionDescriptor {
   displayName: string
@@ -68,19 +54,4 @@ export const ManagedForm = ({ initialValues, descriptors, primaryAction }: Props
       </S.ActionContainer>
     </form>
   )
-}
-
-function applyDefaultRules(descriptors: FieldDescriptors) {
-  const fields = Object.keys(descriptors)
-
-  return fields.reduce((acc, key) => {
-    if (key in DEFAULT_RULES) {
-      const rules: FieldRules = descriptors[key].rules ?? []
-      const updatedRules = [...rules, ...DEFAULT_RULES[key]]
-      acc[key] = { ...descriptors[key], rules: updatedRules }
-    } else {
-      acc[key] = descriptors[key]
-    }
-    return acc
-  }, {} as FieldDescriptors)
 }

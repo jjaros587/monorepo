@@ -1,4 +1,4 @@
-import { SelectItem } from '../Select/types'
+import { SelectItem } from '@ui'
 
 export enum FormFieldTypes {
   Text = 'text',
@@ -37,21 +37,14 @@ interface NumberFieldDescriptor extends BaseFieldDescriptor {
   type: FormFieldTypes.Number
 }
 
-interface SelectFieldBaseDescriptor extends BaseFieldDescriptor {
-  multiselect?: boolean
-  searchable?: boolean
-  clearable?: boolean
-  placeholder?: string
-}
-
-interface EntitySelectFieldDescriptor extends SelectFieldBaseDescriptor {
+interface EntitySelectFieldDescriptor extends BaseFieldDescriptor {
   type: FormFieldTypes.EntitySelect
   entityName: string
   itemToPair: (item: never) => { value: string; label: string }
   properties: string[]
 }
 
-interface SelectFieldDescriptor extends SelectFieldBaseDescriptor {
+interface SelectFieldDescriptor extends BaseFieldDescriptor {
   type: FormFieldTypes.Select
   items: SelectItem[]
 }
@@ -61,6 +54,7 @@ type SimpleFormField =
   | PasswordFieldDescriptor
   | TextFieldDescriptor
   | NumberFieldDescriptor
+
 export type FormFieldDescriptor =
   | SimpleFormField
   | DateFieldDescriptor
@@ -74,4 +68,17 @@ export function isSimpleField(field: FormFieldDescriptor): field is SimpleFormFi
     FormFieldTypes.Password,
     FormFieldTypes.Number,
   ].includes(field.type)
+}
+
+export type FieldRules = Array<(value: unknown) => string | undefined>
+
+export interface FieldDescriptor {
+  required?: boolean
+  label?: string
+  type: FormFieldTypes
+  rules?: FieldRules
+}
+
+export interface FieldDescriptors {
+  [key: string]: FormFieldDescriptor
 }

@@ -1,7 +1,7 @@
 import { ColumnDescriptor, FieldDescriptors } from '../../../ui-kit'
 import { EntityListing } from '../../../components/EntityListing'
 import { Withdrawal } from '../../../graphql'
-import { FormFieldTypes } from '../../../ui-kit/form/ManagedForm/FormFieldTypes'
+import { FormFieldTypes } from '../../../ui-kit/ManagedForm/ManagedForm.types'
 // import { AddWithdrawalForm } from './AddWIthDrawalForm'
 import { Card } from '@ui'
 

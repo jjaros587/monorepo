@@ -12,7 +12,7 @@ export function importData(run: boolean) {
   insertData(AssetModel, assets)
   insertData(UserModel, users)
   insertData(TransactionModel, transactions)
-  printData(false)
+  printData()
   console.log('Import of data finished succesfully\n')
 }
 

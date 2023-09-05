@@ -1,4 +1,10 @@
 export * from './components/Button/Button'
-export * from './components/Label'
+export * from './components/InputLabel'
 export * from './components/Input/Input'
 export * from './components/IconButton'
+export * from './components/Checkbox'
+export * from './components/Select/SingleSelect'
+export * from './components/DatePicker'
+export * from './components/InputContainer'
+
+export type { SelectItem } from './components/Select/types'

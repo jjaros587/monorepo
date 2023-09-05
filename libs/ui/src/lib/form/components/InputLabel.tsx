@@ -1,4 +1,5 @@
-import { Box, Inline, Text } from '@ui'
+import { Box, Inline } from '../../layout'
+import { Text } from '../../Text'
 
 interface Props {
   label: string

@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 import { useHistory } from 'react-router'
 import { FieldDescriptors, ManagedForm, AppLink } from '../../../ui-kit'
-import { FormFieldTypes } from '../../../ui-kit/form/ManagedForm/FormFieldTypes'
+import { FormFieldTypes } from '../../../ui-kit/ManagedForm/ManagedForm.types'
 import { useFlashMessage, useAuth } from '../../../hooks'
 import { Session } from '../../../graphql'
 import LOGIN from '../../../graphql/mutations/login.graphql'

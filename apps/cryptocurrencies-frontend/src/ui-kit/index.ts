@@ -1,12 +1,12 @@
-export * from './form'
+export * from './ManagedForm/ManagedForm'
 export * from './links'
 
 export * from './links/AppLink'
 export * from './Table'
 export * from './Listing'
-export * from './EmptyPlaceholder'
 export * from './Paginator'
-export * from './InputErrorContainer'
 export * from './ActionDropdown'
 export * from './Tabs'
 export * from './Modal'
+
+export type { FieldDescriptors } from './ManagedForm/ManagedForm.types'

@@ -1,12 +1,15 @@
 import { useState } from 'react'
-import { FieldDescriptors, FieldDescriptor } from '.'
+import { FieldDescriptors, FieldDescriptor } from '../ManagedForm.types'
 
-export const useDataController = (descriptors: FieldDescriptors, initialValues?: { [key: string]: any }) => {
+export const useDataController = (
+  descriptors: FieldDescriptors,
+  initialValues?: { [key: string]: any },
+) => {
   const [data, setData] = useState<{ [key: string]: any }>(initialValues || {})
   const [patch, setPatch] = useState<{ [key: string]: any }>({})
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
-  const isValueFilled = (value: any) => {
+  const isValueFilled = (value: unknown) => {
     return value !== undefined && value !== null && value !== ''
   }
 
@@ -54,17 +57,17 @@ export const useDataController = (descriptors: FieldDescriptors, initialValues?:
     }
   }
 
-  const handleChange = (key: string, value: any) => {
+  const handleChange = (key: string, value: unknown) => {
     setData((prevState) => {
       return {
         ...prevState,
-        [key]: isValueFilled(value) ? value : undefined
+        [key]: isValueFilled(value) ? value : undefined,
       }
     })
     setPatch((prevState) => {
       return {
         ...prevState,
-        [key]: isValueFilled(value) ? value : undefined
+        [key]: isValueFilled(value) ? value : undefined,
       }
     })
     validateSingleValue(key, value)
@@ -74,7 +77,7 @@ export const useDataController = (descriptors: FieldDescriptors, initialValues?:
     patch,
     errors,
     handleChange,
-    validate
+    validate,
   }
 }
 

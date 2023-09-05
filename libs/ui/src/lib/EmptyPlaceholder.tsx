@@ -1,4 +1,5 @@
-import { Box, Text } from '@ui'
+import { Box } from './layout'
+import { Text } from './Text'
 import { Icon, IconNames } from '@icons'
 import styled from '@theme'
 

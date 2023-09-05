@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
-import { InputErrorContainer } from '..'
-import { Label } from '@ui'
+import { Label } from './InputLabel'
+import { Box } from '../../layout'
+import { Text } from '../../Text'
 
 interface Props {
   label: string
@@ -14,7 +15,11 @@ export const InputContainer: React.FC<Props> = ({ children, label, required, err
     <div>
       <Label label={label} required={required} />
       {children}
-      <InputErrorContainer error={error} />
+      {error ? (
+        <Box paddingTop="XS" paddingLeft="M">
+          <Text color="danger">{error}</Text>
+        </Box>
+      ) : null}
     </div>
   )
 }

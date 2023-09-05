@@ -3,7 +3,3 @@ export function isEmail(value: any) {
     return 'Email address is invalid'
   }
 }
-
-export const DEFAULT_RULES: { [key: string]: Array<(value: unknown) => string | undefined> } = {
-  email: [isEmail],
-}
