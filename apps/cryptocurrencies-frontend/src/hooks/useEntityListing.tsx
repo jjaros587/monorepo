@@ -1,9 +1,8 @@
-import { useApolloClient } from '@apollo/client'
 import { useListingResolver, useService } from '../hooks'
 import { PaginationWithPageInfo } from '../ui-kit'
 import { useEffect, useState, useCallback } from 'react'
-import { OrderArgs, PageInfo } from '../graphql'
-import { DocumentNodeService } from '../services/DocumentNodeService'
+import { OrderArgs } from '../graphql'
+import { EntityManagerService } from '../services'
 
 interface ListingState<T> {
   error: any
@@ -13,32 +12,25 @@ interface ListingState<T> {
   pagination?: PaginationWithPageInfo
 }
 
-interface PagenatedResponse<T> {
-  items: T[]
-  pageInfo: PageInfo
-}
-
 export const useEntityListing = <T,>(
   entityName: string,
   properties: string[],
   pageSize?: number,
 ) => {
-  const dnService = useService(DocumentNodeService)
+  const entityManager = useService(EntityManagerService)
   const [state, setState] = useState<ListingState<T>>({
     loading: true,
     error: null,
     items: [],
   })
-  const client = useApolloClient()
   const { args, pagination, resolver } = useListingResolver(pageSize)
   const { skip, limit, order } = args
 
   const fetchListing = useCallback(async () => {
-    const { data, error } = await client.query<{
-      [key: string]: PagenatedResponse<T>
-    }>({
-      query: await dnService.list(entityName, properties),
-      variables: { skip, limit, order },
+    const { data, error } = await entityManager.fetchEntities<T>(entityName, properties, {
+      skip,
+      limit,
+      order,
     })
     const response = data[`${entityName}s`]
 

@@ -38,11 +38,10 @@ export const useListingResolver = (size?: number, number?: number): ListingResol
     setOrder(undefined)
   }, [])
 
-  const reload = useCallback(() => {
-    debugger
+  const reload = () => {
     setAdditionalPage(0)
     setPageNumber(1)
-  }, [])
+  }
 
   return {
     resolver: {

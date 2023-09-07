@@ -40,6 +40,10 @@ export const Input = styled.input<{ hasError?: boolean }>`
 
 export const ErrorBorder = css`
   &&& {
-    box-shadow: 0 0 0 2px ${(p) => p.theme.colors.danger};
+    box-shadow: 0 0 0 1px ${(p) => p.theme.colors.danger};
+
+    :focus {
+      box-shadow: 0 0 0 2px ${(p) => p.theme.colors.danger};
+    }
   }
 `

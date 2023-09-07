@@ -1,6 +1,5 @@
-import { useApolloClient } from '@apollo/client'
 import { useService, useFlashMessage } from '../../hooks'
-import { DocumentNodeService } from '../../services'
+import { EntityManagerService } from '../../services'
 import { EntityNames } from '../../config/EntityConfig'
 import { Card } from '@ui'
 import { ManagedForm } from '../../ui-kit/ManagedForm/ManagedForm'
@@ -20,7 +19,7 @@ interface CreateProps<T> extends BaseProps<T> {
 
 interface EditProps<T> extends BaseProps<T> {
   type: 'edit'
-  initialValues: { [key: string]: unknown }
+  initialValues: { [key: string]: any }
 }
 
 export const EntityForm = <T extends { _id: string }>({
@@ -30,39 +29,28 @@ export const EntityForm = <T extends { _id: string }>({
   initialValues,
   onSuccess,
 }: EditProps<T> | CreateProps<T>) => {
-  const dnService = useService(DocumentNodeService)
-  const client = useApolloClient()
+  const entityManager = useService(EntityManagerService)
   const { pushMessage } = useFlashMessage()
   const primaryActionLabel = type === 'create' ? 'Create' : 'Edit'
 
   const handleAdd = async (data: T) => {
-    const createMutation = await dnService.create(entityName)
-    if (createMutation) {
-      client
-        .mutate({ mutation: createMutation, variables: { new: data } })
-        .then(() => {
-          debugger
-          onSuccess?.()
-        })
-        .catch((error) => {
-          pushMessage('danger', 'Create failed!', error)
-        })
-    }
+    entityManager
+      .createEntity(entityName, data)
+      .then(() => {
+        onSuccess?.()
+      })
+      .catch((error) => {
+        pushMessage('danger', 'Create failed!', error)
+      })
   }
 
   const handleEdit = async (data: T) => {
-    const updateMutation = await dnService.update(entityName)
-    if (updateMutation) {
-      client
-        .mutate({
-          mutation: updateMutation,
-          variables: { _id: initialValues?._id, patch: data },
-        })
-        .then(() => onSuccess?.())
-        .catch((error) => {
-          pushMessage('danger', 'Create failed!', error)
-        })
-    }
+    entityManager
+      .updateEntity(entityName, initialValues?._id, data)
+      .then(() => onSuccess?.())
+      .catch((error) => {
+        pushMessage('danger', 'Create failed!', error)
+      })
   }
 
   return (
