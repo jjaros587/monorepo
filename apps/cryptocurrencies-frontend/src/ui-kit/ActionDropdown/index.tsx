@@ -36,7 +36,7 @@ export const ActionsPopup = ({ actions }: { actions: ActionDescriptor[] }) => {
 
 export const ActionDropdown: React.FC<{
   actions?: Array<ActionDescriptor | null>
-  children: ReactNode
+  children?: ReactNode
 }> = ({ actions: _actions, children }) => {
   const actions = useMemo(() => _actions?.filter(Boolean) as ActionDescriptor[], [_actions])
 
