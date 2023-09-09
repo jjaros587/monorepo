@@ -9,7 +9,6 @@ import {
   BulkPanelContextProvider,
   FlashMessageProvider,
   ModalContextProvider,
-  SidebarProvider,
 } from './hooks'
 import { ThemeProvider, theme } from '@theme'
 import { Routes } from './app/router/Routes'
@@ -21,11 +20,9 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({ children })
         <APIProvider>
           <ModalContextProvider>
             <BulkPanelContextProvider>
-              <SidebarProvider>
-                <ThemeProvider theme={theme}>
-                  <FlashMessageProvider>{children}</FlashMessageProvider>
-                </ThemeProvider>
-              </SidebarProvider>
+              <ThemeProvider theme={theme}>
+                <FlashMessageProvider>{children}</FlashMessageProvider>
+              </ThemeProvider>
             </BulkPanelContextProvider>
           </ModalContextProvider>
         </APIProvider>

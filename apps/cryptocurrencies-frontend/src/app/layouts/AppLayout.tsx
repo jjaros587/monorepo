@@ -2,14 +2,14 @@ import * as AppShell from '../AppShell'
 import { ReactNode, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { BulkPanel, Navigation, Sidebar, FlashMessage } from '../../components'
-import { useSidebar, useBulkPanel, useService } from '../../hooks'
+import { useBulkPanel, useService } from '../../hooks'
 import { ModalManager } from '../../services'
 import { observer } from 'mobx-react'
-import { Routes } from '../router/Routes'
+import { SidebarManager } from '../../services/SidebarManager'
 
 export const AppLayout = observer(({ children }: { children: ReactNode }) => {
   const location = useLocation()
-  const sidebar = useSidebar()
+  const sidebar = useService(SidebarManager)
   const bulkPanel = useBulkPanel()
   const { modal } = useService(ModalManager)
 
@@ -27,7 +27,7 @@ export const AppLayout = observer(({ children }: { children: ReactNode }) => {
           <BulkPanel />
         </AppShell.Content>
 
-        <AppShell.Sidebar opened={sidebar.isOpen}>
+        <AppShell.Sidebar opened={sidebar.isOpened}>
           <Sidebar />
         </AppShell.Sidebar>
       </AppShell.Main>

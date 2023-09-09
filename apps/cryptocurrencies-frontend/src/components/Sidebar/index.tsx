@@ -1,9 +1,10 @@
-import { useService, useSidebar } from '../../hooks'
+import { useService } from '../../hooks'
 import { Box, Text, Inline, IconButton } from '@ui'
-import { ModalManager } from '../../services'
+import { ModalManager, SidebarManager } from '../../services'
+import { observer } from 'mobx-react'
 
-export const Sidebar = () => {
-  const { pop, sidebarItem } = useSidebar()
+const SidebarComponent = () => {
+  const { pop, sidebarItem } = useService(SidebarManager)
   const modalManager = useService(ModalManager)
 
   const handleOnCLose = async () => {
@@ -41,3 +42,5 @@ export const Sidebar = () => {
     )
   )
 }
+
+export const Sidebar = observer(SidebarComponent)

@@ -1,6 +1,5 @@
 export * from './useAuth'
 export * from './useFlashMessage'
-export * from './useSidebar'
 export * from './useBulkPanel'
 export * from './useDependentState'
 export * from './useListingResolver'

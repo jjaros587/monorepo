@@ -17,7 +17,7 @@ interface ListingState<T> {
 export const useEntityListing = <T,>(
   entityName: string,
   properties: string[],
-  opts: ListingOpts,
+  opts?: ListingOpts,
 ) => {
   const entityManager = useService(EntityManagerService)
 

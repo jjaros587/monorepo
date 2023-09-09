@@ -1,4 +1,4 @@
-import { useSidebar } from '../../hooks'
+import { useService } from '../../hooks'
 import { EntityNames } from '../../config/EntityConfig'
 import { capitalize } from 'lodash'
 import { useMemo } from 'react'
@@ -9,6 +9,7 @@ import { DeleteAction } from '../../app/actions/DeleteAction'
 import { ColumnDescriptor, Listing, ActionDropdown, FieldDescriptors } from '../../ui-kit'
 import { Box, IconButton, EmptyPlaceholder } from '@ui'
 import { observer } from 'mobx-react'
+import { SidebarManager } from '../../services'
 
 interface Props<T extends { _id: string }> {
   entityName: EntityNames
@@ -18,7 +19,7 @@ interface Props<T extends { _id: string }> {
 }
 export const EntityListing = observer(<T extends { _id: string }>(props: Props<T>) => {
   const { entityName, enableSelection = true, fields, columns: _columns } = props
-  const sidebar = useSidebar()
+  const sidebar = useService(SidebarManager)
   const properties = useMemo(() => {
     return _columns.map((column) => column.key)
   }, [_columns])
