@@ -2,7 +2,7 @@ import { ReactFCWithChildren } from './types'
 import { Portal } from 'react-portal'
 import styled from '@theme'
 import { Box } from './layout'
-import { useCallback, useEffect } from 'react'
+import { MouseEvent, useCallback, useEffect } from 'react'
 import { useEventListener } from '@hooks'
 
 const Container = styled(Box)`
@@ -37,9 +37,15 @@ export const Overlay: ReactFCWithChildren<Props> = (props) => {
     [closeOnEsc, onClose],
   )
 
-  const onOverlayClick = useCallback(() => {
-    closeOnOverlayClick && onClose()
-  }, [closeOnOverlayClick, onClose])
+  const onOverlayClick = useCallback(
+    (e: MouseEvent) => {
+      // Check if the click event is on the overlay and not on its content
+      if (closeOnOverlayClick && e.target === e.currentTarget) {
+        onClose()
+      }
+    },
+    [closeOnOverlayClick, onClose],
+  )
 
   useEffect(() => {
     lockScroll(open)
