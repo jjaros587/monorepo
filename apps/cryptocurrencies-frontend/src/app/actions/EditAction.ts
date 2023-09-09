@@ -1,14 +1,23 @@
-import { ActionDescriptor } from './ActionDescriptor';
-import { injectSafe } from '../../utils/inject';
-import { EntityManagerService } from '../../services';
+import { ActionDescriptor } from './ActionDescriptor'
+import { injectSafe } from '../../utils/inject'
+import { EntityManagerService, isOperationPermitted } from '../../services'
+import { EntityNames, entityConfig } from '../../config/EntityConfig'
 
 export class EditAction<T extends { _id: string }> implements ActionDescriptor {
   @injectSafe(() => EntityManagerService)
-  entityManager!: EntityManagerService;
+  entityManager!: EntityManagerService
 
-  displayName = 'Edit';
+  displayName = 'Edit'
 
-  constructor(private entityName: string, private entityData: T) {}
+  static create(entityName: EntityNames, entityData: any) {
+    if (!isOperationPermitted(entityName, 'edit')) {
+      return null
+    }
 
-  proceed = async () => undefined;
+    return new EditAction(entityName, entityData)
+  }
+
+  private constructor(private entityName: EntityNames, private entityData: T) {}
+
+  proceed = async () => undefined
 }

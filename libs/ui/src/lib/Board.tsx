@@ -1,5 +1,5 @@
 import styled from '@theme'
-import { Box } from '@ui'
+import { Box } from './layout'
 
 export const Board = styled(Box).attrs({ backgroundColor: 'surface' })`
   position: relative;

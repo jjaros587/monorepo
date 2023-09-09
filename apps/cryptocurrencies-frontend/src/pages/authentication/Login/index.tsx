@@ -1,21 +1,22 @@
 import { useMutation } from '@apollo/client'
-import { useHistory } from 'react-router'
 import { FieldDescriptors, ManagedForm, AppLink } from '../../../ui-kit'
 import { FormFieldTypes } from '../../../ui-kit/ManagedForm/ManagedForm.types'
 import { useFlashMessage, useAuth } from '../../../hooks'
 import { Session } from '../../../graphql'
 import LOGIN from '../../../graphql/mutations/login.graphql'
 import { Card, Button, Box } from '@ui'
+import { useNavigate } from 'react-router-dom'
 
 export const LoginPage = () => {
   const { pushMessage } = useFlashMessage()
-  const history = useHistory()
+  const navigate = useNavigate()
   const auth = useAuth()
+
   const [login, { error }] = useMutation<{ login: Session }>(LOGIN, {
     onCompleted: ({ login: session }) => {
       auth.login(session)
       pushMessage('success', 'Login', 'Logged in!')
-      history.replace('/dashboard')
+      navigate('/dashboard')
     },
     onError: (error) => {
       pushMessage('danger', 'Login', error.message)

@@ -8,6 +8,7 @@ import { useEntityListing } from '../../hooks/useEntityListing'
 import { DeleteAction } from '../../app/actions/DeleteAction'
 import { ColumnDescriptor, Listing, ActionDropdown, FieldDescriptors } from '../../ui-kit'
 import { Box, IconButton, EmptyPlaceholder } from '@ui'
+import { observer } from 'mobx-react'
 
 interface Props<T extends { _id: string }> {
   entityName: EntityNames
@@ -15,11 +16,13 @@ interface Props<T extends { _id: string }> {
   enableSelection?: boolean
   fields?: FieldDescriptors
 }
-export const EntityListing = <T extends { _id: string }>(props: Props<T>) => {
-  const { entityName, enableSelection = true, fields } = props
+export const EntityListing = observer(<T extends { _id: string }>(props: Props<T>) => {
+  const { entityName, enableSelection = true, fields, columns: _columns } = props
   const sidebar = useSidebar()
-  const properties = props.columns.map((column) => column.key)
-  const { state, resolver } = useEntityListing<T>(entityName, properties, 2)
+  const properties = useMemo(() => {
+    return _columns.map((column) => column.key)
+  }, [_columns])
+  const listing = useEntityListing<T>(entityName, properties, 10)
   const entityNamePlural = `${entityName}s`
 
   const columns = useMemo(() => {
@@ -35,7 +38,7 @@ export const EntityListing = <T extends { _id: string }>(props: Props<T>) => {
       renderer: (rowData: T) => (
         <ActionDropdown
           actions={[
-            new DeleteAction(entityName, rowData),
+            DeleteAction.create(entityName, rowData),
             {
               displayName: 'Edit',
               proceed: () => {
@@ -50,8 +53,7 @@ export const EntityListing = <T extends { _id: string }>(props: Props<T>) => {
                       type={'edit'}
                       fields={fields}
                       onSuccess={() => {
-                        debugger
-                        resolver.reload()
+                        listing.reload()
                         sidebar.pop()
                       }}
                     />
@@ -82,7 +84,7 @@ export const EntityListing = <T extends { _id: string }>(props: Props<T>) => {
                     entityName={entityName}
                     type={'create'}
                     onSuccess={() => {
-                      resolver.reload()
+                      listing.reload()
                       sidebar.pop()
                     }}
                     fields={fields}
@@ -96,9 +98,7 @@ export const EntityListing = <T extends { _id: string }>(props: Props<T>) => {
 
       <Listing<T>
         columns={columns}
-        listingState={state}
-        pagination={state.pagination}
-        setOrder={resolver.setOrder}
+        listing={listing}
         emptyStatePlaceholder={
           <EmptyPlaceholder
             icon="fileEmpty"
@@ -109,4 +109,4 @@ export const EntityListing = <T extends { _id: string }>(props: Props<T>) => {
       />
     </>
   )
-}
+})

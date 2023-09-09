@@ -1,7 +1,7 @@
 import styled from '@theme'
 import { ActionDescriptor } from '../../app/actions/ActionDescriptor'
-import { ReactNode } from 'react'
-import { Popup, Board, IconButton } from '@ui'
+import { ReactNode, useMemo } from 'react'
+import { Popup, Box, IconButton } from '@ui'
 
 const ActionItem = styled.button`
   display: flex;
@@ -10,7 +10,7 @@ const ActionItem = styled.button`
   width: 100%;
 
   border: none;
-  background-color: ${(p) => p.theme.colors.surface};
+  background-color: ${(p) => p.theme.colors.surfaceContrast};
   ${(p) => p.theme.padding('XS', 'S')}
   ${(p) => p.theme.font.body()};
 
@@ -26,18 +26,20 @@ const ActionItem = styled.button`
 
 export const ActionsPopup = ({ actions }: { actions: ActionDescriptor[] }) => {
   return (
-    <Board>
+    <Box>
       {actions.map((action) => (
         <ActionItem onClick={action.proceed}>{action.displayName}</ActionItem>
       ))}
-    </Board>
+    </Box>
   )
 }
 
-export const ActionDropdown: React.FC<{ actions?: ActionDescriptor[]; children: ReactNode }> = ({
-  actions,
-  children,
-}) => {
+export const ActionDropdown: React.FC<{
+  actions?: Array<ActionDescriptor | null>
+  children: ReactNode
+}> = ({ actions: _actions, children }) => {
+  const actions = useMemo(() => _actions?.filter(Boolean) as ActionDescriptor[], [_actions])
+
   if (!actions || actions.length === 0) {
     return null
   }

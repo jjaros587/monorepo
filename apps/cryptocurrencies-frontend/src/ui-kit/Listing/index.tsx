@@ -1,21 +1,20 @@
 import { Table } from '../Table'
 import { ColumnDescriptor } from '../Table/types'
-import { PaginationWithPageInfo, Paginator } from '..'
-import { ListingState } from './types'
-import { OrderArgs } from '../../graphql'
+import { Paginator } from '..'
 import { LoadingPlaceholder, EmptyPlaceholder } from '@ui'
+import { ListingModel } from '../../models/ListingModel'
+import { observer } from 'mobx-react'
+import { useEffect } from 'react'
 
 interface Props<T extends { _id: string }> {
   columns: ColumnDescriptor<T>[]
-  listingState: ListingState<T>
+  listing: ListingModel<T>
   emptyStatePlaceholder?: JSX.Element
-  pagination?: PaginationWithPageInfo
-  setOrder?: (order: OrderArgs) => void
 }
 
-export const Listing = <T extends { _id: string }>(props: Props<T>) => {
-  const { listingState, pagination, emptyStatePlaceholder, ...rest } = props
-  const { loading, error, items, order } = listingState
+export const Listing = observer(<T extends { _id: string }>(props: Props<T>) => {
+  const { emptyStatePlaceholder, listing, ...rest } = props
+  const { items, pagination, isLoading, hasBeenLoaded, isEmpty } = listing
 
   // if (error) {
   //   return (
@@ -27,9 +26,13 @@ export const Listing = <T extends { _id: string }>(props: Props<T>) => {
   //   )
   // }
 
+  // useEffect(() => {
+  //   listing.fetchItems()
+  // }, [listing])
+
   return (
-    <LoadingPlaceholder isLoading={loading}>
-      {items.length === 0 ? (
+    <LoadingPlaceholder isLoading={!hasBeenLoaded && isLoading}>
+      {isEmpty ? (
         emptyStatePlaceholder || (
           <EmptyPlaceholder
             icon="fileEmpty"
@@ -39,10 +42,10 @@ export const Listing = <T extends { _id: string }>(props: Props<T>) => {
         )
       ) : (
         <>
-          <Table<T> data={items} order={order} {...rest} />
+          <Table<T> data={items} order={undefined} {...rest} />
           {pagination && <Paginator pagination={pagination} />}
         </>
       )}
     </LoadingPlaceholder>
   )
-}
+})

@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react'
 import { useEntityListing } from '../../hooks/useEntityListing'
 import { SingleSelect } from '@ui'
 
@@ -10,8 +11,8 @@ interface Props {
   properties: string[]
 }
 
-export const EntitySelect = ({ entityName, itemToPair, properties, ...rest }: Props) => {
-  const { state } = useEntityListing(entityName, properties)
+export const EntitySelect = observer(({ entityName, itemToPair, properties, ...rest }: Props) => {
+  const { items } = useEntityListing(entityName, properties)
 
-  return <SingleSelect items={state.items.map((item) => itemToPair(item))} {...rest} />
-}
+  return <SingleSelect items={items.map((item) => itemToPair(item))} {...rest} />
+})

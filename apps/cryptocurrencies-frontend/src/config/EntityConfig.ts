@@ -1,5 +1,4 @@
-type Operations = 'list' | 'create' | 'edit' | 'delete'
-
+export type Operations = 'list' | 'create' | 'edit' | 'delete'
 export type EntityNames = 'transaction' | 'withdrawal' | 'asset' | 'wallet'
 
 interface EntityConfig {
