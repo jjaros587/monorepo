@@ -40,13 +40,11 @@ export const fields: FieldDescriptors = {
     required: true,
     type: FormFieldTypes.Select,
     label: 'Transaction type',
-    placeholder: 'Select transaction type...',
     items: values(TransactionTypes).map((type) => ({ value: type, label: type })),
   },
   asset: {
     required: true,
     type: FormFieldTypes.EntitySelect,
-    placeholder: 'Select asset...',
     entityName: 'asset',
     itemToPair: (item: Asset) => ({ value: item._id, label: item.name }),
     properties: ['name'],
