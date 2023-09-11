@@ -1,6 +1,6 @@
 import { apiClient } from '../api'
 import { EntityNames, Operations, entityConfig } from '../config/EntityConfig'
-import { FetchResponse, ListingArgs } from '../models/types'
+import { ListingResponse, ListingArgs } from '../models/types'
 import { injectSafe } from '../utils/inject'
 import { DocumentNodeService } from './DocumentNodeService'
 
@@ -30,7 +30,7 @@ export class EntityManagerService {
     const listQuery = this.dns.list(entityName, properties)
     return async (args: ListingArgs) =>
       apiClient
-        .query<{ [key: string]: FetchResponse<T> }>({
+        .query<{ [key: string]: ListingResponse<T> }>({
           query: listQuery,
           variables: args,
         })

@@ -12,17 +12,21 @@ import {
   TypeNode,
   ValueNode,
   VariableDefinitionNode,
-  VariableNode
+  VariableNode,
 } from 'graphql'
 import map from 'lodash/map'
-import mapValues from 'lodash/mapValues'
 
-export function field(name: string, selectionSet?: SelectionSetNode, args?: ArgumentNode[], alias?: string): FieldNode {
+export function field(
+  name: string,
+  selectionSet?: SelectionSetNode,
+  args?: ArgumentNode[],
+  alias?: string,
+): FieldNode {
   return {
     kind: 'Field',
     name: {
       kind: 'Name',
-      value: name
+      value: name,
     },
     selectionSet,
     arguments: args,
@@ -30,16 +34,16 @@ export function field(name: string, selectionSet?: SelectionSetNode, args?: Argu
       alias && alias !== name
         ? {
             kind: 'Name',
-            value: alias
+            value: alias,
           }
-        : undefined
+        : undefined,
   }
 }
 
 export function selectionSet(selections: readonly SelectionNode[]): SelectionSetNode {
   return {
     kind: 'SelectionSet',
-    selections
+    selections,
   }
 }
 
@@ -48,9 +52,9 @@ export function argument(argName: string, value: ValueNode): ArgumentNode {
     kind: 'Argument',
     name: {
       kind: 'Name',
-      value: argName
+      value: argName,
     },
-    value
+    value,
   }
 }
 
@@ -59,8 +63,8 @@ export function variable(varName: string): VariableNode {
     kind: 'Variable',
     name: {
       kind: 'Name',
-      value: varName
-    }
+      value: varName,
+    },
   }
 }
 
@@ -70,7 +74,7 @@ export function variableAsArgument(argName: string, varName?: string): ArgumentN
 
 export const enum TransactionKind {
   Commit = 'COMMIT',
-  DryRun = 'DRY_RUN'
+  DryRun = 'DRY_RUN',
 }
 
 export function objectValue(dict: { [k: string]: ValueNode }): ObjectValueNode {
@@ -81,11 +85,11 @@ export function objectValue(dict: { [k: string]: ValueNode }): ObjectValueNode {
         kind: 'ObjectField',
         name: {
           kind: 'Name',
-          value: key
+          value: key,
         },
-        value
+        value,
       }
-    })
+    }),
   }
 }
 
@@ -97,7 +101,7 @@ function type(typeName: string): TypeNode {
   if (m) {
     return {
       kind: 'NonNullType',
-      type: type(m[1]) as NamedTypeNode | ListTypeNode
+      type: type(m[1]) as NamedTypeNode | ListTypeNode,
     }
   }
 
@@ -105,7 +109,7 @@ function type(typeName: string): TypeNode {
   if (m) {
     return {
       kind: 'ListType',
-      type: type(m[1])
+      type: type(m[1]),
     }
   }
 
@@ -113,36 +117,40 @@ function type(typeName: string): TypeNode {
     kind: 'NamedType',
     name: {
       kind: 'Name',
-      value: typeName
-    }
+      value: typeName,
+    },
   }
 }
 
-export function variableDefinition(varName: string, typeName: string, nullable = false): VariableDefinitionNode {
+export function variableDefinition(
+  varName: string,
+  typeName: string,
+  nullable = false,
+): VariableDefinitionNode {
   return {
     kind: 'VariableDefinition',
     variable: {
       kind: 'Variable',
       name: {
         kind: 'Name',
-        value: varName
-      }
+        value: varName,
+      },
     },
-    type: type(!nullable && !RX_NON_NULL_TYPE.exec(typeName) ? `${typeName}!` : typeName)
+    type: type(!nullable && !RX_NON_NULL_TYPE.exec(typeName) ? `${typeName}!` : typeName),
   }
 }
 
 export function document(definitions: DefinitionNode | DefinitionNode[]): DocumentNode {
   return {
     kind: 'Document',
-    definitions: Array.isArray(definitions) ? definitions : [definitions]
+    definitions: Array.isArray(definitions) ? definitions : [definitions],
   }
 }
 
 export function query(
   name: string | undefined,
   selections: SelectionNode[],
-  variableDefinitions?: VariableDefinitionNode[]
+  variableDefinitions?: VariableDefinitionNode[],
 ): DefinitionNode {
   return {
     kind: 'OperationDefinition',
@@ -152,13 +160,13 @@ export function query(
         ? undefined
         : {
             kind: 'Name',
-            value: name
+            value: name,
           },
     variableDefinitions,
     selectionSet: {
       kind: 'SelectionSet',
-      selections
-    }
+      selections,
+    },
   }
 }
 
@@ -166,20 +174,20 @@ export function mutation(
   name: string,
   selections: SelectionNode[],
   variableDefinitions?: VariableDefinitionNode[],
-  directives?: DirectiveNode[]
+  directives?: DirectiveNode[],
 ): DefinitionNode {
   return {
     kind: 'OperationDefinition',
     operation: 'mutation',
     name: {
       kind: 'Name',
-      value: name
+      value: name,
     },
     variableDefinitions,
     directives: directives,
     selectionSet: {
       kind: 'SelectionSet',
-      selections
-    }
+      selections,
+    },
   }
 }

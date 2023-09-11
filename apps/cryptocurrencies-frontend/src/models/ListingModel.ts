@@ -1,6 +1,6 @@
 import { action, computed, makeObservable, observable, reaction } from 'mobx'
 import { ListinStateModel } from './ListingStateModel'
-import { FetchQuery, ListingOpts } from './types'
+import { ListingQuery, ListingOpts } from './types'
 import { PaginationWithPageInfo } from '../ui-kit'
 import { PageInfo } from '../graphql'
 
@@ -22,7 +22,7 @@ export class ListingModel<T> {
   @observable
   items: T[] = []
 
-  constructor(private query: FetchQuery<T>, opts?: ListingOpts) {
+  constructor(private query: ListingQuery<T>, opts?: ListingOpts) {
     makeObservable(this)
     this.listingState = new ListinStateModel(opts)
 
@@ -33,14 +33,14 @@ export class ListingModel<T> {
   public fetchItems = async () => {
     this._isLoading = true
     const { items, pageInfo } = await this.query(this.args)
-    this.items = this.listingState.additionalPages ? [...this.items, ...items] : items
+    this.items = this.listingState.state.additionalPages ? [...this.items, ...items] : items
     this.pageInfo = pageInfo
     this._isLoading = false
   }
 
   @computed
   get args() {
-    const { pageSize, pageNumber, additionalPages, order } = this.listingState
+    const { pageSize, pageNumber, additionalPages, order } = this.listingState.state
 
     return {
       limit: pageSize,
@@ -101,11 +101,13 @@ export class ListingModel<T> {
 
   @computed
   get pagination(): PaginationWithPageInfo {
+    const { pageSize, pageNumber, additionalPages } = this.listingState.state
+
     return {
       ...this.pageInfo,
-      pageSize: this.listingState.pageSize,
-      pageNumber: this.listingState.pageNumber,
-      additionalPages: this.listingState.additionalPages,
+      pageSize: pageSize,
+      pageNumber: pageNumber,
+      additionalPages: additionalPages,
       loadMore: this.setAdditionalPage,
       setPageSize: this.setPageSize,
       setPage: this.setPage,

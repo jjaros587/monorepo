@@ -19,9 +19,9 @@ export interface ListingState {
   order?: OrderArgs
 }
 
-export interface FetchResponse<T> {
+export interface ListingResponse<T> {
   pageInfo: PageInfo
   items: T[]
 }
 
-export type FetchQuery<T> = (args: ListingArgs) => Promise<FetchResponse<T>>
+export type ListingQuery<T> = (args: ListingArgs) => Promise<ListingResponse<T>>
