@@ -1,4 +1,4 @@
-import { apiClient } from '../api'
+import { apiClient } from '../api/ApiClient'
 import { EntityNames, Operations, entityConfig } from '../config/EntityConfig'
 import { ListingResponse, ListingArgs } from '../models/types'
 import { injectSafe } from '../utils/inject'

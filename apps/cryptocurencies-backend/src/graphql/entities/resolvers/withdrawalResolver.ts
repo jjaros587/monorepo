@@ -1,6 +1,7 @@
 import { Arg, InputType, Field, Authorized, Resolver, Mutation } from 'type-graphql'
 import { createBaseResolver } from '../../factories/createBaseResolver'
 import { Withdrawal, WithdrawalModel } from '../models/withdrawalModel'
+import { ResolverInterface } from './types'
 
 @InputType({ description: 'New withdrawal data' })
 class WithdrawalNew implements Partial<Withdrawal> {
@@ -17,7 +18,10 @@ class WithdrawalNew implements Partial<Withdrawal> {
 const WithdrawalBaseResolver = createBaseResolver(Withdrawal, WithdrawalModel)
 
 @Resolver(() => Withdrawal)
-export class WithdrawalResolver extends WithdrawalBaseResolver {
+export class WithdrawalResolver
+  extends WithdrawalBaseResolver
+  implements ResolverInterface<Withdrawal>
+{
   @Authorized()
   @Mutation(() => Withdrawal)
   async withdrawalCreate(

@@ -8393,14 +8393,6 @@
   resolved "https://registry.yarnpkg.com/@repeaterjs/repeater/-/repeater-3.0.4.tgz#a04d63f4d1bf5540a41b01a921c9a7fddc3bd1ca"
   integrity sha512-AW8PKd6iX3vAZ0vA43nOUOnbq/X5ihgU+mSXXqunMkeQADGiqw/PY0JNeYtD5sr0PAy51YPgAPbDoeapv9r8WA==
 
-"@rollup/plugin-babel@^6.0.3":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-6.0.3.tgz#07ccde15de278c581673034ad6accdb4a153dfeb"
-  integrity sha512-fKImZKppa1A/gX73eg4JGo+8kQr/q1HBQaCGKECZ0v4YBBv3lFqi14+7xyApECzvkLTHCifx+7ntcrvtBIRcpg==
-  dependencies:
-    "@babel/helper-module-imports" "^7.18.6"
-    "@rollup/pluginutils" "^5.0.1"
-
 "@rollup/plugin-dynamic-import-vars@^2.0.5":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-dynamic-import-vars/-/plugin-dynamic-import-vars-2.0.5.tgz#73ba7172236e7d99f43c7fdc71567cbbd8f1fe48"
@@ -19173,7 +19165,7 @@ graphql-subscriptions@^1.0.0, graphql-subscriptions@^1.1.0:
   dependencies:
     iterall "^1.3.0"
 
-graphql-tag@^2.10.4, graphql-tag@^2.11.0, graphql-tag@^2.12.0, graphql-tag@^2.12.6, graphql-tag@^2.4.2:
+graphql-tag@^2.11.0, graphql-tag@^2.12.0, graphql-tag@^2.12.6, graphql-tag@^2.4.2:
   version "2.12.6"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.12.6.tgz#d441a569c1d2537ef10ca3d1633b48725329b5f1"
   integrity sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==
@@ -31038,7 +31030,7 @@ typescript@4.6.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.2.tgz#fe12d2727b708f4eef40f51598b3398baa9611d4"
   integrity sha512-HM/hFigTBHZhLXshn9sN37H085+hQGeJHJ/X7LpBWLID/fbc2acUMfU+lGD98X81sKP+pFa9f0DZmCwB9GnbAg==
 
-typescript@~4.9.5:
+typescript@^4.4.2:
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
@@ -31657,11 +31649,6 @@ vfile@^5.0.0:
     unist-util-stringify-position "^3.0.0"
     vfile-message "^3.0.0"
 
-vite-plugin-babel-dev@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/vite-plugin-babel-dev/-/vite-plugin-babel-dev-1.0.2.tgz#5ecca145adfab8517351478afb7485ba1961ebc9"
-  integrity sha512-6niMl9fcvJQAG+SicsupMOQ/7xxe0fNGIMCZ3ySoqScseF4Fm08hLByxQCu9jpq+GQPQy8VYw0ReQiaJqLbQjg==
-
 vite-plugin-eslint@^1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/vite-plugin-eslint/-/vite-plugin-eslint-1.8.1.tgz#0381b8272e7f0fd8b663311b64f7608d55d8b04c"
@@ -31678,18 +31665,6 @@ vite-plugin-graphql-loader@^2.0.0:
   dependencies:
     graphql "^16.6.0"
     graphql-tag "^2.12.6"
-
-vite-plugin-graphql@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/vite-plugin-graphql/-/vite-plugin-graphql-0.1.0.tgz#f8cf45d4694c4887b8d565a20183c130812870f7"
-  integrity sha512-e8517azfqF7R95gsfQ4WVOySIfmVdK61fJaH0DrH47vVXs+O2BOJF1mkoHV3X65GLDrmMCHp5H+cTmsVlv8kNA==
-  dependencies:
-    graphql-tag "^2.10.4"
-
-vite-plugin-simple-gql@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/vite-plugin-simple-gql/-/vite-plugin-simple-gql-0.5.0.tgz#7767d6e97331c77ddff833d4f22b298ecfb9bf85"
-  integrity sha512-zQUVhlkqwP07NcccLkw+sd6Z7LN7NXfyfxdFJRVUo3m7sdu797FXnsW9Q6LihpsYGgI/uClKZzAF5oyor+VqRQ==
 
 vite-plugin-svgr@^3.2.0:
   version "3.2.0"

@@ -15,6 +15,7 @@ import { Transaction, TransactionModel } from '../models/transactionModel'
 import { InventoryService } from '../services/InventoryService'
 import { createCRUDResponse } from '../../factories/createCRUDResponse'
 import { Context } from '../../types/Context'
+import { ResolverInterface } from './types'
 
 @InputType()
 class TransactionNew {
@@ -41,7 +42,10 @@ const CRUDResponse = createCRUDResponse(Transaction)
 type CRUDResponseType = InstanceType<typeof CRUDResponse>
 
 @Resolver(() => Transaction)
-export class TransactionResolver extends createBaseResolver(Transaction, TransactionModel) {
+export class TransactionResolver
+  extends createBaseResolver(Transaction, TransactionModel)
+  implements ResolverInterface<Transaction>
+{
   @Authorized()
   @Mutation(() => CRUDResponse)
   async transactionCreate(

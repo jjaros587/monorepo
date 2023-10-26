@@ -3,7 +3,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { StrictMode } from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import { APIProvider } from './api'
+import { APIProvider } from './api/ApiClient'
 import {
   AuthProvider,
   BulkPanelContextProvider,
@@ -12,6 +12,7 @@ import {
 } from './hooks'
 import { ThemeProvider, theme } from '@theme'
 import { Routes } from './app/router/Routes'
+import { ErrorHandler } from './app/ErrorHandler'
 
 export const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -21,7 +22,9 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({ children })
           <ModalContextProvider>
             <BulkPanelContextProvider>
               <ThemeProvider theme={theme}>
-                <FlashMessageProvider>{children}</FlashMessageProvider>
+                <FlashMessageProvider>
+                  <ErrorHandler>{children}</ErrorHandler>
+                </FlashMessageProvider>
               </ThemeProvider>
             </BulkPanelContextProvider>
           </ModalContextProvider>

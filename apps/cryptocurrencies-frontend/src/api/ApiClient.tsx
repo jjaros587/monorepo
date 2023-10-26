@@ -14,6 +14,16 @@ export const apiClient = new ApolloClient({
   },
 })
 
+export class ApiClient {
+  public async execute() {
+    try {
+
+    } catch (error) {
+      
+    }
+  }
+}
+
 export const APIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <ApolloProvider client={apiClient}>{children}</ApolloProvider>
 }

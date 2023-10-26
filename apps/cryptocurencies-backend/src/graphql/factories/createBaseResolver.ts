@@ -59,7 +59,7 @@ export function createBaseResolver<TItem>(
       @Arg('_id', () => String) _id: string,
     ): Promise<InstanceType<typeof CRUDResponse>> {
       const updatedItem = await TItemModel.findOneAndUpdate({ _id })
-      return { success: Boolean(updatedItem), item: updatedItem || null }
+      return { success: Boolean(updatedItem), item: updatedItem }
     }
 
     @Authorized()

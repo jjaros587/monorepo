@@ -5,11 +5,12 @@ import * as bcryptjs from 'bcryptjs'
 import { UnknownUserError, InvalidCredentialsError } from '../../errors'
 import { createBaseResolver } from '../../factories/createBaseResolver'
 import { AuthService } from '../../../services/AuthService'
+import { ResolverInterface } from './types'
 
 const UserBaseResolver = createBaseResolver(User, UserModel)
 
 @Resolver(() => User)
-export class UserResolver extends UserBaseResolver {
+export class UserResolver extends UserBaseResolver implements ResolverInterface<User> {
   @Mutation(() => Session)
   async register(
     @Arg('email', () => String) email: string,

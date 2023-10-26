@@ -34,14 +34,12 @@ export const EntityForm = <T extends { _id: string }>({
   const primaryActionLabel = type === 'create' ? 'Create' : 'Edit'
 
   const handleAdd = async (data: T) => {
-    entityManager
-      .createEntity(entityName, data)
-      .then(() => {
-        onSuccess?.()
-      })
-      .catch((error) => {
-        pushMessage('danger', 'Create failed!', error)
-      })
+    entityManager.createEntity(entityName, data).then(() => {
+      onSuccess?.()
+    })
+    // .catch((error) => {
+    //   pushMessage('danger', 'Create failed!', error)
+    // })
   }
 
   const handleEdit = async (data: T) => {

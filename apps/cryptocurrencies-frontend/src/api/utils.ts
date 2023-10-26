@@ -1,4 +1,4 @@
-import { apiClient } from '.'
+import { apiClient } from './ApiClient'
 import REFRESH from '../graphql/mutations/refresh.graphql'
 import { ServiceContainer } from '../utils'
 import { LocalStorageService, STORAGE_KEYS } from '../services'

@@ -2,7 +2,7 @@ import { EntityManagerService, ModalManager, isOperationPermitted } from '../../
 import { ActionDescriptor } from './ActionDescriptor'
 import { injectSafe } from '../../utils/inject'
 import { buildDeleteMutation } from '../../graphql/factories/buildDeleteMutation'
-import { apiClient } from '../../api'
+import { apiClient } from '../../api/ApiClient'
 import { EntityNames } from '../../config/EntityConfig'
 
 export class DeleteAction<T extends { _id: string }> implements ActionDescriptor {

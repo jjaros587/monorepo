@@ -8,24 +8,29 @@ import { useAuth } from '../../hooks'
 import { NavigationNode, RouteType } from '../../app/router/types'
 import { Popup } from '@ui'
 import { useLocation } from 'react-router-dom'
+import { useEventListener } from '@hooks'
 
 interface NavigationItem extends NavigationNode {
   route: string
 }
 
+const BREAKPOINT = 768
+
 export const Navigation = (): JSX.Element => {
   const user = useAuth()
   const location = useLocation()
-  const [navigationType, setNavigationType] = useState<'small' | 'big'>('big')
   // Expanded state for 'big' navigation
   const [isExpanded, setIsExpanded] = useState(true)
   // Opened state for 'small' navigation
   const [isOpened, setIsOpened] = useState(false)
+  const [navigationType, setNavigationType] = useState<'small' | 'big'>(() =>
+    window.innerWidth <= BREAKPOINT ? 'small' : 'big',
+  )
 
   const handleResize = () => {
     const width = window.innerWidth
 
-    if (width <= 768) {
+    if (width <= BREAKPOINT) {
       setNavigationType('small')
     } else {
       setNavigationType('big')
@@ -40,12 +45,7 @@ export const Navigation = (): JSX.Element => {
     setIsOpened(false)
   }, [location])
 
-  useEffect(() => {
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+  useEventListener('resize', handleResize)
 
   const navigationItems: NavigationItem[] = useMemo(() => {
     const navigationItems: NavigationItem[] = []
@@ -58,7 +58,7 @@ export const Navigation = (): JSX.Element => {
       }
     })
     return navigationItems
-  }, [user])
+  }, [])
 
   return (
     <S.Navigation isExpanded={isExpanded}>
