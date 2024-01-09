@@ -1,5 +1,5 @@
 import styled, { TextColors, TextVariants } from '@theme'
-import { ReactFCWithChildren } from '@ui'
+import { ReactFCWithChildren } from './types'
 
 export function getTextTag(variant?: TextVariants): keyof JSX.IntrinsicElements | undefined {
   switch (variant) {

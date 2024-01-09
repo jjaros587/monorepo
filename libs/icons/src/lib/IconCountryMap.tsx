@@ -7,7 +7,7 @@ interface IconProps {
 
 export function IconCountryMap({ name, color = 'green' }: IconProps): JSX.Element | null {
   const Component = lazy(() =>
-    import(`./assets/socicountryMapsal/${name}.svg`).then((module) => ({ default: module })),
+    import(`./assets/countryMaps/${name}.svg`).then((module) => ({ default: module })),
   )
 
   return (
