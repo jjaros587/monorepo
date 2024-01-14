@@ -42,15 +42,12 @@ const {
 const generateCssVariables = (theme: Theme) => {
   let cssVariables = ''
 
-  for (const category in theme) {
-    const categoryValues = theme[category]
-
-    for (const key in categoryValues) {
+  Object.entries(theme).forEach(([category, values]) => {
+    Object.entries(values).forEach(([key, value]) => {
       const variableName = `--${category}-${key}`
-      const variableValue = categoryValues[key]
-      cssVariables += `${variableName}: ${variableValue};\n`
-    }
-  }
+      cssVariables += `${variableName}: ${value};\n`
+    })
+  })
 
   return cssVariables
 }

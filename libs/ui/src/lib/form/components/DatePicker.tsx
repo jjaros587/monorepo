@@ -18,7 +18,7 @@ export const DatePicker = (props: Props) => {
     initialValue ? new Date(initialValue * 1000) : null,
   )
 
-  const RenderInput = (inputProps: TextFieldProps): unknown => {
+  const RenderInput = (inputProps: TextFieldProps) => {
     return (
       <TextInput
         required={required}

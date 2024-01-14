@@ -9,6 +9,7 @@ import Image from 'next/image'
 import { IconLink } from './IconLink'
 import { DownloadResumeButton } from './DownloadResumeButton'
 import { ToggleButton } from './ToggleButton'
+import { useEventListener } from '@hooks'
 
 const navigation = [
   { path: '/', title: 'Home', iconName: 'house' },
@@ -59,8 +60,8 @@ export const Navigation = () => {
   const toggle = useCallback(() => setIsOpened((current) => !current), [setIsOpened])
   const handleOnClick = useCallback(() => setIsOpened(false), [])
 
-  window.addEventListener('load', handleSize)
-  window.addEventListener('resize', handleSize)
+  useEventListener('load', handleSize)
+  useEventListener('resize', handleSize)
 
   return (
     <>

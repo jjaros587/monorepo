@@ -1,5 +1,5 @@
 import styled from '@theme'
-import { Text, Inline } from '@ui'
+import { Text } from '@ui'
 
 const StyledButton = styled.button`
   position: relative;
