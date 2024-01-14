@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/vite:build",
+      "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
@@ -21,7 +21,7 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/vite:dev-server",
+      "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "cryptocurrencies-frontend:build"
@@ -38,7 +38,7 @@
       }
     },
     "preview": {
-      "executor": "@nrwl/vite:preview-server",
+      "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "cryptocurrencies-frontend:build"
@@ -53,24 +53,22 @@
       }
     },
     "test": {
-      "executor": "@nrwl/vite:test",
-      "outputs": ["coverage/apps/cryptocurrencies-frontend"],
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/apps/cryptocurrencies-frontend"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/cryptocurrencies-frontend"
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/cryptocurrencies-frontend/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["apps/cryptocurrencies-frontend/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "gen:graphql": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "@nx/workspace:run-commands",
       "options": {
         "command": "graphql-codegen --config apps/cryptocurrencies-frontend/codegen.yml --overwrite"
       }
