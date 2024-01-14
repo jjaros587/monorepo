@@ -1,37 +1,54 @@
 'use client'
 
-import styled, { ThemeProvider, theme } from '@theme'
-import './global.css'
+import styled, { GlobalStyle, ThemeProvider, createTheme } from '@theme'
+import '../assets/css/global.css'
 import { StyledComponentsRegistry } from './registry'
-import { Header } from '../src/components/Header/Header'
-import { HEADER_HEIGHT, HEADER_GAP } from '../src/constants'
-import { Box } from '@ui'
-import { Footer } from '../src/components/Footer/Footer'
+import { Navigation } from '../src/components/Navigation/Navigation'
+import { useMemo } from 'react'
+import Script from 'next/script'
 
 const Main = styled.main`
-  ${(p) => p.theme.margin('L')}
-  position: relative;
-  min-height: calc(100vh - ${HEADER_HEIGHT} - ${HEADER_GAP});
-  top: ${HEADER_GAP};
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+
+  background: ${(p) => p.theme.colors.background};
+`
+
+const Content = styled.div`
+  position: relative;
+  flex: 1;
+  height: auto;
+  overflow-y: scroll;
 `
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const theme = useMemo(
+    () =>
+      createTheme({
+        colors: {
+          navigation: '#1A1A1A',
+          background: '#2C3D4F',
+          surface: '#314254',
+        },
+      }),
+    [],
+  )
+
   return (
     <html lang="en">
-      <body style={{ backgroundColor: 'black' }}>
+      <Script src="https://kit.fontawesome.com/9a5f795d71.js" />
+      <body>
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme}>
-            <Header />
+            <GlobalStyle />
             <Main>
-              <Box padding="L" className="contentWrapper">
-                {children}
-              </Box>
+              <Navigation />
+              <Content>
+                <div>{children}</div>
+              </Content>
             </Main>
-            <Footer />
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>

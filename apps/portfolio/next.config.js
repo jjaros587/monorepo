@@ -21,7 +21,8 @@ const nextConfig = {
   webpack: (config) => {
     // Add a new rule for SVG files
     config.module.rules.push({
-      test: /\.svg$/,
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
       use: ['@svgr/webpack'],
     });
 

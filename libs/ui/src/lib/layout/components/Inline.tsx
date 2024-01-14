@@ -34,7 +34,7 @@ type ItemProps = {
 }
 
 const InlineItemBase = styled.div<ItemProps>`
-  flex-grow: ${(p) => (p.flexGrow ? 1 : undefined)};
+  flex: ${(p) => (p.flexGrow ? 1 : undefined)};
 
   ${(p) =>
     p.width &&
