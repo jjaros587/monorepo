@@ -3,7 +3,7 @@ import { Portal } from 'react-portal'
 import styled from '@theme'
 import { Box } from './layout'
 import { MouseEvent, useCallback, useEffect } from 'react'
-import { useEventListener } from '@hooks'
+import { useDocumentEventListener } from '@hooks'
 
 const Container = styled(Box)`
   position: fixed;
@@ -51,7 +51,7 @@ export const Overlay: ReactFCWithChildren<Props> = (props) => {
     lockScroll(open)
   }, [open])
 
-  useEventListener('keydown', onEscClick)
+  useDocumentEventListener('keydown', onEscClick)
 
   if (!open) {
     return null

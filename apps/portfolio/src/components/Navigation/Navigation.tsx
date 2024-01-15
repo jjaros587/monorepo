@@ -9,7 +9,8 @@ import Image from 'next/image'
 import { IconLink } from './IconLink'
 import { DownloadResumeButton } from './DownloadResumeButton'
 import { ToggleButton } from './ToggleButton'
-import { useEventListener } from '@hooks'
+import { useWindowEventListener } from '@hooks'
+import { useEffect } from 'react'
 
 const navigation = [
   { path: '/', title: 'Home', iconName: 'house' },
@@ -47,21 +48,21 @@ export const Navigation = () => {
   const [variant, setVariant] = useState<'big' | 'small'>('big')
   const pathname = usePathname()
 
-  const handleSize = () => {
+  const handleSize = useCallback(() => {
     const width = window.innerWidth
     if (width <= BREAKPOINT) {
       setVariant('small')
+      setIsOpened(false)
     } else {
       setVariant('big')
     }
-    setIsOpened(false)
-  }
+  }, [])
 
-  const toggle = useCallback(() => setIsOpened((current) => !current), [setIsOpened])
   const handleOnClick = useCallback(() => setIsOpened(false), [])
+  const toggle = useCallback(() => setIsOpened((isOpened) => !isOpened), [setIsOpened])
 
-  useEventListener('load', handleSize)
-  useEventListener('resize', handleSize)
+  useEffect(() => handleSize, [handleSize])
+  useWindowEventListener('resize', handleSize)
 
   return (
     <>
@@ -108,7 +109,7 @@ export const Navigation = () => {
         <DownloadResumeButton />
         <div>
           <Box align="center" paddingTop="M">
-            <Text variant="caption">Copyright {'\u00A9'} Jakub Jaroš</Text>
+            <Text variant="caption">Copyright {'\u00A9'} Jakub Jaroš,</Text>
             <Text variant="caption">All rights reserved</Text>
           </Box>
         </div>

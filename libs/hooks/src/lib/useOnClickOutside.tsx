@@ -1,5 +1,5 @@
 import { ReactNode, RefObject, useRef } from 'react'
-import { useEventListener } from './useEventListener'
+import { useDocumentEventListener } from './useDocumentEventListener'
 
 interface ClickOutsideHandlerProps {
   handler: () => void
@@ -32,7 +32,7 @@ export const useOnClickOutside = <T extends HTMLElement = HTMLElement>({
     handler()
   }
 
-  useEventListener('click', handleClickOutside)
+  useDocumentEventListener('click', handleClickOutside)
 }
 
 export const ClickOutsideHandler: React.FC<ClickOutsideHandlerProps & { children: ReactNode }> = ({

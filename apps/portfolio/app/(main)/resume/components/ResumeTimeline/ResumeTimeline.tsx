@@ -1,7 +1,7 @@
 import { FC, ReactNode, useCallback } from 'react'
 import './ResumeTimeline.styles.css'
 import { Text, Box, Inline } from '@ui'
-import { useEventListener } from '@hooks'
+import { useDocumentEventListener } from '@hooks'
 import { SkillsTags } from '../SkillsTags'
 
 interface ResumeTimelineData {
@@ -67,9 +67,9 @@ export const ResumeTimeline = <T,>({ data, mapItemToProps }: ResumeTimelineProps
     })
   }, [])
 
-  useEventListener('load', run)
-  useEventListener('resize', run)
-  useEventListener('scroll', run)
+  useDocumentEventListener('load', run)
+  useDocumentEventListener('resize', run)
+  useDocumentEventListener('scroll', run)
 
   return (
     <section id="cd-timeline">
