@@ -8,5 +8,7 @@ export * from './lib/Overlay'
 export * from './lib/Spinner'
 export * from './lib/Popup'
 export * from './lib/EmptyPlaceholder'
+export * from './lib/ExpandContent'
+export * from './lib/Tooltip'
 
 export * from './lib/types'

@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid'
 export const SkillsGeneral: FC = () => {
   return (
     <Grid container spacing={4}>
-      <Grid item sm={12} lg={6}>
+      <Grid item xs={12} lg={6}>
         <Card title="Languages">
           <Stack gap="S">
             {RESUME_DATA.languages.map(({ name, level, progress }, index) => {
@@ -25,7 +25,7 @@ export const SkillsGeneral: FC = () => {
           </Stack>
         </Card>
       </Grid>
-      <Grid item sm={12} lg={6}>
+      <Grid item xs={12} lg={6}>
         <Grid container spacing={4}>
           <Grid item xs={12}>
             <Card title="Soft skills"></Card>

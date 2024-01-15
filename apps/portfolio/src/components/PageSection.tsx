@@ -3,7 +3,6 @@ import { Text, ReactFCWithChildren, Stack } from '@ui'
 
 interface Props {
   title: string
-  info?: string
 }
 
 const SectionTitle = styled.div`
@@ -18,7 +17,7 @@ const SectionTitle = styled.div`
   }
 `
 
-export const PageSection: ReactFCWithChildren<Props> = ({ title, info, children }) => {
+export const PageSection: ReactFCWithChildren<Props> = ({ title, children }) => {
   return (
     <div className="pageSection">
       <Stack gap="L">
@@ -27,11 +26,6 @@ export const PageSection: ReactFCWithChildren<Props> = ({ title, info, children 
             {title}
           </Text>
         </SectionTitle>
-        {info && (
-          <div>
-            <Text>{info}</Text>
-          </div>
-        )}
         <div>{children}</div>
       </Stack>
     </div>
