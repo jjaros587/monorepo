@@ -20,6 +20,7 @@
       "@icons": ["libs/icons/src/index.ts"],
       "@theme": ["libs/theme/src/index.ts"],
       "@ui": ["libs/ui/src/index.ts"],
+      "@contentlayer/generated": ["./.contentlayer/generated"],
       "~/*": ["../*/src"]
     }
   },

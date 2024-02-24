@@ -1,7 +1,9 @@
 //@ts-check
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { composePlugins, withNx } = require('@nx/next')
+const {  withNx } = require('@nx/next')
+const { createContentlayerPlugin } = require('next-contentlayer');
+const { Config } = require('next-recompose-plugins');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -30,9 +32,17 @@ const nextConfig = {
   },
 }
 
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx,
-]
+const withContentlayer = createContentlayerPlugin({
+  configPath: "apps/portfolio/contentlayer.config.ts"
+})
 
-module.exports = composePlugins(...plugins)(nextConfig)
+module.exports = new Config(nextConfig)
+.applyPlugin((phase, args, config) => {
+  console.log('build')
+  return withNx(config);
+})
+  .applyPlugin((phase, args, config) => {
+    console.log('build')
+    return withContentlayer(config);
+  })
+  .build()

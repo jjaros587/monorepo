@@ -13,7 +13,7 @@ const Main = styled.main`
   width: 100vw;
   height: 100vh;
 
-  background: ${(p) => p.theme.colors.background};
+  background: var(--colors-background);
 `
 
 const Content = styled.div`
@@ -21,6 +21,12 @@ const Content = styled.div`
   flex: 1;
   height: auto;
   overflow-y: scroll;
+`
+
+const Wrapper = styled.div`
+  ${(p) => p.theme.padding('XXL')}
+  max-width: 1440px;
+  margin: auto;
 `
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -46,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Main>
               <Navigation />
               <Content>
-                <div>{children}</div>
+                <Wrapper>{children}</Wrapper>
               </Content>
             </Main>
           </ThemeProvider>

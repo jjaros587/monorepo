@@ -1,4 +1,4 @@
-import styled, { TextColors, TextVariants } from '@theme'
+import styled, { TextColors, TextVariants, css } from '@theme'
 import { ReactFCWithChildren } from './types'
 
 export function getTextTag(variant?: TextVariants): keyof JSX.IntrinsicElements | undefined {
@@ -24,10 +24,16 @@ interface Props {
   color?: TextColors
   variant?: TextVariants
   style?: React.CSSProperties
+  noWrap?: boolean
 }
 
 const TextBase = styled.span<Props>`
   ${(p) => p.theme.font[p.variant || 'body'](p.color)};
+  ${(p) =>
+    p.noWrap &&
+    css`
+      white-space: nowrap;
+    `};
 `
 
 export const Text: ReactFCWithChildren<Props> = ({ children, variant, ...props }) => {

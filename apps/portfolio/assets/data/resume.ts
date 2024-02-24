@@ -1,21 +1,7 @@
-interface Experience {
-  date: { from: string; to?: string }
-  place: string
-  position: string
-  company: string
-  description: string
-  stack: string[]
-  firstFe?: boolean
-}
-
-export interface Education {
-  date: number
-  place: string
-  degree: string
-  school: string
-  main: string
-  side?: string
-  thesis?: { label: string; link: string }
+interface Strenght {
+  title: string
+  iconName: string
+  text: string
 }
 
 interface Languages {
@@ -25,106 +11,32 @@ interface Languages {
 }
 
 interface Resume {
-  experience: Experience[]
-  education: Education[]
+  strenghts: Strenght[]
   languages: Languages[]
   skills: Record<string, string[]>
 }
 
 export const RESUME_DATA: Resume = {
-  experience: [
+  strenghts: [
     {
-      date: { from: '2021-01' },
-      place: 'Prague (Czechia)',
-      position: 'FRONTEND ENGINEER',
-      company: 'Ataccama Software, s.r.o.',
-      description:
-        'I was given an opportunity to switch role and started developing the app I had been ensuring quality of. Starting from simple tasks, I quickly progressed to implementation of complex features, earning the trust to assume a leadership role.  I was driving an initiative involving the breakdown and migration of our codebase to monorepo libraries and led teams and ensuring the successful delivery when developing new features.',
-      stack: [
-        'Javascript',
-        'Typescript',
-        'React',
-        'MobX',
-        'GraphQL',
-        'Apollo',
-        'Jest',
-        'Playwright',
-        'Lingui',
-        'HTML',
-        'CSS',
-        'styled-components',
-        'Docker',
-      ],
-      firstFe: true,
+      title: 'Attention to detail',
+      iconName: 'eye',
+      text: `I've been told numerous times that my work is nearly bug-free. That, of course, doesn't mean I don't make mistakes, but generally speaking, the results are of high quality. This proficiency stems from my experience as a QA engineer, where I can analyze problems from a broader perspective, identify and address all possible flows, and primarily test my work myself.`,
     },
     {
-      date: { from: '2019-04', to: '2020-12' },
-      place: 'Prague (Czechia)',
-      position: 'QA ENGINEER',
-      company: 'Ataccama Software, s.r.o.',
-      description: `A member of a team responsible for developing the 'core' part of the platform serving as the foundation for features developed by other teams. My role involved ensuring quality throughout the lifecycle, with a focus on test automation utilizing GraphQL API calls and developing an internal framework built for this purpose.`,
-      stack: ['Java', 'GraphQL', 'Selenium WebDriver', 'Docker'],
+      title: 'Collaborative',
+      iconName: 'people-group',
+      text: `I am highly collaborative. I believe in open communication and actively engage with colleagues to discuss every aspect of our tasks. It's better to ask a stupid question than to miss something. This approach helps ensure everyone is on the same page, preventing future changes and saving time, effort, and money.`,
     },
     {
-      date: { from: '2018-03', to: '2019-06' },
-      place: 'Prague (Czechia)',
-      position: 'SOFTWARE ENGINEER',
-      company: 'E-Consulting Future, s.r.o.',
-      description:
-        'Development of a tool for data transfer from the app to a payroll SW and automation of functional test scenarios.',
-      stack: ['Python', 'Selenium WebDriver', 'Test Complete'],
+      title: 'Not afraid of failure',
+      iconName: 'triangle-exclamation',
+      text: 'Mistakes are part of being human. Like Einstein once said, "A person who never made a mistake never tried anything new." I can only agree with that… my mistakes taught me the most.',
     },
     {
-      date: { from: '2017-06', to: '2019-06' },
-      place: 'Prague (Czechia)',
-      position: 'QA ENGINEER',
-      company: 'E-Consulting Future, s.r.o.',
-      description:
-        'Automation of functional test scenarios of in-house app and implementation of CD practice to the development process.',
-      stack: ['React', 'Apollo'],
-    },
-    {
-      date: { from: '2016-06', to: '2017-06' },
-      place: 'Prague (Czechia)',
-      position: 'SW TESTER/ANALYST ',
-      company: 'Trask Solutions, a.s.',
-      description:
-        'At the beginning manual test execution and after gaining some experience its analysis and design and planning of test execution.',
-      stack: ['React', 'Apollo'],
-    },
-  ],
-  education: [
-    {
-      date: 2020,
-      place: 'Prague (Czechia)',
-      degree: 'Master’s degree - Ing. (equiv. to MsC)',
-      school: 'University of economics - Faculty of informatics and statistics',
-      main: 'Information systems and technologies',
-      side: 'Software quality management',
-      thesis: {
-        label:
-          'Framework for creating generatable automated functional tests using tool Selenium WebDriver',
-        link: 'https://insis.vse.cz/zp/portal_zp.pl?prehled=vyhledavani;podrobnosti_zp=71091;zp=71091;dinfo_jazyk=3',
-      },
-    },
-    {
-      date: 2018,
-      place: 'Prague (Czechia)',
-      degree: 'Bachelor’s degree - Bc. (equiv. to BsC)',
-      school: 'University of economics - Faculty of informatics and statistics',
-      main: 'Applied informatics',
-      thesis: {
-        label:
-          'Proposal of an implementation of a continuous delivery practice into the development process of the Vehiklo.cz application',
-        link: 'https://insis.vse.cz/zp/portal_zp.pl?prehled=vyhledavani;podrobnosti_zp=63624;zp=63624;dinfo_jazyk=3',
-      },
-    },
-    {
-      date: 2014,
-      place: 'Písek (Czechia)',
-      degree: 'Maturita certificate (equiv. to Technical diploma)',
-      school: 'Secondary technical school',
-      main: 'Information technologies',
+      title: 'Ability to accept feedback',
+      iconName: 'comments',
+      text: 'I am not only able to accept feedback but I expect it and periodically ask for it. Positive feedback and recognition for work completed serve as motivation, while constructive feedback, provided in a constructive manner, helps identify areas for growth and personal development.',
     },
   ],
   languages: [
@@ -151,20 +63,28 @@ export const RESUME_DATA: Resume = {
   ],
   skills: {
     Languages: [
-      'Javascript (ES 6)',
+      'Javascript (ES6)',
       'Typescript',
       'Node.js',
+      'Python',
       'Java',
       'GraphQL',
       'SQL',
-      'Python',
       'HTML5',
       'CSS3',
       'XML',
     ],
-    Frameworks: ['Next.js', 'Express.js', 'Apollo GraphQL'],
-    Libraries: ['React 18', 'MobX', 'styled-components', 'typegoose', 'typeGraphQL'],
+    'Frameworks & Libraries': [
+      'React 18',
+      'Next.js',
+      'MobX',
+      'typegoose',
+      'typeGraphQL',
+      'styled-components',
+      'Express.js',
+      'Apollo GraphQL',
+    ],
     Testing: ['Jest', 'Playwright', 'Selenium WebDriver'],
-    'Build and other tools': ['git', 'Webpack', 'Nx', 'pnpm', 'Yarn', 'Docker'],
+    'Build and other tools': ['git', 'nx', 'pnpm', 'webpack', 'yarn', 'docker'],
   },
 }

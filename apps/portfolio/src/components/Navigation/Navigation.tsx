@@ -1,14 +1,14 @@
 'use client'
 
 import { Inline, Stack, Text, Box } from '@ui'
-import { NavItem } from './NavItem'
+import { NavItem } from './components/NavItem'
 import { usePathname } from 'next/navigation'
 import styled, { css } from '@theme'
 import { useCallback, useState } from 'react'
 import Image from 'next/image'
-import { IconLink } from './IconLink'
-import { DownloadResumeButton } from './DownloadResumeButton'
-import { ToggleButton } from './ToggleButton'
+import { IconLink } from './components/IconLink'
+import { DownloadResumeButton } from './components/DownloadResumeButton'
+import { ToggleButton } from './components/ToggleButton'
 import { useWindowEventListener } from '@hooks'
 import { useEffect } from 'react'
 
