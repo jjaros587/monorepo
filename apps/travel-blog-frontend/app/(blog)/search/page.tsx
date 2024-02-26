@@ -4,14 +4,14 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 import { MeiliSearch } from 'meilisearch'
 import { ArticleCard, ArticleListing } from '../../../src/components'
-import { Article } from '@graphql'
+import { Post } from '@contentlayer/generated'
 
 export default function Page() {
   const searchParams = useSearchParams()
   const searchValue = searchParams.get('search')
   const [{ articles, loading }, setSearchState] = useState<{
     loading: boolean
-    articles: Article[]
+    articles: Post[]
   }>({
     articles: [],
     loading: true,
@@ -31,7 +31,7 @@ export default function Page() {
       const response = await client.index('article').search(searchValue, {
         hitsPerPage: 15,
       })
-      setSearchState({ loading: false, articles: response.hits as Article[] })
+      setSearchState({ loading: false, articles: response.hits as Post[] })
     }
     search()
   }, [searchValue])

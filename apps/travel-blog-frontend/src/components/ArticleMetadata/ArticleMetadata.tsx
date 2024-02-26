@@ -1,7 +1,6 @@
 'use client'
 
 import { Inline, Text } from '@ui'
-import { Article } from '@graphql'
 import { formatISODate } from '../../utils/formatDate'
 import { Post } from '@contentlayer/generated'
 

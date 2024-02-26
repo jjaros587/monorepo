@@ -1,20 +1,20 @@
-import { ReactFCWithChildren } from '@ui';
-import { useEventListener } from '@hooks';
+import { ReactFCWithChildren } from '@ui'
+import { useDocumentEventListener } from '@hooks'
 import {
   faCircleChevronLeft,
   faCircleChevronRight,
   faCircleXmark,
-} from '@fortawesome/free-solid-svg-icons';
-import Image from 'next/image';
+} from '@fortawesome/free-solid-svg-icons'
+import Image from 'next/image'
 
-import { CloseButton, PrevButton, NextButton, Container } from './styled';
+import { CloseButton, PrevButton, NextButton, Container } from './styled'
 
 interface Props {
-  imagesCount: number;
-  slideNumber: number;
-  currentImage: { src: string; alt?: string };
-  setSlideNumber: (index: number) => void;
-  handleClose: () => void;
+  imagesCount: number
+  slideNumber: number
+  currentImage: { src: string; alt?: string }
+  setSlideNumber: (index: number) => void
+  handleClose: () => void
 }
 
 export const GalleryOverlay: ReactFCWithChildren<Props> = ({
@@ -25,33 +25,29 @@ export const GalleryOverlay: ReactFCWithChildren<Props> = ({
   handleClose,
 }) => {
   const prevSlide = () => {
-    slideNumber === 0
-      ? setSlideNumber(imagesCount - 1)
-      : setSlideNumber(slideNumber - 1);
-  };
+    slideNumber === 0 ? setSlideNumber(imagesCount - 1) : setSlideNumber(slideNumber - 1)
+  }
 
   const nextSlide = () => {
-    const nextSlideNumber = slideNumber + 1;
-    nextSlideNumber === imagesCount
-      ? setSlideNumber(0)
-      : setSlideNumber(nextSlideNumber);
-  };
+    const nextSlideNumber = slideNumber + 1
+    nextSlideNumber === imagesCount ? setSlideNumber(0) : setSlideNumber(nextSlideNumber)
+  }
 
   const handleKeyboardEvent = (e: KeyboardEvent) => {
-    e.stopPropagation();
+    e.stopPropagation()
     switch (e.key) {
       case 'ArrowLeft':
-        prevSlide();
-        break;
+        prevSlide()
+        break
       case 'ArrowRight':
-        nextSlide();
-        break;
+        nextSlide()
+        break
       default:
-        return;
+        return
     }
-  };
+  }
 
-  useEventListener('keyup', handleKeyboardEvent);
+  useDocumentEventListener('keyup', handleKeyboardEvent)
 
   return (
     <>
@@ -71,19 +67,19 @@ export const GalleryOverlay: ReactFCWithChildren<Props> = ({
           <PrevButton
             icon={faCircleChevronLeft}
             onClick={(e) => {
-              e.stopPropagation();
-              prevSlide();
+              e.stopPropagation()
+              prevSlide()
             }}
           />
           <NextButton
             icon={faCircleChevronRight}
             onClick={(e) => {
-              e.stopPropagation();
-              nextSlide();
+              e.stopPropagation()
+              nextSlide()
             }}
           />
         </>
       )}
     </>
-  );
-};
+  )
+}
