@@ -12,6 +12,8 @@ export function getTextTag(variant?: TextVariants): keyof JSX.IntrinsicElements 
       return 'h1'
     case 'headline2':
       return 'h2'
+    case 'headline3':
+      return 'h3'
     case 'body':
     case 'bodyMedium':
       return 'span'

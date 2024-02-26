@@ -29,6 +29,7 @@ const textVariants = {
   display: _textMixin({ size: 'display' }),
   headline1: _textMixin({ weight: 'medium', size: 'headline1' }),
   headline2: _textMixin({ weight: 'medium', size: 'headline2' }),
+  headline3: _textMixin({ weight: 'medium', size: 'headline3' }),
   body: _textMixin(),
   bodyMedium: _textMixin({ weight: 'medium' }),
   data: _textMixin({ family: 'data' }),
