@@ -44,3 +44,6 @@ Thumbs.db
 .nx/cache
 
 .contentlayer
+
+.env*
+
