@@ -1,5 +1,6 @@
 import styled from '@theme'
 import { Text } from '@ui'
+import { stardDownload } from '@utils'
 
 const StyledButton = styled.button`
   position: relative;
@@ -17,14 +18,6 @@ const StyledButton = styled.button`
 `
 
 export const DownloadResumeButton = () => {
-  const stardDownload = (uri: string, filename: string) => {
-    const pdfUrl = uri
-    const link = document.createElement('a')
-    link.href = pdfUrl
-    link.download = filename
-    link.click()
-  }
-
   const handleDownload = () => stardDownload('/jaros_jakub_resume.pdf', 'jaros_jakub_resume.pdf')
 
   return (
