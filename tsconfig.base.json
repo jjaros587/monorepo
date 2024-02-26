@@ -16,11 +16,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@contentlayer/generated": ["./.contentlayer/generated"],
       "@hooks": ["libs/hooks/src/index.ts"],
       "@icons": ["libs/icons/src/index.ts"],
       "@theme": ["libs/theme/src/index.ts"],
       "@ui": ["libs/ui/src/index.ts"],
-      "@contentlayer/generated": ["./.contentlayer/generated"],
+      "@utils": ["libs/utils/src/index.ts"],
       "~/*": ["../*/src"]
     }
   },
