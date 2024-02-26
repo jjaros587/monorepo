@@ -24,6 +24,10 @@ const Content = styled.div`
 `
 
 const Wrapper = styled.div`
+  @media only screen and (max-width: 768px) {
+    ${(p) => p.theme.padding('XL')}
+  }
+
   ${(p) => p.theme.padding('XXL')}
   max-width: 1440px;
   margin: auto;
