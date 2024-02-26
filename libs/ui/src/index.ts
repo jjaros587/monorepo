@@ -10,5 +10,7 @@ export * from './lib/Popup'
 export * from './lib/EmptyPlaceholder'
 export * from './lib/ExpandContent'
 export * from './lib/Tooltip'
+export * from './lib/TagsList'
+export * from './lib/ProgressBar'
 
 export * from './lib/types'

@@ -1,8 +1,7 @@
 import { FC, useCallback } from 'react'
 import './ResumeTimeline.styles.css'
-import { Text, Box, Inline } from '@ui'
+import { Text, Box, Inline, TagsList } from '@ui'
 import { useDocumentEventListener } from '@hooks'
-import { TagsList } from '../TagsList'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 
 interface ResumeTimelineData {

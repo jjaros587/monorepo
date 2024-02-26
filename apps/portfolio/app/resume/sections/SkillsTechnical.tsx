@@ -1,5 +1,5 @@
 import { RESUME_DATA } from '../../../assets/data/resume'
-import { TagsList } from '../../../src/components/TagsList'
+import { TagsList } from '@ui'
 import { Card } from '../../../src/components/Card'
 import Grid from '@mui/material/Grid'
 

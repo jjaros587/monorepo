@@ -1,6 +1,5 @@
 import { FC } from 'react'
-import { Box, Inline, Text, Stack } from '@ui'
-import { ProgressBar } from '../../../src/components/ProgressBar'
+import { Box, Inline, Text, Stack, ProgressBar } from '@ui'
 import { Card } from '../../../src/components/Card'
 import { RESUME_DATA } from '../../../assets/data/resume'
 import Grid from '@mui/material/Grid'

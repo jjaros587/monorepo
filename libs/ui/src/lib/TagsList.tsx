@@ -1,5 +1,6 @@
 import styled from '@theme'
-import { Inline, Text, Box } from '@ui'
+import { Box, Inline } from './layout'
+import { Text } from './Text'
 
 const Tag = styled(Box)`
   border-radius: 5px;
