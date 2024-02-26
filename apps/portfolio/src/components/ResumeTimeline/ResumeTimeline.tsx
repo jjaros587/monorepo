@@ -1,4 +1,4 @@
-import { FC, ReactNode, useCallback } from 'react'
+import { FC, useCallback } from 'react'
 import './ResumeTimeline.styles.css'
 import { Text, Box, Inline } from '@ui'
 import { useDocumentEventListener } from '@hooks'

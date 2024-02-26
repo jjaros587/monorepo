@@ -36,13 +36,8 @@ const withContentlayer = createContentlayerPlugin({
   configPath: "apps/portfolio/contentlayer.config.ts"
 })
 
-module.exports = new Config(nextConfig)
-.applyPlugin((phase, args, config) => {
-  console.log('build')
-  return withNx(config);
-})
-  .applyPlugin((phase, args, config) => {
-    console.log('build')
+module.exports = new Config(withNx(nextConfig))
+  .applyPlugin((_phase, _args, config) => {
     return withContentlayer(config);
   })
   .build()

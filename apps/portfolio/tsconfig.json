@@ -27,7 +27,7 @@
     "../../dist/apps/portfolio/.next/types/**/*.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    ".@contentlayer/generated"
+    "@contentlayer/generated"
   ],
   "exclude": ["node_modules", "jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }
