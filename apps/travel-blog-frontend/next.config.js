@@ -35,10 +35,7 @@ const withContentlayer = createContentlayerPlugin({
   configPath: "apps/travel-blog-frontend/contentlayer.config.ts"
 })
 
-module.exports = new Config(nextConfig)
-  .applyPlugin((_phase, _args, config) => {
-    return withNx(config);
-  })
+module.exports = new Config(withNx(nextConfig))
   .applyPlugin((_phase, _args, config) => {
     return withContentlayer(config);
   })
