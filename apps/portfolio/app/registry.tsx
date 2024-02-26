@@ -12,8 +12,6 @@ export function StyledComponentsRegistry({ children }: { children: React.ReactNo
   useServerInsertedHTML(() => {
     const styles = styledComponentsStyleSheet.getStyleElement()
 
-    // Types are out of date, clearTag is not defined.
-    // See: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/65021
     styledComponentsStyleSheet.instance.clearTag()
 
     return <>{styles}</>

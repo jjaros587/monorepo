@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Grid'
 import { Text, Box, Stack } from '@ui'
 import Image from 'next/image'
-import { Facts } from '../components/Facts'
-import { Info } from '../components/Info'
+import { Facts } from './components/Facts'
+import { Info } from './components/Info'
 
 export const About = () => {
   return (

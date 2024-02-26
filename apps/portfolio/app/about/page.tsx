@@ -3,7 +3,7 @@
 import { PageSection } from '../../src/components/PageSection'
 import { Strenghts } from './sections/Strenghts'
 import { Page } from '../../src/components/Page'
-import { About } from './sections/About'
+import { About } from './sections/About/About'
 import { Box } from '@ui'
 
 export default function AboutPage() {

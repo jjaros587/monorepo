@@ -1,9 +1,9 @@
 import { Text, Inline } from '@ui'
-import { Card } from '../../../src/components/Card'
+import { Card } from '../../../../../src/components/Card'
 import Grid from '@mui/material/Grid'
 import { FC, useMemo } from 'react'
 import { Experience, allExperiences } from '@contentlayer/generated'
-import { calculateYears } from '../../../src/utils/calculateYears'
+import { calculateYears } from '../../../../../src/utils/calculateYears'
 
 const FactItem: FC<{ number: number; text: string }> = ({ number, text }) => {
   return (
