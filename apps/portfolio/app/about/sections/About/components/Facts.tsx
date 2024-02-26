@@ -11,12 +11,12 @@ const FactItem: FC<{ number: number; text: string }> = ({ number, text }) => {
       <Card fullHeight>
         <Inline alignY="center" noWrap gap="L">
           <Inline.Item>
-            <Text variant="headline1" color="primary">
+            <Text variant="headline2" color="primary">
               {number}
             </Text>
           </Inline.Item>
           <Inline.Item>
-            <Text variant="headline1" color="light">
+            <Text variant="headline2" color="light">
               {text}
             </Text>
           </Inline.Item>

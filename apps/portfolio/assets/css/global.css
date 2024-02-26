@@ -19,6 +19,7 @@ body {
 }
 h1,
 h2,
+h3,
 p,
 pre {
   margin: 0;
@@ -32,7 +33,8 @@ pre {
   border-color: currentColor;
 }
 h1,
-h2 {
+h2,
+h3 {
   font-size: inherit;
   font-weight: inherit;
 }

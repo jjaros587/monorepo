@@ -22,7 +22,7 @@ export const PageSection: ReactFCWithChildren<Props> = ({ title, children }) => 
     <div className="pageSection">
       <Stack gap="L">
         <SectionTitle>
-          <Text variant="headline1" color="light">
+          <Text variant="headline2" color="light">
             {title}
           </Text>
         </SectionTitle>

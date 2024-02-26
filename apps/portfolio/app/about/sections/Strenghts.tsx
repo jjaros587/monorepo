@@ -26,7 +26,7 @@ const StrenghtsCard: FC<Props> = ({ iconName, title, content }) => {
           <i className={`fa-solid fa-${iconName} fa-2xl`} />
         </IconBox>
         <Box paddingY="M">
-          <Text variant="headline2" color="light">
+          <Text variant="headline3" color="light">
             {title}
           </Text>
         </Box>

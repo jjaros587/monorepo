@@ -49,8 +49,9 @@ const ProjectCard = ({ title, tooltips }: { title: string; tooltips: ReactNode }
         <div className="right">
           <Stack gap="M">
             <Inline align="space-between">
-              <Text variant="headline2">{title}</Text>
-
+              <Text variant="headline2" color="light">
+                {title}
+              </Text>
               {tooltips}
             </Inline>
 

@@ -19,7 +19,7 @@ export const Card: ReactFCWithChildren<Props> = ({ title, fullHeight, children }
     <StyledCard padding="L" backgroundColor="surface" fullHeight={fullHeight}>
       {title ? (
         <Box paddingBottom="S">
-          <Text variant="headline2" color="light">
+          <Text variant="headline3" color="light">
             {title}
           </Text>
         </Box>
