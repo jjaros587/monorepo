@@ -4,7 +4,7 @@ import { Inline, Stack, Text, Box } from '@ui'
 import { NavItem } from './components/NavItem'
 import { usePathname } from 'next/navigation'
 import styled, { css } from '@theme'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useRef } from 'react'
 import Image from 'next/image'
 import { IconLink } from './components/IconLink'
 import { DownloadResumeButton } from './components/DownloadResumeButton'
@@ -49,8 +49,7 @@ export const Navigation = () => {
   const pathname = usePathname()
 
   const handleSize = useCallback(() => {
-    const width = window.innerWidth
-    if (width <= BREAKPOINT) {
+    if (window.innerWidth <= BREAKPOINT) {
       setVariant('small')
       setIsOpened(false)
     } else {
@@ -61,7 +60,7 @@ export const Navigation = () => {
   const handleOnClick = useCallback(() => setIsOpened(false), [])
   const toggle = useCallback(() => setIsOpened((isOpened) => !isOpened), [setIsOpened])
 
-  useEffect(() => handleSize, [handleSize])
+  useEffect(handleSize, [handleSize])
   useWindowEventListener('resize', handleSize)
 
   return (

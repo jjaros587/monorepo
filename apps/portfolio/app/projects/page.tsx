@@ -90,6 +90,10 @@ const Icon = ({ link }: { link: string }) => {
   return <IconLink iconName="github" link={link} inverted />
 }
 
+// const Links = ({}) => {
+
+// }
+
 export default function ProjectsPage() {
   return (
     <Page title="My projects">
