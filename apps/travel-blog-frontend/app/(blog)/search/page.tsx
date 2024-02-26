@@ -1,21 +1,21 @@
-'use client';
+'use client'
 
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
-import { MeiliSearch } from 'meilisearch';
-import { ArticleCard, ArticleListing } from '@components';
-import { Article } from '@graphql';
+import { useSearchParams } from 'next/navigation'
+import { useEffect, useMemo, useState } from 'react'
+import { MeiliSearch } from 'meilisearch'
+import { ArticleCard, ArticleListing } from '../../../src/components'
+import { Article } from '@graphql'
 
 export default function Page() {
-  const searchParams = useSearchParams();
-  const searchValue = searchParams.get('search');
+  const searchParams = useSearchParams()
+  const searchValue = searchParams.get('search')
   const [{ articles, loading }, setSearchState] = useState<{
-    loading: boolean;
-    articles: Article[];
+    loading: boolean
+    articles: Article[]
   }>({
     articles: [],
     loading: true,
-  });
+  })
 
   const client = useMemo(
     () =>
@@ -23,20 +23,18 @@ export default function Page() {
         host: 'http://127.0.0.1:7700',
         apiKey: 'masterKey',
       }),
-    []
-  );
+    [],
+  )
 
   useEffect(() => {
     const search = async () => {
       const response = await client.index('article').search(searchValue, {
         hitsPerPage: 15,
-        
-      });
-      setSearchState({ loading: false, articles: response.hits as Article[] });
-      debugger;
-    };
-    search();
-  }, [searchValue]);
+      })
+      setSearchState({ loading: false, articles: response.hits as Article[] })
+    }
+    search()
+  }, [searchValue])
 
   return (
     <>
@@ -44,5 +42,5 @@ export default function Page() {
         <ArticleCard article={article} key={article.slug} />
       ))}
     </>
-  );
+  )
 }

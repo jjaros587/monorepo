@@ -1,5 +1,5 @@
-import { MainNavigationItem } from './MainNavigationItem/MainNavigationItem';
-import { Inline } from '@ui';
+import { MainNavigationItem } from './MainNavigationItem/MainNavigationItem'
+import { Inline } from '@ui'
 
 export const Navigation = () => {
   return (
@@ -10,18 +10,18 @@ export const Navigation = () => {
         <MainNavigationItem
           href={'/countries'}
           label="Countries"
-          subNavigation={
-            <Inline>
-              <div>bbb bbb bbb bbb bbb bbb</div>
-              <div>bbb bbb bbb bbb bbb bbb</div>
-              <div>bbb bbb bbb bbb bbb bbb</div>
-              <div>bbb bbb bbb bbb bbb bbb</div>
-              <div>bbb bbb bbb bbb bbb bbb</div>
-              <div>bbb bbb bbb bbb bbb bbb</div>
-            </Inline>
-          }
+          // subNavigation={
+          //   <Inline>
+          //     <div>bbb bbb bbb bbb bbb bbb</div>
+          //     <div>bbb bbb bbb bbb bbb bbb</div>
+          //     <div>bbb bbb bbb bbb bbb bbb</div>
+          //     <div>bbb bbb bbb bbb bbb bbb</div>
+          //     <div>bbb bbb bbb bbb bbb bbb</div>
+          //     <div>bbb bbb bbb bbb bbb bbb</div>
+          //   </Inline>
+          // }
         />
       </Inline>
     </nav>
-  );
-};
+  )
+}

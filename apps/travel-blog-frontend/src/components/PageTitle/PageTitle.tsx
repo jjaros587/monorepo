@@ -1,5 +1,5 @@
-import { ReactFCWithChildren, Text } from '@ui';
+import { ReactFCWithChildren, Text } from '@ui'
 
-export const PageTitle: ReactFCWithChildren<{}> = ({ children }) => {
-  return <Text variant="display">{children}</Text>;
-};
+export const PageTitle: ReactFCWithChildren = ({ children }) => {
+  return <Text variant="display">{children}</Text>
+}

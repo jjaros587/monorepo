@@ -1,16 +1,16 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@common": ["src/common/index.tsx"],
-      "@components": ["src/components/index.tsx"],
-      "@graphql": ["src/graphql.ts"],
-      "@ui": ["../../libs/ui/src/index.ts"],
-      "@theme": ["../../libs/theme/src/index.ts"],
-      "@icons": ["../../libs/icons/src/index.ts"],
-      "@hooks": ["../../libs/hooks/src/index.ts"]
-    },
+    // "baseUrl": ".",
+    // "paths": {
+    //   "@common": ["src/common/index.tsx"],
+    //   "@components": ["src/components/index.tsx"],
+    //   "@graphql": ["src/graphql.ts"],
+    //   "@ui": ["../../libs/ui/src/index.ts"],
+    //   "@theme": ["../../libs/theme/src/index.ts"],
+    //   "@icons": ["../../libs/icons/src/index.ts"],
+    //   "@hooks": ["../../libs/hooks/src/index.ts"]
+    // },
     "jsx": "preserve",
     "allowJs": true,
     "esModuleInterop": true,
@@ -34,12 +34,9 @@
     "**/*.js",
     "**/*.jsx",
     "next-env.d.ts",
-    "../../apps/travel-blog-frontend/.next/types/**/*.ts"
+    "../../apps/travel-blog-frontend/.next/types/**/*.ts",
+    ".next/types/**/*.ts",
+    "@contentlayer/generated"
   ],
-  "exclude": [
-    "node_modules",
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts"
-  ]
+  "exclude": ["node_modules", "jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }

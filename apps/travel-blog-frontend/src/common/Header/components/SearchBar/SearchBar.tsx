@@ -1,11 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import TextField from '@mui/material/TextField';
-import { Inline, Box } from '@ui';
-import { useMemo, useState } from 'react';
-import { MeiliSearch } from 'meilisearch';
-import { useRouter } from 'next/navigation';
-import styled, { css } from '@theme';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import TextField from '@mui/material/TextField'
+import { Inline, Box } from '@ui'
+import { useMemo, useState } from 'react'
+import { MeiliSearch } from 'meilisearch'
+import { useRouter } from 'next/navigation'
+import styled, { css } from '@theme'
 
 const SearchBox = styled.div<{ isOpened: boolean }>`
   position: relative;
@@ -18,22 +18,21 @@ const SearchBox = styled.div<{ isOpened: boolean }>`
     css`
       width: 350px;
     `}
-`;
+`
 
-const SearchButton = styled(FontAwesomeIcon)``;
+const SearchButton = styled(FontAwesomeIcon)``
 
-const SIZE = '15px';
+const SIZE = '15px'
 
 export const SearchBar: React.FC = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const [isOpened, setIsOpened] = useState(false);
+  const [searchValue, setSearchValue] = useState('')
+  const [isOpened, setIsOpened] = useState(false)
 
-  const router = useRouter();
+  const router = useRouter()
 
   const search = () => {
-    debugger;
-    window.location.replace(`/search?search=${searchValue}`);
-  };
+    window.location.replace(`/search?search=${searchValue}`)
+  }
 
   return (
     <div>
@@ -51,12 +50,9 @@ export const SearchBar: React.FC = () => {
         )}
 
         <Box style={{ width: SIZE, height: '100%' }}>
-          <SearchButton
-            icon={faMagnifyingGlass}
-            onClick={() => setIsOpened(true)}
-          />
+          <SearchButton icon={faMagnifyingGlass} onClick={() => setIsOpened(true)} />
         </Box>
       </Inline>
     </div>
-  );
-};
+  )
+}

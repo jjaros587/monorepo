@@ -1,11 +1,11 @@
-import { Box } from '@ui';
-import Image from 'next/image';
-import styled from 'styled-components';
+import { Box } from '@ui'
+import Image from 'next/image'
+import styled from 'styled-components'
 
 const StyledFooter = styled(Box)`
   background-color: #80475e;
   height: 300px;
-`;
+`
 
 export const Footer = () => {
   return (
@@ -18,10 +18,10 @@ export const Footer = () => {
             rel="noopener noreferrer"
           >
             Powered by
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            {/* <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} /> */}
           </a>
         </div>
       </StyledFooter>
     </footer>
-  );
-};
+  )
+}

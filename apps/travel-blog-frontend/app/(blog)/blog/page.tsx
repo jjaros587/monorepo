@@ -1,5 +1,7 @@
-import { BlogPage } from './BlogPage';
+'use client'
 
-export default async function Page() {
-  return <BlogPage />;
+import { ArticleListing } from '../../../src/components'
+
+export default function Page() {
+  return <ArticleListing />
 }

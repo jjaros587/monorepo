@@ -1,40 +1,44 @@
-import { fetchAPI } from 'lib/api';
-import { ArticleEntity, CountryEntity } from '@graphql';
-import CountryPage from './CountryPage';
+'use client'
 
-export const getCountry = async (slug: string) => {
-  const countryRes = await fetchAPI('/countries', {
-    filters: {
-      slug,
-    },
-    populate: '*',
-  });
+import { ContentManager } from '../../../../lib/ContentManager'
 
-  return countryRes.data[0];
-};
+import { CountryLabel, Markdown } from '../../../../src/components'
+import { Box, Text } from '@ui'
+import { IconCountryMap } from '@icons'
+import Flag, { Flag2 } from 'national-flag-icons'
+import Grid from '@mui/material/Grid'
 
-async function getArticles(country: string) {
-  const [articlesRes] = await Promise.all([
-    fetchAPI('/articles', {
-      filters: {
-        country: {
-          slug: { $eq: country },
-        },
-      },
-      populate: '*',
-    }),
-  ]);
+export default function Page({ params: { slug } }: { params: { slug: string } }) {
+  const country = new ContentManager().countries.getBySlug(slug)
+  // const articles = new ContentManager().posts.getFilteredItems((item) => item.country === )
 
-  return articlesRes.data;
-}
+  return (
+    <>
+      <Grid container>
+        <Grid item xs={12} sm={12} md={8}>
+          <Box paddingBottom="M">
+            <CountryLabel country={country} size="big" />
+          </Box>
+          <Markdown markdown={country.body.raw} />
+        </Grid>
 
-export default async function Page({
-  params: { slug },
-}: {
-  params: { slug: string };
-}) {
-  const country: CountryEntity = await getCountry(slug);
-  const articles: ArticleEntity[] = await getArticles(slug);
+        <Grid item xs={12} sm={12} md={4}>
+          <Box padding="L" align="center">
+            {/* <IconCountryMap name={country.slug} /> */}
+          </Box>
+        </Grid>
 
-  return <CountryPage country={country} />;
+        <Grid item xs={12} sm={12} md={12}>
+          <Text variant="display">Articles</Text>
+          {/* <ArticleListingFetcher
+            filters={{
+              country: {
+                slug: { $eq: country.attributes.slug },
+              },
+            }}
+          /> */}
+        </Grid>
+      </Grid>
+    </>
+  )
 }

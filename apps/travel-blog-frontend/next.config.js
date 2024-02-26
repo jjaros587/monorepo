@@ -2,6 +2,8 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withNx } = require('@nrwl/next/plugins/with-nx');
+const { createContentlayerPlugin } = require('next-contentlayer');
+const { Config } = require('next-recompose-plugins');
 
 /**
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
@@ -14,9 +16,9 @@ const nextConfig = {
   },
   // reactStrictMode: true,
   // swcMinify: true,
-  experimental: {
-    appDir: true,
-  },
+  // experimental: {
+  //   appDir: true,
+  // },
   images: {
     remotePatterns: [
       {
@@ -29,19 +31,32 @@ const nextConfig = {
   },
 };
 
-module.exports = withNx({
-  ...nextConfig,
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-        },
-      ],
-    });
+const withContentlayer = createContentlayerPlugin({
+  configPath: "apps/travel-blog-frontend/contentlayer.config.ts"
+})
 
-    return config;
-  },
-});
+module.exports = new Config(nextConfig)
+  .applyPlugin((_phase, _args, config) => {
+    return withNx(config);
+  })
+  .applyPlugin((_phase, _args, config) => {
+    return withContentlayer(config);
+  })
+  .build()
+
+// module.exports = withNx(withContentlayer({
+//   ...nextConfig,
+//   webpack(config) {
+//     config.module.rules.push({
+//       test: /\.svg$/i,
+//       issuer: /\.[jt]sx?$/,
+//       use: [
+//         {
+//           loader: '@svgr/webpack',
+//         },
+//       ],
+//     });
+
+//     return config;
+//   },
+// }));

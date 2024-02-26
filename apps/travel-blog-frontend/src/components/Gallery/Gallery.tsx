@@ -1,25 +1,25 @@
-import { useCallback, useState } from 'react';
-import Image from 'next/image';
-import { Box, Inline, Overlay } from '@ui';
-import { GalleryOverlay } from './GalleryOverlay';
+import { useCallback, useState } from 'react'
+import Image from 'next/image'
+import { Box, Inline, Overlay } from '@ui'
+import { GalleryOverlay } from './GalleryOverlay'
 
 interface Props {
-  images: Array<{ src: string; alt?: string }>;
+  images: Array<{ src: string; alt?: string }>
 }
 
 export const Gallery: React.FC<Props> = ({ images }) => {
-  const [open, setOpen] = useState(false);
-  const [slideNumber, setSlideNumber] = useState(0);
+  const [open, setOpen] = useState(false)
+  const [slideNumber, setSlideNumber] = useState(0)
 
   const handleOpen = useCallback((index: number) => {
-    setSlideNumber(index);
-    setOpen(true);
-  }, []);
+    setSlideNumber(index)
+    setOpen(true)
+  }, [])
 
-  const handleClose = useCallback(() => setOpen(false), []);
+  const handleClose = useCallback(() => setOpen(false), [])
 
   if (!images || images.length === 0) {
-    return null;
+    return null
   }
 
   return (
@@ -29,6 +29,7 @@ export const Gallery: React.FC<Props> = ({ images }) => {
           {images.map((image, index) => {
             return (
               <Image
+                key={index}
                 src={image.src}
                 alt={image.alt}
                 width={100}
@@ -38,7 +39,7 @@ export const Gallery: React.FC<Props> = ({ images }) => {
                 onClick={() => handleOpen(index)}
                 style={{ objectFit: 'cover' }}
               />
-            );
+            )
           })}
         </Inline>
       </Box>
@@ -53,5 +54,5 @@ export const Gallery: React.FC<Props> = ({ images }) => {
         />
       </Overlay>
     </Box>
-  );
-};
+  )
+}

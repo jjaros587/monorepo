@@ -1,11 +1,7 @@
-'use client';
+'use client'
 
-import { Content } from '@common';
+import { Content } from '../../src/common'
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <Content>{children}</Content>;
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return <Content>{children}</Content>
 }

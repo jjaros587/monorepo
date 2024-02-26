@@ -1,18 +1,18 @@
-import { Fetcher } from './ArticleManager';
+import { Fetcher } from './ArticleManager'
 
 export class ListingModel {
-  private fetcher: Fetcher;
-  private _items: Array<any>;
+  private fetcher: Fetcher
+  private _items: Array<any>
 
   constructor(
     indexKey: string,
-    private opts: { offset: number; limit: number } = { offset: 0, limit: 10 }
+    private opts: { offset: number; limit: number } = { offset: 0, limit: 10 },
   ) {
-    this.fetcher = new Fetcher(indexKey);
+    this.fetcher = new Fetcher(indexKey)
   }
 
   get items() {
-    return this._items;
+    return this._items
   }
 
   // fetchItems = () => {
@@ -23,13 +23,13 @@ export class ListingModel {
   //   this._items = hits;
   // };
 
-  fetchMore = async () => {};
+  fetchMore = async () => undefined
 
   get hasNextPage() {
-    return true;
+    return true
   }
 
   get hasPreviousPage() {
-    return true;
+    return true
   }
 }

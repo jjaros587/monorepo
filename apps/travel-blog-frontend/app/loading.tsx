@@ -1,7 +1,8 @@
-'use client';
+'use client'
 
-import { FullScreenSpinner } from '@ui';
+import { FullScreenSpinner } from '@ui'
 
 export default function Loader() {
-  return <FullScreenSpinner />;
+  return <>loading</>
+  return <FullScreenSpinner />
 }

@@ -1,36 +1,30 @@
-'use client';
+import { Wallpaper } from './styled'
 
-import { HomepageEntity } from '@graphql';
-import { getStrapiMediaArrayItem } from 'lib/media';
-import { Wallpaper } from './styled';
+export const HomePageWallpapers = () => {
+  const assets = ['./wallpapers/1.jpg', './wallpapers/2.jpg', './wallpapers/3.jpg']
 
-interface Props {
-  homepage: HomepageEntity;
-}
+  const presentationTime = 3
+  const transitionTime = 2
+  const animationTime = presentationTime + transitionTime
 
-export const HomePageWallpapers = ({ homepage }: Props) => {
-  const presentationTime: number = 3;
-  const transitionTime: number = 2;
-  const animationTime: number = presentationTime + transitionTime;
-
-  const itemsCount = homepage.attributes.wallpapers.data.length;
-  const totalAnimationDuration: number =
-    (presentationTime + transitionTime) * itemsCount;
+  const itemsCount = assets.length
+  const totalAnimationDuration = (presentationTime + transitionTime) * itemsCount
 
   return (
     <>
-      {homepage.attributes.wallpapers.data.map((item, index) => {
+      {assets.map((item, index) => {
         return (
           <Wallpaper
-            src={getStrapiMediaArrayItem(item)}
+            key={index}
+            src={item}
             presentationTime={presentationTime}
             transitionTime={transitionTime}
             index={index}
             animationTime={animationTime}
             totalAnimationDuration={totalAnimationDuration}
           />
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}

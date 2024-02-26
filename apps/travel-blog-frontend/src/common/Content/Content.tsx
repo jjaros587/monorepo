@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import styled from 'styled-components';
-import { SidePanel } from '../SidePanel/SidePanel';
-import Grid from '@mui/material/Grid';
+import styled from 'styled-components'
+import { SidePanel } from '../SidePanel/SidePanel'
+import Grid from '@mui/material/Grid'
 
 const Main = styled.main`
   position: relative;
   min-height: 100vh;
   top: 75px;
-  padding: 3rem 1rem;
+  margin: 3rem 1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+`
 
 export const Content = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -25,11 +25,11 @@ export const Content = ({ children }: { children: React.ReactNode }) => {
               {children}
             </Grid>
             <Grid item xs={12} sm={12} md={3}>
-              <SidePanel />
+              {/* <SidePanel /> */}
             </Grid>
           </Grid>
         </div>
       </div>
     </Main>
-  );
-};
+  )
+}

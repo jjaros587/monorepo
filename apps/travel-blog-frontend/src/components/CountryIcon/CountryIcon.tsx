@@ -1,15 +1,14 @@
-'use client';
-import { FC } from 'react';
-import styled, { css } from 'styled-components';
+import { FC } from 'react'
+import styled, { css } from 'styled-components'
 
 interface BaseProps {
-  rounded?: boolean;
-  size?: string;
-  isHovered?: boolean;
-  onClick?: (e: any) => void;
+  rounded?: boolean
+  size?: string
+  isHovered?: boolean
+  onClick?: (e: any) => void
 }
 interface CountryIconProps extends BaseProps {
-  code: string;
+  code: string
 }
 
 const Container = styled.span<BaseProps & { isInteractive: boolean }>`
@@ -27,7 +26,7 @@ const Container = styled.span<BaseProps & { isInteractive: boolean }>`
     css`
       border-radius: 100%;
     `}
-`;
+`
 
 export const CountryIcon: FC<CountryIconProps> = ({
   code,
@@ -36,8 +35,8 @@ export const CountryIcon: FC<CountryIconProps> = ({
   isHovered,
   onClick,
 }) => {
-  const isInteractive = isHovered !== undefined;
-
+  const isInteractive = isHovered !== undefined
+  // return <span className="fi fi-de"></span>
   return (
     <Container
       className={`fi fi-${code} fis`}
@@ -47,5 +46,5 @@ export const CountryIcon: FC<CountryIconProps> = ({
       isInteractive={isInteractive}
       onClick={onClick}
     />
-  );
-};
+  )
+}

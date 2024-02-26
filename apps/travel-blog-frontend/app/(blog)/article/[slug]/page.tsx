@@ -1,24 +1,25 @@
-import { fetchAPI } from 'lib/api';
-import { ArticleEntity } from '@graphql';
-import { ArticlePage } from './ArticlePage';
+'use client'
 
-export const getArticle = async (slug: string) => {
-  const countryRes = await fetchAPI('/articles', {
-    filters: {
-      slug,
-    },
-    populate: '*',
-  });
+import { ContentManager } from '../../../../lib/ContentManager'
+import { Box } from '@ui'
+import { ArticleMetadata, Gallery, Markdown, PageTitle } from '../../../../src/components'
 
-  return countryRes.data[0];
-};
+export default function Page({ params: { slug } }: { params: { slug: string } }) {
+  const post = new ContentManager().posts.getBySlug(slug)
 
-export default async function Page({
-  params: { slug },
-}: {
-  params: { slug: string };
-}) {
-  const article: ArticleEntity = await getArticle(slug);
-
-  return <ArticlePage article={article.attributes} />;
+  return (
+    <>
+      {/* <img src={getStrapiMedia(article.image)} style={{ width: '100%', height: 'auto' }} /> */}
+      <PageTitle>{post.title}</PageTitle>
+      {/* <ArticleMetadata article={post} /> */}
+      <Box paddingTop="M">
+        <Markdown markdown={post.body.raw} />
+      </Box>
+      {/* <Gallery
+        images={article.gallery.data?.map((item) => ({
+          src: getStrapiMediaArrayItem(item),
+        }))}
+      /> */}
+    </>
+  )
 }

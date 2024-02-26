@@ -1,18 +1,41 @@
-import { fetchAPI } from '../lib/api';
-import { HomepageEntity } from '@graphql';
-import RootPage from './RootPage';
+'use client'
 
-async function getHomepage() {
-  const [homepageRes] = await Promise.all([
-    fetchAPI('/homepage', { populate: '*' }),
-  ]);
-  console.log('homepage', homepageRes);
+import styled from '@theme'
+import { Text, Button, Box } from '@ui'
+import { HomePageWallpapers } from '../src/common/HomePageWallpapers/HopePageWallpapers'
+import { Map } from '../src/components/Map/Map'
 
-  return homepageRes.data;
-}
+const Container = styled.main`
+  min-height: 100vh;
+  padding-bottom: 4rem;
+  display: flex;
 
-export default async function Page() {
-  const homepage: HomepageEntity = await getHomepage();
+  flex-direction: column;
+  align-items: center;
+`
 
-  return <RootPage homepage={homepage} />;
+const Wrapper = styled.div`
+  position: absolute;
+  text-align: center;
+  padding-top: 30vh;
+`
+
+export default function Page() {
+  return (
+    <Container>
+      <Box fullScreen>
+        <HomePageWallpapers />
+      </Box>
+      <Wrapper>
+        <Text variant="display" color="warning">
+          AAA
+        </Text>
+        <Text variant="display" color="warning">
+          BBB
+        </Text>
+        <Button primary>Start exploring</Button>
+      </Wrapper>
+      <Map />
+    </Container>
+  )
 }
