@@ -2,7 +2,6 @@ import styled from '@theme'
 import { Text, Box, Inline } from '@ui'
 import Link from 'next/link'
 import { FC, useState } from 'react'
-import { HEADER_HEIGHT } from '../../../constants'
 
 interface Props {
   path: string
@@ -13,7 +12,7 @@ interface Props {
 }
 
 const Item = styled(Box)`
-  height: ${HEADER_HEIGHT};
+  height: 50px;
 `
 
 export const NavItem: FC<Props> = ({ path, title, iconName, isActive, onClick }) => {
